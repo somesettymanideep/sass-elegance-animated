@@ -40,7 +40,7 @@ export function Branches() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {branches.map((b) => (
-            <article key={b.city} className="br-card luxe-card overflow-hidden bg-white/[0.03]">
+            <article id={`branch-${b.city.toLowerCase()}`} key={b.city} className="br-card luxe-card overflow-hidden bg-white/[0.03]">
               <iframe
                 title={`Map of SASS ${b.city}`}
                 src={`https://www.google.com/maps?q=${encodeURIComponent(b.q)}&output=embed`}
