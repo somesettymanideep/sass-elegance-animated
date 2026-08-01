@@ -50,7 +50,7 @@ export function Navbar() {
             width={160}
             height={80}
             className={cn(
-              "w-28 invert transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:w-36",
+              "w-28 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:w-36",
               scrolled && "w-24 md:w-28",
             )}
           />
@@ -108,7 +108,7 @@ export function Navbar() {
           )}
         >
           <div className="mb-8 flex items-center justify-between">
-            <img src={logo.url} alt="" width={120} height={60} className="w-24 invert" />
+            <img src={logo.url} alt="" width={120} height={60} className="w-24" />
             <button
               onClick={() => setOpen(false)}
               aria-label="Close menu"
