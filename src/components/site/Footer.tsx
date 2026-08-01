@@ -142,7 +142,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-16 max-w-[1400px] border-t border-cream/10 px-6 pt-6 text-xs text-cream/40 lg:px-10">
+      <div className="mx-auto mt-10 max-w-[1400px] border-t border-cream/10 px-6 pt-6 text-xs text-cream/40 lg:px-10">
         © {new Date().getFullYear()} SASS Hair &amp; Beauty. All rights reserved.
       </div>
     </footer>
