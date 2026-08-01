@@ -50,6 +50,7 @@ function AboutPage() {
         <Story />
         <Founder />
         <Timeline />
+        <AboutBranches />
         <AboutStats />
         <Experts />
         <Brands />
