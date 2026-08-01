@@ -23,10 +23,13 @@ export function SmoothScroll() {
     frame = requestAnimationFrame(raf);
 
     const onAnchor = (e: MouseEvent) => {
-      const anchor = (e.target as HTMLElement)?.closest?.('a[href^="#"]');
+      const anchor = (e.target as HTMLElement)?.closest?.(
+        'a[href^="#"], a[href^="/#"]',
+      );
       if (!anchor) return;
-      const id = anchor.getAttribute("href");
-      if (!id || id === "#") return;
+      const raw = anchor.getAttribute("href");
+      if (!raw || raw === "#" || raw === "/#") return;
+      const id = raw.startsWith("/#") ? raw.slice(1) : raw;
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
