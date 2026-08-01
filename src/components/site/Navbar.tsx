@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/sass-logo.png.asset.json";
 import { LuxeButton } from "./LuxeButton";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Transformations", href: "#gallery" },
-  { label: "Bridal", href: "#bridal" },
-  { label: "Experts", href: "#experts" },
-  { label: "Membership", href: "#membership" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Transformations", href: "/#gallery" },
+  { label: "Bridal", href: "/#bridal" },
+  { label: "About", href: "/about" },
+  { label: "Membership", href: "/#membership" },
+  { label: "Contact", href: "/contact" },
 ];
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
