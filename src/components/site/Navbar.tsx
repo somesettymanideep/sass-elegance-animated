@@ -25,7 +25,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [branchesOpen, setBranchesOpen] = useState(false);
   const [mobileBranchesOpen, setMobileBranchesOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
