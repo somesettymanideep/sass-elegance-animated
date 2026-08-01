@@ -31,7 +31,7 @@ export function PageHero({ eyebrow, title, italic, subtitle, image, crumb }: Pro
         style={{ animationDelay: "1.4s" }}
       />
 
-      <div ref={ref} className="relative mx-auto max-w-[1400px] px-6 pb-24 pt-40 lg:px-10 md:pb-32 md:pt-52">
+      <div ref={ref} className="relative mx-auto max-w-[1400px] px-6 pb-16 pt-32 lg:px-10 lg:pb-20 lg:pt-40">
         <nav aria-label="Breadcrumb" className="ph-fade">
           <ol className="flex items-center gap-3 text-[0.68rem] uppercase tracking-[0.26em] text-cream/50">
             <li>
