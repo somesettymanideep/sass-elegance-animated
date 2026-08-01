@@ -43,7 +43,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-10">
-        <a href="#top" aria-label="SASS Hair & Beauty home" className="shrink-0">
+        <Link to="/" aria-label="SASS Hair & Beauty home" className="shrink-0">
           <img
             src={logo.url}
             alt="SASS Hair & Beauty"
@@ -54,7 +54,7 @@ export function Navbar() {
               scrolled && "w-24 md:w-28",
             )}
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">
           {links.map((l) => (
@@ -72,7 +72,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <LuxeButton
             as="a"
-            href="#contact"
+            href="/contact"
             className="hidden gold-pulse md:inline-flex"
           >
             Book Appointment
@@ -134,7 +134,7 @@ export function Navbar() {
               {l.label}
             </a>
           ))}
-          <LuxeButton as="a" href="#contact" className="mt-8 w-full">
+          <LuxeButton as="a" href="/contact" className="mt-8 w-full">
             Book Appointment
           </LuxeButton>
         </aside>
