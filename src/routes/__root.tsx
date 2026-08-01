@@ -84,13 +84,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "SASS Hair & Beauty — premium hair, bridal and beauty salons in Vijayawada, Guntur and Rajahmundry.",
       },
       { name: "author", content: "SASS Hair & Beauty" },
-      { property: "og:title", content: "SASS Hair & Beauty" },
+      { property: "og:title", content: "SASS Hair & Beauty | Luxury Salon in Andhra Pradesh" },
       {
         property: "og:description",
-        content: "Luxury hair, bridal and beauty studio in Andhra Pradesh.",
+        content: "SASS Hair & Beauty — premium hair, bridal and beauty salons in Vijayawada, Guntur and Rajahmundry.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "SASS Hair & Beauty | Luxury Salon in Andhra Pradesh" },
+      { name: "twitter:description", content: "SASS Hair & Beauty — premium hair, bridal and beauty salons in Vijayawada, Guntur and Rajahmundry." },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
