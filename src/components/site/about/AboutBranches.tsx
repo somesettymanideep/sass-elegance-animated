@@ -2,7 +2,8 @@ import { MapPin, Phone, Navigation } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import vijayawada from "@/assets/branch-vijayawada.jpg";
 import guntur from "@/assets/branch-guntur.jpg";
-import rajahmundry from "@/assets/branch-rajahmundry.jpg";
+import rajahmundryAsset from "@/assets/rajahmundry-bridge.jpg.asset.json";
+
 
 const branches = [
   {
@@ -26,8 +27,9 @@ const branches = [
     tag: "Hair & skin studio",
     address: "Danavaipeta Main Road, Rajahmundry 533103",
     phone: "+91 90000 11144",
-    image: rajahmundry,
+    image: rajahmundryAsset.url,
     q: "Danavaipeta Rajahmundry",
+
   },
 ];
 
