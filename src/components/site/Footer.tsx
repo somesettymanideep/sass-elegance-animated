@@ -1,9 +1,7 @@
-import { useState } from "react";
 import {
   Instagram,
   Facebook,
   Youtube,
-  ArrowRight,
   Mail,
   Phone,
   MapPin,
@@ -42,11 +40,9 @@ const branches = [
 
 export function Footer() {
   const ref = useReveal<HTMLDivElement>({ selector: ".foot-col", stagger: 0.1 });
-  const [mail, setMail] = useState("");
-  const [sent, setSent] = useState(false);
 
   return (
-    <footer className="border-t border-gold/15 bg-ink pb-28 pt-20 text-cream md:pb-12">
+    <footer className="border-t border-gold/15 bg-ink pb-16 pt-14 text-cream md:pb-10">
       <div
         ref={ref}
         className="mx-auto grid max-w-[1400px] gap-12 px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-10"
