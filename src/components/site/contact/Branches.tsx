@@ -45,7 +45,7 @@ export function Branches() {
                 title={`Map of SASS ${b.city}`}
                 src={`https://www.google.com/maps?q=${encodeURIComponent(b.q)}&output=embed`}
                 loading="lazy"
-                className="h-52 w-full grayscale transition-[filter] duration-700 hover:grayscale-0"
+                className="h-52 w-full"
               />
               <div className="p-7">
                 <p className="text-[0.65rem] uppercase tracking-[0.24em] text-gold">{b.tag}</p>
