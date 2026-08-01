@@ -32,7 +32,7 @@ const branches = [
 ];
 
 export function AboutBranches() {
-  const ref = useReveal<HTMLDivElement>({ selector: "ab-br-head, .ab-br-card", stagger: 0.12 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".ab-br-head, .ab-br-card", stagger: 0.12 });
 
   return (
     <section className="bg-cream py-24 md:py-32">
