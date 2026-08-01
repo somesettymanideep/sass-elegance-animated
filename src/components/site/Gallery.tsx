@@ -34,7 +34,7 @@ function BeforeAfter() {
       className="relative aspect-4/5 w-full select-none overflow-hidden rounded-[1.5rem] border border-gold/20 sm:aspect-16/11"
       onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
       onPointerDown={(e) => move(e.clientX)}
-      onTouchMove={(e) => move(e.touches[0].clientX)}
+      onTouchMove={(e) => e.touches[0] && move(e.touches[0].clientX)}
     >
       <img
         src={after}
@@ -146,8 +146,8 @@ export function Gallery() {
             <ChevronLeft className="size-5" />
           </button>
           <img
-            src={shots[lightbox].src}
-            alt={shots[lightbox].alt}
+            src={shots[lightbox]!.src}
+            alt={shots[lightbox]!.alt}
             className="max-h-[84vh] max-w-[90vw] rounded-2xl object-contain"
             style={{ animation: "scale-in 0.45s cubic-bezier(0.22,1,0.36,1) both" }}
             onClick={(e) => e.stopPropagation()}
