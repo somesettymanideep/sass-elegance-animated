@@ -6,7 +6,7 @@ import { LuxeButton } from "./LuxeButton";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Transformations", href: "/#gallery" },
   { label: "Bridal", href: "/#bridal" },
   { label: "About", href: "/about" },
