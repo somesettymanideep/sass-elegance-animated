@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/sass-logo.png.asset.json";
+import logo from "@/assets/sass-logo-white.png.asset.json";
 import { LuxeButton } from "./LuxeButton";
 import { cn } from "@/lib/utils";
 
