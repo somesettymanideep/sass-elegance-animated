@@ -80,10 +80,10 @@ export function Hero() {
           Vijayawada · Guntur · Rajahmundry
         </p>
         <h1 className="max-w-4xl text-[clamp(2.8rem,7.5vw,6.2rem)] leading-[0.95] text-cream">
-          <span className="block overflow-hidden">
+          <span className="block overflow-hidden pb-[0.12em]">
             <span className="hero-line block">Where beauty</span>
           </span>
-          <span className="block overflow-hidden">
+          <span className="block overflow-hidden pb-[0.12em]">
             <span className="hero-line block italic text-gold-gradient">becomes artistry</span>
           </span>
         </h1>
