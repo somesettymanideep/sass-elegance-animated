@@ -142,8 +142,19 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-[1400px] border-t border-cream/10 px-6 pt-6 text-xs text-cream/40 lg:px-10">
-        © {new Date().getFullYear()} SASS Hair &amp; Beauty. All rights reserved.
+      <div className="mx-auto mt-10 flex max-w-[1400px] flex-col items-center justify-between gap-3 border-t border-cream/10 px-6 pt-6 text-xs text-cream/40 md:flex-row lg:px-10">
+        <span>© {new Date().getFullYear()} SASS Hair &amp; Beauty. All rights reserved.</span>
+        <span>
+          Designed and developed by{" "}
+          <a
+            href="https://ayrondigitalsolutions.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cream/60 transition-colors duration-300 hover:text-gold"
+          >
+            Ayrondigitalsolutions
+          </a>
+        </span>
       </div>
     </footer>
   );
