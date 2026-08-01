@@ -41,75 +41,73 @@ export function AppointmentForm() {
     "pointer-events-none absolute left-4 top-2 text-[0.6rem] uppercase tracking-[0.16em] text-gold";
 
   return (
-    <section id="book" className="bg-background pb-24 md:pb-32">
-      <div ref={ref} className="mx-auto max-w-[1000px] px-6 lg:px-10">
-        <div className="af-inner rounded-[2rem] border border-gold/20 bg-card p-8 shadow-luxe md:p-12">
-          <p className="eyebrow text-gold">Appointment Request</p>
-          <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06]">
-            Reserve your chair
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Share a few details and our front desk will confirm your slot within the hour.
-          </p>
+    <div ref={ref} className="h-full">
+      <div className="af-inner h-full rounded-[2rem] border border-gold/20 bg-card p-8 shadow-luxe md:p-10">
+        <p className="eyebrow text-gold">Appointment Request</p>
+        <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06]">
+          Reserve your chair
+        </h2>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Share a few details and our front desk will confirm your slot within the hour.
+        </p>
 
-          <form onSubmit={submit} noValidate className={`mt-10 grid gap-4 md:grid-cols-2 ${error ? "shake" : ""}`}>
-            <div className="relative">
-              <input name="name" placeholder=" " className={field} />
-              <span className={label}>Full name</span>
-            </div>
-            <div className="relative">
-              <input name="phone" inputMode="tel" placeholder=" " className={field} />
-              <span className={label}>Phone number</span>
-            </div>
-            <div className="relative md:col-span-2">
-              <input name="email" type="email" placeholder=" " className={field} />
-              <span className={label}>Email address</span>
-            </div>
-            <div className="relative">
-              <select name="branch" className={selectCls}>
-                {branches.map((b) => (
-                  <option key={b}>{b}</option>
-                ))}
-              </select>
-              <span className={staticLabel}>Branch</span>
-            </div>
-            <div className="relative">
-              <select name="service" className={selectCls}>
-                {services.map((s) => (
-                  <option key={s}>{s}</option>
-                ))}
-              </select>
-              <span className={staticLabel}>Service</span>
-            </div>
-            <div className="relative">
-              <input name="date" type="date" className={selectCls} />
-              <span className={staticLabel}>Preferred date</span>
-            </div>
-            <div className="relative">
-              <input name="time" type="time" className={selectCls} />
-              <span className={staticLabel}>Preferred time</span>
-            </div>
-            <div className="relative md:col-span-2">
-              <textarea name="message" rows={4} placeholder=" " className={field} />
-              <span className={label}>Message</span>
-            </div>
+        <form onSubmit={submit} noValidate className={`mt-10 grid gap-4 md:grid-cols-2 ${error ? "shake" : ""}`}>
+          <div className="relative">
+            <input name="name" placeholder=" " className={field} />
+            <span className={label}>Full name</span>
+          </div>
+          <div className="relative">
+            <input name="phone" inputMode="tel" placeholder=" " className={field} />
+            <span className={label}>Phone number</span>
+          </div>
+          <div className="relative md:col-span-2">
+            <input name="email" type="email" placeholder=" " className={field} />
+            <span className={label}>Email address</span>
+          </div>
+          <div className="relative">
+            <select name="branch" className={selectCls}>
+              {branches.map((b) => (
+                <option key={b}>{b}</option>
+              ))}
+            </select>
+            <span className={staticLabel}>Branch</span>
+          </div>
+          <div className="relative">
+            <select name="service" className={selectCls}>
+              {services.map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </select>
+            <span className={staticLabel}>Service</span>
+          </div>
+          <div className="relative">
+            <input name="date" type="date" className={selectCls} />
+            <span className={staticLabel}>Preferred date</span>
+          </div>
+          <div className="relative">
+            <input name="time" type="time" className={selectCls} />
+            <span className={staticLabel}>Preferred time</span>
+          </div>
+          <div className="relative md:col-span-2">
+            <textarea name="message" rows={4} placeholder=" " className={field} />
+            <span className={label}>Message</span>
+          </div>
 
-            {error && <p className="text-xs text-destructive md:col-span-2">{error}</p>}
+          {error && <p className="text-xs text-destructive md:col-span-2">{error}</p>}
 
-            <div className="md:col-span-2">
-              <LuxeButton type="submit" className="w-full" disabled={state !== "idle"}>
-                {state === "idle" && "Book Appointment"}
-                {state === "loading" && "Sending…"}
-                {state === "done" && (
-                  <span className="inline-flex items-center gap-2">
-                    <Check className="size-4" /> Request received
-                  </span>
-                )}
-              </LuxeButton>
-            </div>
-          </form>
-        </div>
+          <div className="md:col-span-2">
+            <LuxeButton type="submit" className="w-full" disabled={state !== "idle"}>
+              {state === "idle" && "Book Appointment"}
+              {state === "loading" && "Sending…"}
+              {state === "done" && (
+                <span className="inline-flex items-center gap-2">
+                  <Check className="size-4" /> Request received
+                </span>
+              )}
+            </LuxeButton>
+          </div>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }

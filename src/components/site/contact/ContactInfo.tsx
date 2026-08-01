@@ -37,24 +37,27 @@ export function ContactInfo() {
   const ref = useReveal<HTMLDivElement>({ selector: ".ci-card, .ci-head", stagger: 0.1 });
 
   return (
-    <section className="bg-background py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="ci-head max-w-2xl">
+    <div ref={ref} className="h-full">
+      <div className="ci-inner h-full rounded-[2rem] border border-gold/20 bg-card p-8 shadow-luxe md:p-10">
+        <div className="ci-head">
           <p className="eyebrow text-gold">Get in Touch</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05]">
+          <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06]">
             We answer every message, <span className="italic text-gold-gradient">personally</span>
           </h2>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Reach us directly, or visit any of our three luxury salons across Andhra Pradesh.
+          </p>
         </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {cards.map((c) => {
             const Icon = c.icon;
             const inner = (
               <>
-                <span className="grid size-11 place-items-center rounded-full border border-gold/30 text-gold transition-colors duration-500 group-hover:bg-gold-gradient group-hover:text-ink">
+                <span className="grid size-10 place-items-center rounded-full border border-gold/30 text-gold transition-colors duration-500 group-hover:bg-gold-gradient group-hover:text-ink">
                   <Icon className="size-4" />
                 </span>
-                <h3 className="mt-6 text-lg">{c.title}</h3>
+                <h3 className="mt-4 text-base">{c.title}</h3>
                 {c.lines.map((l) => (
                   <p key={l} className="mt-1 text-sm text-muted-foreground">
                     {l}
@@ -63,20 +66,20 @@ export function ContactInfo() {
               </>
             );
             return c.href ? (
-              <a key={c.title} href={c.href} className="ci-card group luxe-card block bg-card p-7">
+              <a key={c.title} href={c.href} className="ci-card group luxe-card block bg-background p-5">
                 {inner}
               </a>
             ) : (
-              <div key={c.title} className="ci-card group luxe-card bg-card p-7">
+              <div key={c.title} className="ci-card group luxe-card bg-background p-5">
                 {inner}
               </div>
             );
           })}
         </div>
 
-        <div className="ci-card mt-6 flex flex-wrap items-center justify-between gap-6 rounded-[1.5rem] border border-gold/20 bg-card px-8 py-7">
+        <div className="ci-card mt-4 flex flex-wrap items-center justify-between gap-5 rounded-2xl border border-gold/20 bg-background px-6 py-5">
           <div>
-            <h3 className="text-lg">Follow the work</h3>
+            <h3 className="text-base">Follow the work</h3>
             <p className="mt-1 text-sm text-muted-foreground">
               Fresh transformations posted every week.
             </p>
@@ -89,7 +92,7 @@ export function ContactInfo() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="grid size-11 place-items-center rounded-full border border-gold/30 text-foreground transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:bg-gold-gradient hover:text-ink"
+                className="grid size-10 place-items-center rounded-full border border-gold/30 text-foreground transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:bg-gold-gradient hover:text-ink"
               >
                 <Icon className="size-4" />
               </a>
@@ -97,6 +100,6 @@ export function ContactInfo() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

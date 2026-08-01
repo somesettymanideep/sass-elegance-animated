@@ -43,8 +43,16 @@ function ContactPage() {
           subtitle="Appointments, bridal consultations and branch details across Vijayawada, Guntur and Rajahmundry."
           image={bridal}
         />
-        <ContactInfo />
-        <AppointmentForm />
+        <section id="book" className="bg-background py-24 md:py-32">
+          <div className="mx-auto grid max-w-[1400px] gap-8 px-6 lg:grid-cols-12 lg:px-10">
+            <div className="lg:col-span-6">
+              <AppointmentForm />
+            </div>
+            <div className="lg:col-span-6">
+              <ContactInfo />
+            </div>
+          </div>
+        </section>
         <Branches />
       </main>
       <Footer />
