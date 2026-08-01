@@ -1,23 +1,31 @@
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/sass-logo-white.png.asset.json";
 import { LuxeButton } from "./LuxeButton";
 import { cn } from "@/lib/utils";
 
-const links = [
-  { label: "Services", href: "/services" },
-  { label: "Transformations", href: "/#gallery" },
-  { label: "Bridal", href: "/#bridal" },
+const navLinks = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Membership", href: "/#membership" },
+  { label: "Services", href: "/services" },
+  {
+    label: "Branches",
+    children: [
+      { label: "Vijayawada", href: "/contact#branch-vijayawada" },
+      { label: "Guntur", href: "/contact#branch-guntur" },
+      { label: "Rajahmundry", href: "/contact#branch-rajahmundry" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ];
-
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [branchesOpen, setBranchesOpen] = useState(false);
+  const [mobileBranchesOpen, setMobileBranchesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -32,6 +40,16 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setBranchesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header
@@ -57,16 +75,59 @@ export function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="link-underline text-[0.78rem] font-medium uppercase tracking-[0.18em] text-cream/85"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((l) =>
+            l.children ? (
+              <li key={l.label} className="relative" ref={dropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setBranchesOpen((v) => !v)}
+                  onMouseEnter={() => setBranchesOpen(true)}
+                  className="link-underline flex items-center gap-1 text-[0.78rem] font-medium uppercase tracking-[0.18em] text-cream/85"
+                  aria-expanded={branchesOpen}
+                  aria-haspopup="true"
+                >
+                  {l.label}
+                  <ChevronDown
+                    className={cn(
+                      "size-3.5 transition-transform duration-300",
+                      branchesOpen && "rotate-180",
+                    )}
+                  />
+                </button>
+                <div
+                  onMouseLeave={() => setBranchesOpen(false)}
+                  className={cn(
+                    "absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 pt-3 transition-all duration-300",
+                    branchesOpen
+                      ? "pointer-events-auto translate-y-0 opacity-100"
+                      : "pointer-events-none -translate-y-2 opacity-0",
+                  )}
+                >
+                  <div className="rounded-xl border border-gold/20 bg-ink/95 p-2 backdrop-blur-xl shadow-luxe">
+                    {l.children.map((c) => (
+                      <a
+                        key={c.href}
+                        href={c.href}
+                        onClick={() => setBranchesOpen(false)}
+                        className="block rounded-lg px-4 py-2.5 text-sm text-cream/80 transition-colors hover:bg-gold/10 hover:text-gold"
+                      >
+                        {c.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ) : (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className="link-underline text-[0.78rem] font-medium uppercase tracking-[0.18em] text-cream/85"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ),
+          )}
         </ul>
 
         <div className="flex items-center gap-3">
@@ -117,23 +178,66 @@ export function Navbar() {
               <X className="size-5" />
             </button>
           </div>
-          {links.map((l, i) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-cream/10 py-4 font-display text-2xl text-cream transition-colors hover:text-gold"
-              style={{
-                transitionDelay: `${i * 40}ms`,
-                opacity: open ? 1 : 0,
-                transform: open ? "translateX(0)" : "translateX(24px)",
-                transitionProperty: "opacity, transform, color",
-                transitionDuration: "600ms",
-              }}
-            >
-              {l.label}
-            </a>
-          ))}
+          {navLinks.map((l, i) =>
+            l.children ? (
+              <div key={l.label} className="border-b border-cream/10">
+                <button
+                  type="button"
+                  onClick={() => setMobileBranchesOpen((v) => !v)}
+                  className="flex w-full items-center justify-between py-4 font-display text-2xl text-cream transition-colors hover:text-gold"
+                  style={{
+                    transitionDelay: `${i * 40}ms`,
+                    opacity: open ? 1 : 0,
+                    transform: open ? "translateX(0)" : "translateX(24px)",
+                    transitionProperty: "opacity, transform, color",
+                    transitionDuration: "600ms",
+                  }}
+                  aria-expanded={mobileBranchesOpen}
+                >
+                  {l.label}
+                  <ChevronDown
+                    className={cn(
+                      "size-5 transition-transform duration-300",
+                      mobileBranchesOpen && "rotate-180",
+                    )}
+                  />
+                </button>
+                <div
+                  className={cn(
+                    "overflow-hidden transition-all duration-300",
+                    mobileBranchesOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
+                  )}
+                >
+                  {l.children.map((c) => (
+                    <a
+                      key={c.href}
+                      href={c.href}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 pl-3 text-lg text-cream/70 transition-colors hover:text-gold"
+                    >
+                      {c.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="border-b border-cream/10 py-4 font-display text-2xl text-cream transition-colors hover:text-gold"
+                style={{
+                  transitionDelay: `${i * 40}ms`,
+                  opacity: open ? 1 : 0,
+                  transform: open ? "translateX(0)" : "translateX(24px)",
+                  transitionProperty: "opacity, transform, color",
+                  transitionDuration: "600ms",
+                }}
+              >
+                {l.label}
+              </a>
+            ),
+          )}
           <LuxeButton as="a" href="/contact" className="mt-8 w-full">
             Book Appointment
           </LuxeButton>
@@ -142,3 +246,4 @@ export function Navbar() {
     </header>
   );
 }
+
