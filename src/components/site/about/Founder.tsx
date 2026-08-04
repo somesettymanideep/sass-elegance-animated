@@ -157,14 +157,14 @@ export function Founder() {
             ref={(el) => { if (el) bioItemsRef.current[0] = el; }}
             style={{ opacity: 0, visibility: "hidden" }}
           >
-            <p className="eyebrow text-gold">Meet the Founder</p>
+            <p className="section-eyebrow text-gold">Meet the Founder</p>
           </div>
 
           <div
             ref={(el) => { if (el) bioItemsRef.current[1] = el; }}
             style={{ opacity: 0, visibility: "hidden" }}
           >
-            <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
+            <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
               Chunchu Suresh
             </h2>
             <p className="mt-2 text-xs uppercase tracking-[0.26em] text-gold">

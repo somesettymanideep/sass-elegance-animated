@@ -30,7 +30,7 @@ export function BranchHero({ branch }: { branch: Branch }) {
         className="mx-auto grid max-w-[1400px] items-center gap-14 px-6 lg:grid-cols-2 lg:px-10"
       >
         <div>
-          <p className="bh-item eyebrow text-gold">SASS Hair &amp; Beauty — {branch.city}</p>
+          <p className="bh-item section-eyebrow text-gold">SASS Hair &amp; Beauty — {branch.city}</p>
           <h1 className="bh-item mt-5 text-[clamp(2.3rem,5vw,4rem)] leading-[1.03]">
             Luxury Hair, Beauty &amp; <span className="italic text-gold-gradient">Bridal</span> Destination
           </h1>

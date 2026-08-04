@@ -94,8 +94,8 @@ export function Story() {
           </div>
 
           <div className="story-fade">
-            <p className="eyebrow text-gold">Our Story</p>
-            <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
+            <p className="section-eyebrow text-gold">Our Story</p>
+            <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
               A single chair in Vijayawada,{" "}
               <span className="italic text-gold-gradient">a house of craft today</span>
             </h2>

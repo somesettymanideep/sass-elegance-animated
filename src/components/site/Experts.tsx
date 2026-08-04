@@ -19,8 +19,8 @@ export function Experts() {
     <section id="experts" className="bg-background py-28 md:py-36">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="reveal-head max-w-2xl">
-          <p className="eyebrow text-gold">Our Experts</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
+          <p className="section-eyebrow text-gold">Our Experts</p>
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
             The hands behind the transformation
           </h2>
         </div>

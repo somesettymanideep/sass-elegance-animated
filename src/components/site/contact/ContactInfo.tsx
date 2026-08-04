@@ -40,7 +40,7 @@ export function ContactInfo() {
     <div ref={ref} className="h-full">
       <div className="ci-inner h-full rounded-[2rem] border border-gold/20 bg-card p-8 shadow-luxe md:p-10">
         <div className="ci-head">
-          <p className="eyebrow text-gold">Get in Touch</p>
+          <p className="section-eyebrow text-gold">Get in Touch</p>
           <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06]">
             We answer every message, <span className="italic text-gold-gradient">personally</span>
           </h2>

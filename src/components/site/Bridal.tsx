@@ -62,7 +62,7 @@ export function Bridal() {
 
       <div className="relative mx-auto max-w-[1400px] px-6 py-32 lg:px-10 md:py-44">
         <div className="max-w-xl">
-          <p className="bridal-fade eyebrow text-gold">Bridal Beauty</p>
+          <p className="bridal-fade section-eyebrow text-gold">Bridal Beauty</p>
           <h2 className="bridal-fade mt-6 text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.02] text-cream">
             Your wedding day, <span className="italic text-gold-gradient">flawlessly composed</span>
           </h2>

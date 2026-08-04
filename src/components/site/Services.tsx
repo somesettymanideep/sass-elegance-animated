@@ -52,8 +52,8 @@ export function Services() {
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="reveal-head flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="eyebrow text-gold">Featured Services</p>
-            <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
+            <p className="section-eyebrow text-gold">Featured Services</p>
+            <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
               Signature rituals from our menu
             </h2>
           </div>

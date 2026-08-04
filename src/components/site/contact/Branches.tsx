@@ -32,8 +32,8 @@ export function Branches() {
     <section className="bg-ink py-24 text-cream md:py-32">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="br-head max-w-2xl">
-          <p className="eyebrow text-gold">Our Branches</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream">
+          <p className="section-eyebrow text-gold">Our Branches</p>
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream">
             Three flagships across Andhra Pradesh
           </h2>
         </div>

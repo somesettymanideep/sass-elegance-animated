@@ -43,7 +43,7 @@ export function AppointmentForm() {
   return (
     <div ref={ref} className="h-full">
       <div className="af-inner h-full rounded-[2rem] border border-gold/20 bg-card p-8 shadow-luxe md:p-10">
-        <p className="eyebrow text-gold">Appointment Request</p>
+        <p className="section-eyebrow text-gold">Appointment Request</p>
         <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06]">
           Reserve your chair
         </h2>
