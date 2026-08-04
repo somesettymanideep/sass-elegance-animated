@@ -12,9 +12,9 @@ const navLinks = [
   {
     label: "Branches",
     children: [
-      { label: "Vijayawada", href: "/contact#branch-vijayawada" },
-      { label: "Guntur", href: "/contact#branch-guntur" },
-      { label: "Rajahmundry", href: "/contact#branch-rajahmundry" },
+      { label: "Vijayawada", href: "/branches/vijayawada" },
+      { label: "Guntur", href: "/branches/guntur" },
+      { label: "Rajahmundry", href: "/branches/rajahmundry" },
     ],
   },
   { label: "Contact", href: "/contact" },
