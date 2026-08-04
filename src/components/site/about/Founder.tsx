@@ -26,7 +26,7 @@ export function Founder() {
           <div className="relative overflow-hidden rounded-[2rem]">
             <img
               src={founder}
-              alt="Sasikala Reddy, founder of SASS Hair & Beauty"
+              alt="Chunchu Suresh, founder of SASS Hair & Beauty"
               loading="lazy"
               width={1024}
               height={1280}
