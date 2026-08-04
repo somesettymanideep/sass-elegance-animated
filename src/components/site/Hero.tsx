@@ -103,11 +103,11 @@ export function Hero() {
         </div>
       ))}
 
-      <span className="floaty pointer-events-none absolute left-[6%] top-[20%] size-40 rounded-full border border-gold/20" />
       <span
         className="floaty pointer-events-none absolute left-[30%] bottom-[18%] size-2.5 rotate-45 bg-gold/70"
         style={{ animationDelay: "1.2s" }}
       />
+
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-24 pt-36 lg:px-10">
         {slides.map((s, i) => (
