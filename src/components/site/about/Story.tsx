@@ -121,10 +121,10 @@ export function Story() {
 
         <div ref={mvvRef} className="mt-24">
           <div className="story-fade text-center">
-            <h2 className="text-[clamp(1.9rem,4.2vw,3.2rem)] leading-[1.1]">
+            <h2 className="text-[clamp(1.85rem,4vw,3rem)] leading-[1.15] tracking-[-0.01em]">
               Mission, Vision <span className="text-gold">&amp;</span> Values
             </h2>
-            <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="mt-5 flex items-center justify-center gap-3">
               <span className="h-px w-16 bg-gold/40 sm:w-24" />
               <span className="size-2 rotate-45 bg-gold-gradient" />
               <span className="h-px w-16 bg-gold/40 sm:w-24" />
@@ -137,20 +137,19 @@ export function Story() {
               return (
                 <article
                   key={p.title}
-                  className="mvv-card group relative flex h-full items-center gap-5 overflow-hidden rounded-[7px] border border-gold/15 bg-card p-6 pr-8 shadow-luxe transition-all duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/40"
+                  className="mvv-card group relative flex h-full items-center gap-5 overflow-hidden rounded-[7px] border border-gold/15 bg-card p-7 pr-9 shadow-luxe transition-all duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/40"
                 >
                   <span className="absolute inset-y-0 right-2 w-1.5 bg-gold-gradient opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
                   <span className="mvv-badge grid size-16 shrink-0 place-items-center self-center rounded-full bg-ink ring-1 ring-gold/30 transition-transform duration-700 group-hover:scale-105">
                     <Icon className="size-7 text-gold" strokeWidth={1.2} />
                   </span>
 
-                  <div className="pr-3">
-
-                    <h3 className="font-body text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-gold">
+                  <div className="pr-2">
+                    <h3 className="font-body text-[0.7rem] font-semibold uppercase leading-[1.4] tracking-[0.3em] text-gold sm:text-[0.75rem]">
                       {p.title}
                     </h3>
-                    <span className="mt-2 block h-px w-8 bg-gold/50" />
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    <span className="mt-2.5 block h-px w-8 bg-gold/50" />
+                    <p className="mt-3.5 text-[0.9rem] leading-[1.75] tracking-[0.005em] text-muted-foreground">
                       {p.body}
                     </p>
                   </div>
@@ -159,6 +158,7 @@ export function Story() {
             })}
           </div>
         </div>
+
 
       </div>
     </section>
