@@ -74,6 +74,7 @@ function Index() {
         <Services />
         <Gallery />
         <Bridal />
+        <SplitBanner />
         <Stats />
         <Testimonials />
         <Experts />
