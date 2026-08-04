@@ -73,15 +73,45 @@ export function Story() {
           </div>
         </div>
 
-        <div className="mt-24 grid gap-6 md:grid-cols-3">
-          {pillars.map((p) => (
-            <article key={p.title} className="story-fade luxe-card bg-card p-8">
-              <span className="inline-block size-2 rotate-45 bg-gold-gradient" />
-              <h3 className="mt-6 text-2xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </article>
-          ))}
+        <div className="mt-24">
+          <div className="story-fade text-center">
+            <h2 className="text-[clamp(1.9rem,4.2vw,3.2rem)] leading-[1.1]">
+              Mission, Vision <span className="text-gold">&amp;</span> Values
+            </h2>
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <span className="h-px w-16 bg-gold/40 sm:w-24" />
+              <span className="size-2 rotate-45 bg-gold-gradient" />
+              <span className="h-px w-16 bg-gold/40 sm:w-24" />
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {pillars.map((p) => {
+              const Icon = p.icon;
+              return (
+                <article
+                  key={p.title}
+                  className="story-fade group relative flex items-start gap-5 overflow-hidden rounded-2xl border border-gold/15 bg-card p-6 shadow-luxe transition-all duration-500 hover:-translate-y-1 hover:border-gold/40"
+                >
+                  <span className="absolute inset-y-6 right-0 w-1.5 rounded-l-full bg-gold-gradient opacity-70 transition-all duration-500 group-hover:inset-y-3 group-hover:opacity-100" />
+                  <span className="grid size-16 shrink-0 place-items-center rounded-full bg-ink ring-1 ring-gold/30 transition-transform duration-700 group-hover:scale-105">
+                    <Icon className="size-7 text-gold" strokeWidth={1.2} />
+                  </span>
+                  <div className="pr-3">
+                    <h3 className="font-body text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-gold">
+                      {p.title}
+                    </h3>
+                    <span className="mt-2 block h-px w-8 bg-gold/50" />
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {p.body}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
+
       </div>
     </section>
   );
