@@ -98,8 +98,8 @@ export function Hero() {
             loading={i === 0 ? "eager" : "lazy"}
             className="hero-img absolute inset-0 size-full object-cover object-[72%_center] will-change-transform"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20 lg:via-black/60 lg:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60 lg:hidden" />
         </div>
       ))}
 
