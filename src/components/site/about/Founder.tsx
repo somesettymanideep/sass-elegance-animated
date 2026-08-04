@@ -1,5 +1,6 @@
+import { useEffect, useRef } from "react";
 import { Quote, Instagram, Award } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+import { gsap, ensureGsap } from "@/lib/motion";
 import founder from "@/assets/founder.jpg";
 import { LuxeButton } from "../LuxeButton";
 
@@ -10,18 +11,92 @@ const credentials = [
 ];
 
 export function Founder() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".fd-fade", stagger: 0.15 });
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const portraitRef = useRef<HTMLDivElement | null>(null);
+  const bioRef = useRef<HTMLDivElement | null>(null);
+  const bioItemsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const portrait = portraitRef.current;
+    const bio = bioRef.current;
+    if (!section || !portrait || !bio) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+
+    const ctx = gsap.context(() => {
+      // Portrait reveal: slide from left, blur-to-sharp, subtle scale
+      gsap.fromTo(
+        portrait,
+        {
+          autoAlpha: 0,
+          x: -80,
+          scale: 0.92,
+          filter: "blur(16px) brightness(0.7)",
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          scale: 1,
+          filter: "blur(0px) brightness(1)",
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 78%",
+            once: true,
+          },
+        },
+      );
+
+      // Bio items: staggered blur-to-sharp from right
+      const bioItems = bioItemsRef.current;
+      if (bioItems.length) {
+        gsap.fromTo(
+          bioItems,
+          {
+            autoAlpha: 0,
+            x: 60,
+            filter: "blur(12px)",
+          },
+          {
+            autoAlpha: 1,
+            x: 0,
+            filter: "blur(0px)",
+            duration: 1.1,
+            ease: "power3.out",
+            stagger: 0.14,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 72%",
+              once: true,
+            },
+          },
+        );
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="founder" className="relative overflow-hidden bg-ink py-28 text-cream md:py-36">
+    <section
+      id="founder"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-ink py-28 text-cream md:py-36"
+    >
       <span className="floaty pointer-events-none absolute left-[6%] top-[16%] size-28 rounded-full border border-gold/15" />
       <span
         className="floaty pointer-events-none absolute right-[10%] bottom-[14%] size-1.5 rounded-full bg-gold"
         style={{ animationDelay: "2s" }}
       />
 
-      <div ref={ref} className="mx-auto grid max-w-[1400px] items-center gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
-        <div className="fd-fade relative">
+      <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+        <div
+          ref={portraitRef}
+          className="relative will-change-transform"
+          style={{ opacity: 0, visibility: "hidden" }}
+        >
           <div className="pointer-events-none absolute -inset-3 rounded-[2.2rem] border border-gold/25" />
           <div className="relative overflow-hidden rounded-[2rem]">
             <img
@@ -36,16 +111,31 @@ export function Founder() {
           </div>
         </div>
 
-        <div className="fd-fade">
-          <p className="eyebrow text-gold">Meet the Founder</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
-            Chunchu Suresh
-          </h2>
-          <p className="mt-2 text-xs uppercase tracking-[0.26em] text-gold">
-            Founder &amp; Creative Director
-          </p>
+        <div ref={bioRef} className="will-change-transform">
+          <div
+            ref={(el) => { if (el) bioItemsRef.current[0] = el; }}
+            style={{ opacity: 0, visibility: "hidden" }}
+          >
+            <p className="eyebrow text-gold">Meet the Founder</p>
+          </div>
 
-          <div className="mt-8 flex gap-4">
+          <div
+            ref={(el) => { if (el) bioItemsRef.current[1] = el; }}
+            style={{ opacity: 0, visibility: "hidden" }}
+          >
+            <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
+              Chunchu Suresh
+            </h2>
+            <p className="mt-2 text-xs uppercase tracking-[0.26em] text-gold">
+              Founder &amp; Creative Director
+            </p>
+          </div>
+
+          <div
+            ref={(el) => { if (el) bioItemsRef.current[2] = el; }}
+            className="mt-8 flex gap-4"
+            style={{ opacity: 0, visibility: "hidden" }}
+          >
             <Quote className="mt-1 size-8 shrink-0 text-gold" />
             <p className="font-display text-xl italic leading-relaxed text-cream/85 md:text-2xl">
               "Luxury isn't marble and gold. It's the ten extra minutes we spend
@@ -53,22 +143,31 @@ export function Founder() {
             </p>
           </div>
 
-          <p className="mt-7 text-sm leading-relaxed text-cream/60">
-            Suresh trained as a master colourist before opening the first SASS studio at 27. He
-            still takes bridal consultations personally, mentors every new stylist through a
-            six-month apprenticeship, and signs off on each product that enters the salon.
-          </p>
+          <div
+            ref={(el) => { if (el) bioItemsRef.current[3] = el; }}
+            style={{ opacity: 0, visibility: "hidden" }}
+          >
+            <p className="mt-7 text-sm leading-relaxed text-cream/60">
+              Suresh trained as a master colourist before opening the first SASS studio at 27. He
+              still takes bridal consultations personally, mentors every new stylist through a
+              six-month apprenticeship, and signs off on each product that enters the salon.
+            </p>
 
-          <ul className="mt-8 space-y-3">
-            {credentials.map((c) => (
-              <li key={c} className="flex items-center gap-3 text-sm text-cream/70">
-                <Award className="size-4 shrink-0 text-gold" />
-                {c}
-              </li>
-            ))}
-          </ul>
+            <ul className="mt-8 space-y-3">
+              {credentials.map((c) => (
+                <li key={c} className="flex items-center gap-3 text-sm text-cream/70">
+                  <Award className="size-4 shrink-0 text-gold" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div
+            ref={(el) => { if (el) bioItemsRef.current[4] = el; }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+            style={{ opacity: 0, visibility: "hidden" }}
+          >
             <LuxeButton as="a" href="/contact" className="px-10">
               Book with the Studio
             </LuxeButton>
