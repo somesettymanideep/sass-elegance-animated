@@ -138,7 +138,7 @@ export function Founder() {
           className="relative will-change-transform"
           style={{ opacity: 0, visibility: "hidden" }}
         >
-          <div className="pointer-events-none absolute -inset-3 rounded-[2.2rem] border border-gold/25" />
+          <div className="founder-border pointer-events-none absolute -inset-3 rounded-[2.2rem] border border-gold/25" />
           <div className="relative overflow-hidden rounded-[2rem]">
             <img
               src={founder}
