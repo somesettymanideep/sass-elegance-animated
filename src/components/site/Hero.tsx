@@ -1,104 +1,167 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
 import { gsap, ensureGsap } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
+import fashionColours from "@/assets/hero-fashion-colours.png.asset.json";
+import bridalBanner from "@/assets/hero-bridal.png.asset.json";
+import mensBanner from "@/assets/hero-mens-grooming.png.asset.json";
+
+const slides = [
+  {
+    image: fashionColours.url,
+    alt: "Model with bold fashion colour balayage styled at SASS Hair & Beauty",
+    eyebrow: "Fashion Colours",
+    line1: "Bold shades.",
+    line2: "Beautiful you.",
+    copy: "Global colour, balayage and creative highlights crafted with premium ammonia-free formulas for long lasting, luminous results.",
+    tags: ["Trendy Colours", "Expert Technique", "Premium Care", "Long Lasting"],
+    href: "/services",
+    cta: "Explore Colour Services",
+  },
+  {
+    image: bridalBanner.url,
+    alt: "Bride in traditional gold jewellery styled by the SASS bridal team",
+    eyebrow: "Bridal Excellence",
+    line1: "Your wedding day,",
+    line2: "flawlessly styled.",
+    copy: "Complete bridal packages — HD airbrush makeup, hair styling, draping and pre-bridal skin care by our senior artists.",
+    tags: ["HD Makeup", "Hair Styling", "Pre-Bridal Care", "Draping"],
+    href: "/#bridal",
+    cta: "Book Bridal Consultation",
+  },
+  {
+    image: mensBanner.url,
+    alt: "Man receiving a precision beard detailing service at SASS Hair & Beauty",
+    eyebrow: "Master Barbers",
+    line1: "Sharp looks.",
+    line2: "Confident you.",
+    copy: "Skin fades, textured crops, beard sculpting and luxury grooming rituals delivered by internationally trained barbers.",
+    tags: ["Skin Fades", "Beard Detailing", "Hair Spa", "Grooming"],
+    href: "/services",
+    cta: "Explore Men's Services",
+  },
+];
 
 export function Hero() {
   const root = useRef<HTMLElement | null>(null);
-  const image = useRef<HTMLImageElement | null>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setActive((i) => (i + 1) % slides.length), 6500);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     ensureGsap();
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.6, defaults: { ease: "power3.out" } });
-      tl.fromTo(
-        image.current,
-        { scale: 1.22, filter: "blur(14px)" },
-        { scale: 1, filter: "blur(0px)", duration: 2.2 },
-      )
-        .fromTo(
-          ".hero-line",
-          { yPercent: 115 },
-          { yPercent: 0, duration: 1.2, stagger: 0.1 },
-          "-=1.7",
-        )
-        .fromTo(
-          ".hero-fade",
-          { autoAlpha: 0, y: 24 },
-          { autoAlpha: 1, y: 0, duration: 1 },
-          "-=0.8",
-        )
-        .fromTo(
-          ".hero-cta",
-          { autoAlpha: 0, y: 26, scale: 0.94 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.14 },
-          "-=0.6",
-        );
-
-      gsap.to(image.current, {
-        yPercent: 14,
-        ease: "none",
-        scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
-      });
+      gsap.fromTo(
+        `.hero-slide-${active} .hero-img`,
+        { scale: 1.12 },
+        { scale: 1, duration: 7, ease: "power2.out" },
+      );
+      gsap.fromTo(
+        `.hero-slide-${active} .hero-anim`,
+        { autoAlpha: 0, y: 34, filter: "blur(10px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          delay: 0.15,
+        },
+      );
     }, root);
     return () => ctx.revert();
-  }, []);
+  }, [active]);
 
   return (
     <section
       id="top"
       ref={root}
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink"
     >
-      <img
-        ref={image}
-        src={heroImg}
-        alt="Model with a luxury blowout styled at SASS Hair & Beauty"
-        width={1408}
-        height={1760}
-        fetchPriority="high"
-        className="absolute inset-0 size-full object-cover object-[62%_center] will-change-transform"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />
+      {slides.map((s, i) => (
+        <div
+          key={s.eyebrow}
+          className={`hero-slide-${i} absolute inset-0 transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            i === active ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+          aria-hidden={i !== active}
+        >
+          <img
+            src={s.image}
+            alt={s.alt}
+            fetchPriority={i === 0 ? "high" : "low"}
+            loading={i === 0 ? "eager" : "lazy"}
+            className="hero-img absolute inset-0 size-full object-cover object-[72%_center] will-change-transform"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60" />
+        </div>
+      ))}
 
-      {/* floating gold shapes */}
-      <div className="pointer-events-none absolute left-[8%] top-[22%] size-40 rounded-full border border-gold/25 floaty" />
-      <div
-        className="pointer-events-none absolute right-[12%] top-[30%] size-24 rounded-full bg-gold/10 blur-2xl floaty"
-        style={{ animationDelay: "1.6s" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[26%] left-[46%] size-3 rotate-45 bg-gold/60 floaty"
-        style={{ animationDelay: "0.8s" }}
+      <span className="floaty pointer-events-none absolute left-[6%] top-[20%] size-40 rounded-full border border-gold/20" />
+      <span
+        className="floaty pointer-events-none absolute left-[30%] bottom-[18%] size-2.5 rotate-45 bg-gold/70"
+        style={{ animationDelay: "1.2s" }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-24 pt-40 lg:px-10">
-        <p className="hero-fade eyebrow mb-6 text-gold">
-          Vijayawada · Guntur · Rajahmundry
-        </p>
-        <h1 className="max-w-4xl text-[clamp(2.8rem,7.5vw,6.2rem)] leading-[0.95] text-cream">
-          <span className="block overflow-hidden pb-[0.12em]">
-            <span className="hero-line block">Where beauty</span>
-          </span>
-          <span className="block overflow-hidden pb-[0.12em]">
-            <span className="hero-line block italic text-gold-gradient">becomes artistry</span>
-          </span>
-        </h1>
-        <p className="hero-fade mt-8 max-w-xl text-base leading-relaxed text-cream/70 md:text-lg">
-          Andhra Pradesh's most awarded hair &amp; beauty atelier. Precision cutting,
-          couture colour and bridal styling — delivered by a team trained in
-          international technique.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <LuxeButton as="a" href="#contact" className="hero-cta">
-            Book Your Appointment
-          </LuxeButton>
-          <LuxeButton as="a" href="#services" variant="outline" className="hero-cta text-cream">
-            Explore Services
-          </LuxeButton>
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-24 pt-36 lg:px-10">
+        {slides.map((s, i) => (
+          <div
+            key={s.eyebrow}
+            className={`hero-slide-${i} max-w-2xl ${i === active ? "block" : "hidden"}`}
+          >
+            <p className="hero-anim eyebrow mb-6 text-gold">{s.eyebrow}</p>
+            <h1 className="hero-anim text-[clamp(2.6rem,6.6vw,5.4rem)] leading-[0.98] text-cream">
+              <span className="block">{s.line1}</span>
+              <span className="block italic text-gold-gradient">{s.line2}</span>
+            </h1>
+            <p className="hero-anim mt-7 max-w-lg text-base leading-relaxed text-cream/70 md:text-lg">
+              {s.copy}
+            </p>
+            <ul className="hero-anim mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-[0.62rem] uppercase tracking-[0.24em] text-cream/60">
+              {s.tags.map((t) => (
+                <li
+                  key={t}
+                  className="border-l border-gold/50 pl-4 first:border-l-0 first:pl-0"
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <LuxeButton as="a" href="/contact" className="hero-anim">
+                Book Your Appointment
+              </LuxeButton>
+              <LuxeButton
+                as="a"
+                href={s.href}
+                variant="outline"
+                className="hero-anim text-cream"
+              >
+                {s.cta}
+              </LuxeButton>
+            </div>
+          </div>
+        ))}
+
+        <div className="mt-14 flex items-center gap-4">
+          {slides.map((s, i) => (
+            <button
+              key={s.eyebrow}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Show ${s.eyebrow} slide`}
+              aria-current={i === active}
+              className={`h-[2px] transition-all duration-700 ${
+                i === active ? "w-16 bg-gold" : "w-8 bg-cream/30 hover:bg-cream/60"
+              }`}
+            />
+          ))}
         </div>
       </div>
 
