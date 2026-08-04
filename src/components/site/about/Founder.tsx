@@ -26,7 +26,7 @@ export function Founder() {
           <div className="relative overflow-hidden rounded-[2rem]">
             <img
               src={founder}
-              alt="Sasikala Reddy, founder of SASS Hair & Beauty"
+              alt="Chunchu Suresh, founder of SASS Hair & Beauty"
               loading="lazy"
               width={1024}
               height={1280}
@@ -39,7 +39,7 @@ export function Founder() {
         <div className="fd-fade">
           <p className="eyebrow text-gold">Meet the Founder</p>
           <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
-            Sasikala Reddy
+            Chunchu Suresh
           </h2>
           <p className="mt-2 text-xs uppercase tracking-[0.26em] text-gold">
             Founder &amp; Creative Director
@@ -54,7 +54,7 @@ export function Founder() {
           </div>
 
           <p className="mt-7 text-sm leading-relaxed text-cream/60">
-            Sasikala trained as a colourist before opening the first SASS studio at 27. She
+            Suresh trained as a master colourist before opening the first SASS studio at 27. He
             still takes bridal consultations personally, mentors every new stylist through a
             six-month apprenticeship, and signs off on each product that enters the salon.
           </p>
