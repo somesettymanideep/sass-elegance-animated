@@ -51,6 +51,45 @@ export function Founder() {
         },
       );
 
+      // Subtle portrait image parallax inside its frame
+      const portraitImg = portrait.querySelector("img");
+      if (portraitImg) {
+        gsap.fromTo(
+          portraitImg,
+          { yPercent: 6 },
+          {
+            yPercent: -6,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          },
+        );
+      }
+
+      // Decorative gold border draws in
+      const border = portrait.querySelector(".founder-border");
+      if (border) {
+        gsap.fromTo(
+          border,
+          { autoAlpha: 0, scale: 0.96 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 1.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 75%",
+              once: true,
+            },
+          },
+        );
+      }
+
       // Bio items: staggered blur-to-sharp from right
       const bioItems = bioItemsRef.current;
       if (bioItems.length) {
