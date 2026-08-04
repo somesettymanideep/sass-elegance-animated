@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { gsap, ensureGsap } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
-import fashionColours from "@/assets/hero-fashion-colours.png.asset.json";
-import bridalBanner from "@/assets/hero-bridal.png.asset.json";
-import mensBanner from "@/assets/hero-mens-grooming.png.asset.json";
+import fashionColours from "@/assets/hero-colours.jpg.asset.json";
+import bridalBanner from "@/assets/hero-bride.jpg.asset.json";
+import mensBanner from "@/assets/hero-mens.jpg.asset.json";
 
 const slides = [
   {
