@@ -1,4 +1,4 @@
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Check, Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
@@ -66,7 +66,7 @@ function BranchPage() {
                 What this studio is known for
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-                {b.highlights.map((h) => (
+                {b.highlights.map((h: string) => (
                   <li key={h} className="flex items-start gap-3 rounded-2xl border border-gold/20 bg-white/60 p-4">
                     <Check className="mt-0.5 size-4 shrink-0 text-gold" />
                     <span className="text-sm text-foreground/75">{h}</span>
