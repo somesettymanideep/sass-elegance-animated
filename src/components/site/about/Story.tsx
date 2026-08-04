@@ -25,6 +25,46 @@ const pillars = [
 
 export function Story() {
   const ref = useReveal<HTMLDivElement>({ selector: ".story-fade", stagger: 0.14 });
+  const mvvRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = mvvRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".mvv-card",
+        { autoAlpha: 0, y: 48, scale: 0.97, filter: "blur(14px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.18,
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        },
+      );
+      gsap.fromTo(
+        ".mvv-badge",
+        { autoAlpha: 0, scale: 0.6, rotate: -18 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 0.9,
+          delay: 0.25,
+          ease: "back.out(1.6)",
+          stagger: 0.18,
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        },
+      );
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
 
   return (
     <section id="story" className="bg-background py-28 md:py-36">
