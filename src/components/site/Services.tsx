@@ -1,100 +1,108 @@
-import { ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import {
+  Scissors,
+  Feather,
+  Palette,
+  Flower2,
+  Hand,
+  Waves,
+  Droplets,
+  Smile,
+  Crown,
+  Sparkles,
+  Wind,
+  Brush,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useReveal } from "@/lib/motion";
-import interior from "@/assets/interior.jpg";
-import bridal from "@/assets/bridal.jpg";
-import hero from "@/assets/hero.jpg";
+import haircut from "@/assets/svc-haircut.jpg";
+import threading from "@/assets/svc-threading.jpg";
+import colour from "@/assets/svc-colour.jpg";
+import pedicure from "@/assets/svc-pedicure.jpg";
+import manicure from "@/assets/svc-manicure.jpg";
+import smoothening from "@/assets/svc-smoothening.jpg";
+import keratin from "@/assets/svc-keratin.jpg";
+import facial from "@/assets/svc-facial.jpg";
+import bridal from "@/assets/svc-bridal.jpg";
+import after from "@/assets/after.jpg";
+import hairspa from "@/assets/svc-hairspa.jpg";
+import makeup from "@/assets/svc-makeup.jpg";
 
-const services = [
-  {
-    title: "Precision Cutting",
-    copy: "Face-mapped haircuts, dry-cut finishing and texture work tailored to your hair fall.",
-    price: "from ₹899",
-    img: hero,
-  },
-  {
-    title: "Couture Colour",
-    copy: "Balayage, global gloss, root melts and colour correction using bond-protecting systems.",
-    price: "from ₹2,499",
-    img: interior,
-  },
-  {
-    title: "Bridal & Occasion",
-    copy: "HD and airbrush artistry, draping, and trials designed for South Indian ceremonies.",
-    price: "from ₹9,999",
-    img: bridal,
-  },
-  {
-    title: "Hair Spa & Repair",
-    copy: "Kérastase rituals, Olaplex bond therapy and scalp treatments for damaged hair.",
-    price: "from ₹1,299",
-    img: interior,
-  },
-  {
-    title: "Advanced Skin",
-    copy: "Hydra-glow facials, chemical peels and dermaplaning by certified aestheticians.",
-    price: "from ₹1,999",
-    img: hero,
-  },
-  {
-    title: "Nails & Grooming",
-    copy: "Gel extensions, luxury pedicures and men's grooming in a dedicated studio.",
-    price: "from ₹699",
-    img: bridal,
-  },
+interface Service {
+  title: string;
+  copy: string;
+  img: string;
+  Icon: LucideIcon;
+}
+
+const services: Service[] = [
+  { title: "Hair Cuts", copy: "Trendy cuts tailored to your personality.", img: haircut, Icon: Scissors },
+  { title: "Threading", copy: "Perfect shaping for a flawless look.", img: threading, Icon: Feather },
+  { title: "Fashion Colours", copy: "Bold, vibrant & stunning colour transformations.", img: colour, Icon: Palette },
+  { title: "Pedicure", copy: "Relaxing pedicures for soft & smooth feet.", img: pedicure, Icon: Flower2 },
+  { title: "Manicure", copy: "Perfect nails, perfect you.", img: manicure, Icon: Hand },
+  { title: "Smoothening", copy: "Frizz-free, silky & smooth hair.", img: smoothening, Icon: Waves },
+  { title: "Keratin", copy: "Stronger, shinier & healthier hair.", img: keratin, Icon: Droplets },
+  { title: "Facials", copy: "Rejuvenate your skin with expert care.", img: facial, Icon: Smile },
+  { title: "Bridal Makeup", copy: "Look your best on your big day.", img: bridal, Icon: Crown },
+  { title: "Transformations", copy: "Stunning makeovers that inspire.", img: after, Icon: Sparkles },
+  { title: "Hair Spa", copy: "Deep nourishment for lustrous hair.", img: hairspa, Icon: Wind },
+  { title: "Makeup", copy: "Enhancing your beauty for every occasion.", img: makeup, Icon: Brush },
 ];
 
 export function Services() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".svc-card, .reveal-head", stagger: 0.1 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".svc-card, .reveal-head", stagger: 0.06 });
 
   return (
-    <section id="services" className="relative overflow-hidden bg-ink py-28 text-cream md:py-36">
-      <div className="pointer-events-none absolute -left-24 top-1/3 size-72 rounded-full bg-gold/10 blur-[110px]" />
+    <section id="services" className="relative overflow-hidden bg-cream py-16 md:py-24">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="reveal-head flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <p className="section-eyebrow text-gold">Featured Services</p>
-            <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
-              Signature rituals from our menu
-            </h2>
+        <div className="reveal-head mx-auto max-w-2xl text-center">
+          <p className="section-eyebrow text-gold">Our</p>
+          <h2 className="mt-1 font-semibold text-[clamp(1.9rem,4vw,3rem)] leading-[1.1]">
+            Signature <span className="text-gold-gradient">Services</span>
+          </h2>
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <span className="h-px w-14 bg-gold/40" />
+            <span className="size-1.5 rotate-45 bg-gold" />
+            <span className="h-px w-14 bg-gold/40" />
           </div>
-          <a href="#contact" className="link-underline text-sm tracking-[0.2em] text-cream/70">
-            VIEW FULL MENU
-          </a>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
+        <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+          {services.map(({ title, copy, img, Icon }) => (
             <article
-              key={s.title}
-              className="svc-card group relative overflow-hidden rounded-[1.5rem] border border-gold/15 bg-white/[0.03] transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2.5 hover:border-gold/60 hover:shadow-gold"
+              key={title}
+              className="svc-card group relative flex flex-col overflow-hidden rounded-[0.6rem] border border-gold/25 bg-background p-2 text-center shadow-luxe transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative overflow-hidden rounded-[0.4rem]">
                 <img
-                  src={s.img}
-                  alt={s.title}
+                  src={img}
+                  alt={title}
                   loading="lazy"
                   width={800}
-                  height={560}
-                  className="size-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
+                  height={640}
+                  className="aspect-4/3 w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                <span className="absolute right-4 top-4 rounded-full border border-gold/40 bg-black/40 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-gold backdrop-blur">
-                  {s.price}
+                <span className="absolute -bottom-4 left-2 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[12deg] group-hover:scale-110">
+                  <Icon className="size-4" strokeWidth={1.4} />
                 </span>
               </div>
-              <div className="p-7">
-                <h3 className="text-2xl text-cream">{s.title}</h3>
-                <span className="mt-3 block h-px w-10 origin-left bg-gold-gradient transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-[5]" />
-                <p className="mt-5 text-sm leading-relaxed text-cream/60">{s.copy}</p>
-                <a
-                  href="#contact"
-                  className="mt-6 inline-flex translate-y-2 items-center gap-2 text-[0.7rem] uppercase tracking-[0.22em] text-gold opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
-                >
-                  Book this <ArrowUpRight className="size-4" />
-                </a>
+
+              <div className="flex flex-1 flex-col px-2 pb-4 pt-6">
+                <h3 className="font-display text-base leading-tight">{title}</h3>
+                <p className="mt-2 text-[0.7rem] leading-relaxed text-muted-foreground">{copy}</p>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="reveal-head mt-12 text-center">
+          <Link
+            to="/services"
+            className="inline-block rounded-[0.35rem] bg-ink px-8 py-3.5 font-button text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cream transition-colors duration-500 hover:bg-gold hover:text-ink"
+          >
+            View All Services
+          </Link>
         </div>
       </div>
     </section>
