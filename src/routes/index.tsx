@@ -8,6 +8,7 @@ import { WhyChoose } from "@/components/site/WhyChoose";
 import { Services } from "@/components/site/Services";
 import { Gallery } from "@/components/site/Gallery";
 import { Bridal } from "@/components/site/Bridal";
+import { SplitBanner } from "@/components/site/SplitBanner";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Stats } from "@/components/site/Stats";
 import { Experts } from "@/components/site/Experts";
@@ -73,6 +74,7 @@ function Index() {
         <Services />
         <Gallery />
         <Bridal />
+        <SplitBanner />
         <Stats />
         <Testimonials />
         <Experts />
