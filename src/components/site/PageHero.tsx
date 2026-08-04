@@ -45,7 +45,7 @@ export function PageHero({ eyebrow, title, italic, subtitle, image, crumb }: Pro
             <li className="text-gold">{crumb}</li>
           </ol>
         </nav>
-        <p className="ph-fade eyebrow mt-8 text-gold">{eyebrow}</p>
+        <p className="ph-fade section-eyebrow mt-8 text-gold">{eyebrow}</p>
         <h1 className="ph-fade mt-5 max-w-4xl pb-2 text-[clamp(2.4rem,6vw,5rem)] leading-[1.02] text-cream">
           {title} {italic && <span className="italic text-gold-gradient">{italic}</span>}
         </h1>

@@ -54,7 +54,7 @@ export function Membership() {
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="reveal-head mx-auto max-w-2xl text-center">
           <p className="section-eyebrow text-gold">Membership</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
             Beauty, kept on retainer
           </h2>
         </div>

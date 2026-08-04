@@ -34,7 +34,7 @@ export function AboutStats() {
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="ab-head mx-auto max-w-2xl text-center">
           <p className="section-eyebrow text-gold">Why Clients Love Us</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream">
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream">
             Numbers we are quietly proud of
           </h2>
         </div>

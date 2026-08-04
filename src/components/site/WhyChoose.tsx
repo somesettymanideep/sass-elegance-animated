@@ -68,7 +68,7 @@ export function WhyChoose() {
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="reveal-head max-w-2xl">
           <p className="section-eyebrow text-gold">Why Choose SASS</p>
-          <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
             A salon experience engineered around <em className="italic">you</em>
           </h2>
         </div>

@@ -47,7 +47,7 @@ export function BranchConsultation({ branch }: { branch: Branch }) {
       <div ref={ref} className="mx-auto grid max-w-[1400px] items-start gap-10 px-6 lg:grid-cols-2 lg:px-10">
         <div className="bc-item lg:sticky lg:top-28">
           <p className="section-eyebrow text-gold">Free Consultation</p>
-          <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             Book your free <span className="italic text-gold-gradient">consultation</span>
           </h2>
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
@@ -221,7 +221,7 @@ export function BranchFAQ() {
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
         <div className="bf-head">
           <p className="section-eyebrow text-gold">FAQ</p>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.06]">Questions, answered</h2>
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.06]">Questions, answered</h2>
         </div>
         <div>
           {faqs.map((f, i) => {
