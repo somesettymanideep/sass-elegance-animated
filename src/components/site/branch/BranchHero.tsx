@@ -68,7 +68,7 @@ export function BranchHero({ branch }: { branch: Branch }) {
         <div className="bh-item relative">
           <div className="overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
             <img
-              src={branch.image || interior}
+              src={interior}
               alt={`Luxury salon interior at SASS Hair & Beauty ${branch.city}`}
               width={1200}
               height={1400}
