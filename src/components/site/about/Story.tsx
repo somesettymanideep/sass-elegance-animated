@@ -1,3 +1,4 @@
+import { Target, Eye, Gem } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import interior from "@/assets/interior.jpg";
 import g2 from "@/assets/g2.jpg";
@@ -5,17 +6,21 @@ import g2 from "@/assets/g2.jpg";
 const pillars = [
   {
     title: "Mission",
+    icon: Target,
     body: "To make world-class hair and beauty craft accessible across Andhra Pradesh, without ever diluting the detail.",
   },
   {
     title: "Vision",
+    icon: Eye,
     body: "To be the most trusted luxury salon house in South India — known for consistency, hygiene and artistry.",
   },
   {
     title: "Values",
+    icon: Gem,
     body: "Honest consultation, premium products only, respect for every hair type, and a calm, unhurried chair.",
   },
 ];
+
 
 export function Story() {
   const ref = useReveal<HTMLDivElement>({ selector: ".story-fade", stagger: 0.14 });
