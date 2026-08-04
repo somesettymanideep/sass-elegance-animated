@@ -76,7 +76,7 @@ export function ServicesGrid() {
     <section id="services" className="relative overflow-hidden bg-cream py-20 md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="sv-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Our Menu</p>
+          <p className="section-eyebrow text-gold">Our Menu</p>
           <h2 className="mt-4 text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05]">
             Beauty. Expertise. <span className="italic text-gold-gradient">You.</span>
           </h2>

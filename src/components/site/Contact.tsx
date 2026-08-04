@@ -47,7 +47,7 @@ export function Contact() {
     <section id="contact" className="bg-ink py-28 text-cream md:py-36">
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-2 lg:px-10">
         <div className="contact-left">
-          <p className="eyebrow text-gold">Book an Appointment</p>
+          <p className="section-eyebrow text-gold">Book an Appointment</p>
           <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
             Let's plan your next look
           </h2>

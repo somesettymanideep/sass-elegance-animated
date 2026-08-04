@@ -46,7 +46,7 @@ export function BranchConsultation({ branch }: { branch: Branch }) {
     <section id="consultation" className="bg-background py-20 md:py-28">
       <div ref={ref} className="mx-auto grid max-w-[1400px] items-start gap-10 px-6 lg:grid-cols-2 lg:px-10">
         <div className="bc-item lg:sticky lg:top-28">
-          <p className="eyebrow text-gold">Free Consultation</p>
+          <p className="section-eyebrow text-gold">Free Consultation</p>
           <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             Book your free <span className="italic text-gold-gradient">consultation</span>
           </h2>
@@ -152,7 +152,7 @@ export function BranchLocation({ branch }: { branch: Branch }) {
         </div>
 
         <div className="bl-item rounded-[24px] border border-gold/25 bg-background/70 p-8 shadow-luxe backdrop-blur-md md:p-10">
-          <p className="eyebrow text-gold">Visit Us</p>
+          <p className="section-eyebrow text-gold">Visit Us</p>
           <h2 className="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.08]">
             SASS Hair &amp; Beauty — {branch.city}
           </h2>
@@ -220,7 +220,7 @@ export function BranchFAQ() {
     <section className="bg-background py-20 md:py-28">
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
         <div className="bf-head">
-          <p className="eyebrow text-gold">FAQ</p>
+          <p className="section-eyebrow text-gold">FAQ</p>
           <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] leading-[1.06]">Questions, answered</h2>
         </div>
         <div>

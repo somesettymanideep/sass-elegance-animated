@@ -41,7 +41,7 @@ export function BranchWhy({ branch }: { branch: Branch }) {
     <section className="bg-background py-20 md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="bw-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Why Choose SASS {branch.city}</p>
+          <p className="section-eyebrow text-gold">Why Choose SASS {branch.city}</p>
           <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             A salon built on <span className="italic text-gold-gradient">detail</span>
           </h2>
@@ -94,7 +94,7 @@ export function BranchServices() {
     <section id="services" className="bg-cream py-20 md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="bs-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Signature Services</p>
+          <p className="section-eyebrow text-gold">Signature Services</p>
           <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             The full luxury menu
           </h2>
@@ -184,7 +184,7 @@ export function BranchTransformations() {
     <section className="bg-background py-20 md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="bt-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Before &amp; After</p>
+          <p className="section-eyebrow text-gold">Before &amp; After</p>
           <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">Transformations we love</h2>
           <p className="mt-4 text-sm text-muted-foreground">Drag the handle to reveal the difference.</p>
         </div>
@@ -236,7 +236,7 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
     <section className="bg-ink py-20 text-cream md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="br-head text-center">
-          <p className="eyebrow text-gold">Client Testimonials</p>
+          <p className="section-eyebrow text-gold">Client Testimonials</p>
           <h2 className="mx-auto mt-4 max-w-2xl text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             Loved by {branch.city}
           </h2>
@@ -329,7 +329,7 @@ export function BranchGallery() {
     <section className="bg-cream py-20 md:py-28">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="bg-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Gallery</p>
+          <p className="section-eyebrow text-gold">Gallery</p>
           <h2 className="mt-4 text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">Inside the studio</h2>
         </div>
 

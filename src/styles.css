@@ -264,3 +264,12 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@utility section-eyebrow {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+}

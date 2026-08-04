@@ -33,7 +33,7 @@ export function AboutStats() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gold-gradient opacity-40" />
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="ab-head mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Why Clients Love Us</p>
+          <p className="section-eyebrow text-gold">Why Clients Love Us</p>
           <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream">
             Numbers we are quietly proud of
           </h2>

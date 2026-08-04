@@ -33,7 +33,7 @@ export function FAQ() {
     <section className="bg-background pb-28 md:pb-36">
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
         <div className="reveal-head">
-          <p className="eyebrow text-gold">FAQ</p>
+          <p className="section-eyebrow text-gold">FAQ</p>
           <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
             Good to know before you visit
           </h2>

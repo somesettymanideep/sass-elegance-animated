@@ -89,7 +89,7 @@ export function Timeline() {
     <section id="journey" ref={root} className="bg-background py-28 md:py-36">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-gold">Our Journey</p>
+          <p className="section-eyebrow text-gold">Our Journey</p>
           <h2 className="mt-5 text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
             Fifteen years, <span className="italic text-gold-gradient">growing branch by branch</span>
           </h2>
