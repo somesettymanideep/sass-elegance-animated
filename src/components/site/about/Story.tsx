@@ -139,7 +139,7 @@ export function Story() {
                   key={p.title}
                   className="mvv-card group relative flex h-full items-center gap-5 overflow-hidden rounded-[7px] border border-gold/15 bg-card p-7 pr-9 shadow-luxe transition-all duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/40"
                 >
-                  <span className="absolute top-[5cm] bottom-[5cm] right-2 w-1.5 bg-gold-gradient opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                  <span className="absolute top-[12%] bottom-[12%] right-2 w-1.5 bg-gold-gradient opacity-80 transition-opacity duration-500 group-hover:opacity-100 md:top-[5cm] md:bottom-[5cm]" />
                   <span className="mvv-badge grid size-16 shrink-0 place-items-center self-center rounded-full bg-ink ring-1 ring-gold/30 transition-transform duration-700 group-hover:scale-105">
                     <Icon className="size-7 text-gold" strokeWidth={1.2} />
                   </span>
