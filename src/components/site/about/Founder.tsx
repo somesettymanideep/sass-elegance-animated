@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Quote, Instagram, Award } from "lucide-react";
 import { gsap, ensureGsap } from "@/lib/motion";
-import founderAsset from "@/assets/founder.jpg.asset.json";
+import founderAsset from "@/assets/founder-chunchu-suresh.png.asset.json";
 import { LuxeButton } from "../LuxeButton";
 
 const founder = founderAsset.url;
@@ -107,7 +107,7 @@ export function Founder() {
               loading="lazy"
               width={1024}
               height={1280}
-              className="aspect-4/5 w-full object-cover object-[72%_25%] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
+              className="aspect-4/5 w-full object-cover object-center transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           </div>
