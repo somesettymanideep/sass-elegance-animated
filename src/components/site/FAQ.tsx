@@ -106,14 +106,14 @@ export function FAQ() {
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               const num = String(i + 1).padStart(2, "0");
               return (
                 <div
                   key={f.q}
-                  className={`faq-item group relative overflow-hidden rounded-[7px] border border-gold/10 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-luxe ${
+                  className={`faq-item group relative overflow-hidden rounded-[7px] border border-gold/10 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-gold/30 hover:shadow-luxe focus-within:border-gold/30 focus-within:shadow-luxe ${
                     isOpen ? "shadow-luxe" : ""
                   }`}
                 >
@@ -126,23 +126,23 @@ export function FAQ() {
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center gap-5 px-5 py-5 text-left sm:px-6 sm:py-6"
+                    className="flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-6 sm:py-5"
                   >
                     <span
-                      className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-colors duration-500 sm:size-11 ${
+                      className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
                         isOpen
                           ? "border-gold bg-gold text-black"
-                          : "border-gold/25 bg-cream text-gold group-hover:border-gold/50"
+                          : "border-gold/25 bg-cream text-gold group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-black"
                       }`}
                     >
                       {num}
                     </span>
-                    <span className="flex-1 font-display text-base sm:text-lg md:text-xl">
+                    <span className="flex-1 font-display text-base transition-colors duration-500 sm:text-lg md:text-xl">
                       {f.q}
                     </span>
                     <Plus
                       className={`size-5 shrink-0 text-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isOpen ? "rotate-135" : ""
+                        isOpen ? "rotate-135" : "group-hover:rotate-90"
                       }`}
                     />
                   </button>
@@ -153,8 +153,8 @@ export function FAQ() {
                       opacity: isOpen ? 1 : 0,
                     }}
                   >
-                    <div className="overflow-hidden px-5 pb-6 sm:px-6">
-                      <div className="border-t border-gold/10 pt-4">
+                    <div className="overflow-hidden px-5 pb-4 sm:px-6">
+                      <div className="border-t border-gold/10 pt-3">
                         <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                           {f.a}
                         </p>
