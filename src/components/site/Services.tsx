@@ -128,7 +128,7 @@ export function Services() {
           {services.map(({ title, copy, img, Icon }) => (
             <article
               key={title}
-              className="svc-card group relative flex flex-col overflow-hidden rounded-[0.6rem] border border-gold/25 bg-background p-2 text-center shadow-luxe transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+              className="svc-card group relative flex flex-col overflow-hidden rounded-[0.6rem] border border-gold/25 bg-white p-2 text-center shadow-luxe transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
               <div className="relative overflow-hidden rounded-[0.4rem]">
                 <img
