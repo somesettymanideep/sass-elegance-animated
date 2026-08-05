@@ -78,7 +78,6 @@ function Index() {
         <Bridal />
         <Stats />
         <Testimonials />
-        <Experts />
         <Brands />
         <Membership />
         <FAQ />
