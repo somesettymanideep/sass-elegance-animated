@@ -74,6 +74,7 @@ function Index() {
         <WhyChoose />
         <Services />
         <Gallery />
+        <Contact />
         <Bridal />
         <Stats />
         <Testimonials />
@@ -81,7 +82,6 @@ function Index() {
         <Brands />
         <Membership />
         <FAQ />
-        <Contact />
       </main>
       <Footer />
       <FloatingActions />
