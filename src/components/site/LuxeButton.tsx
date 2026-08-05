@@ -1,4 +1,5 @@
 import { useRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { useRouter } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
 type Variant = "gold" | "outline" | "ink";
@@ -29,6 +30,7 @@ export function LuxeButton({
   ...rest
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
+  const router = useRouter();
 
   const ripple = (e: React.MouseEvent) => {
     const el = ref.current;
@@ -55,7 +57,23 @@ export function LuxeButton({
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
         className={cls}
-        onClick={ripple}
+        onClick={(e) => {
+          ripple(e);
+          if (
+            href &&
+            href.startsWith("/") &&
+            !href.startsWith("//") &&
+            !href.includes("#") &&
+            !e.defaultPrevented &&
+            e.button === 0 &&
+            !e.metaKey &&
+            !e.ctrlKey &&
+            !e.shiftKey
+          ) {
+            e.preventDefault();
+            router.navigate({ to: href });
+          }
+        }}
       >
         {children}
       </a>
