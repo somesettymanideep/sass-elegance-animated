@@ -131,9 +131,6 @@ export function Contact() {
     notes: "",
   });
 
-  const message = buildWhatsAppMessage(form);
-  const messageLength = message.length;
-  const MAX_CHARS = 4096;
 
   const updateForm = (key: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
@@ -177,7 +174,7 @@ export function Contact() {
   return (
     <section id="contact" className="bg-ink py-28 text-cream md:py-36">
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-2 lg:px-10">
-        <div className="contact-left">
+        <div className="contact-left flex flex-col">
           <p className="section-eyebrow text-gold">Book an Appointment</p>
           <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
             Let's plan your next look
