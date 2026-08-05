@@ -260,7 +260,7 @@ export function Contact() {
           </form>
         </div>
 
-        <div className="contact-right">
+        <div className="contact-right h-full">
           <ServiceSlider />
         </div>
       </div>
