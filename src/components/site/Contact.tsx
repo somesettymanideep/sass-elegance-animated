@@ -199,6 +199,18 @@ export function Contact() {
                 </span>
               )}
             </LuxeButton>
+
+            <button
+              type="button"
+              onClick={bookOnWhatsApp}
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 px-6 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold transition-all duration-500 hover:bg-gold-gradient hover:text-ink"
+            >
+              <MessageCircle className="size-4" /> Book on WhatsApp
+            </button>
+            <p className="text-center text-[0.7rem] text-cream/50">
+              Your details are prefilled into the chat with your chosen branch.
+            </p>
+
           </form>
         </div>
 
