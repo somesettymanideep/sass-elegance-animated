@@ -1,26 +1,35 @@
-import { Users, Store, Scissors, Star, Sparkles, HeartHandshake } from "lucide-react";
 import { useCounter, useReveal } from "@/lib/motion";
 
 const stats = [
-  { icon: Users, value: 42000, suffix: "+", label: "Happy clients" },
-  { icon: Scissors, value: 15, suffix: " yrs", label: "Years of craft" },
-  { icon: HeartHandshake, value: 32, suffix: "", label: "Professional stylists" },
-  { icon: Store, value: 3, suffix: "", label: "Flagship branches" },
-  { icon: Sparkles, value: 186000, suffix: "+", label: "Treatments completed" },
-  { icon: Star, value: 4.9, suffix: "/5", label: "Google rating", decimals: 1 },
+  { value: 15, suffix: "+", label: "Years of experience" },
+  { value: 32, suffix: "+", label: "Professional stylists" },
+  { value: 42000, suffix: "+", label: "Happy clients" },
+  { value: 3, suffix: "", label: "Flagship branches" },
+  { value: 186000, suffix: "+", label: "Treatments completed" },
+  { value: 4.9, suffix: "/5", label: "Google rating", decimals: 1 },
 ];
 
-function Stat({ s }: { s: (typeof stats)[number] & { decimals?: number } }) {
+function Stat({ s, dark }: { s: (typeof stats)[number] & { decimals?: number }; dark: boolean }) {
   const ref = useCounter(s.value, s.decimals ?? 0);
-  const Icon = s.icon;
   return (
-    <div className="ab-stat group luxe-card bg-white/[0.03] p-8 text-center">
-      <Icon className="mx-auto size-6 text-gold transition-transform duration-700 group-hover:-translate-y-1.5" />
-      <p className="mt-5 font-display text-[clamp(2rem,4vw,3.2rem)] leading-none text-gold-gradient">
-        <span ref={ref}>0</span>
-        {s.suffix}
+    <div className="ab-stat flex flex-col items-center text-center">
+      <div className="rounded-full bg-cream/10 p-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]">
+        <div
+          className={[
+            "flex size-[9.5rem] items-center justify-center rounded-full md:size-[11rem]",
+            dark ? "bg-ink text-cream" : "bg-gold-gradient text-ink",
+          ].join(" ")}
+        >
+          <p className="font-display text-[clamp(1.5rem,3.4vw,2.6rem)] font-semibold leading-none">
+            <span ref={ref}>0</span>
+            {s.suffix}
+          </p>
+        </div>
+      </div>
+      <p className="mt-6 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-cream">
+        {s.label}
       </p>
-      <p className="mt-3 text-[0.68rem] uppercase tracking-[0.24em] text-cream/55">{s.label}</p>
+      <span className="mt-3 block h-[3px] w-12 rounded-full bg-gold" />
     </div>
   );
 }
@@ -38,9 +47,20 @@ export function AboutStats() {
             Numbers we are quietly proud of
           </h2>
         </div>
-        <div className="mt-16 grid grid-cols-2 gap-5 md:grid-cols-3">
-          {stats.map((s) => (
-            <Stat key={s.label} s={s} />
+        <div className="mt-16 grid grid-cols-2 gap-y-14 md:grid-cols-3 lg:grid-cols-6">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className={[
+                "flex justify-center px-2",
+                i % 2 === 1 ? "border-l border-dashed border-cream/20" : "",
+                "md:border-l md:border-dashed md:border-cream/20",
+                i % 3 === 0 ? "md:border-l-0 lg:border-l" : "",
+                i === 0 ? "lg:border-l-0" : "",
+              ].join(" ")}
+            >
+              <Stat s={s} dark={i % 3 === 1} />
+            </div>
           ))}
         </div>
       </div>
