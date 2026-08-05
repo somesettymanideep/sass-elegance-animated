@@ -8,7 +8,9 @@ interface Props {
   subtitle: string;
   image: string;
   crumb: string;
+  hideCircle?: boolean;
 }
+
 
 export function PageHero({ eyebrow, title, italic, subtitle, image, crumb }: Props) {
   const ref = useReveal<HTMLDivElement>({ selector: ".ph-fade", stagger: 0.14 });
