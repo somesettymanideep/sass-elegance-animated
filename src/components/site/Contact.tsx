@@ -1,7 +1,77 @@
-import { useState, type FormEvent } from "react";
-import { MapPin, Phone, Clock, Check } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
+import svcBridal from "@/assets/svc-bridal.jpg";
+import mensGrooming from "@/assets/mens-grooming.jpg";
+import svcMakeup from "@/assets/svc-makeup.jpg";
+import svcThreading from "@/assets/svc-threading.jpg";
+
+const slides = [
+  { src: svcBridal, title: "Bridal Makeup", caption: "Muhurtham-ready artistry" },
+  { src: mensGrooming, title: "Men's Grooming", caption: "Precision cuts & hot-towel shaves" },
+  { src: svcMakeup, title: "Party Makeup", caption: "Editorial glam for every occasion" },
+  { src: svcThreading, title: "Threading", caption: "Brow shaping by specialists" },
+];
+
+function ServiceSlider() {
+  const [i, setI] = useState(0);
+  const go = (n: number) => setI((p) => (p + n + slides.length) % slides.length);
+
+  useEffect(() => {
+    const t = setInterval(() => setI((p) => (p + 1) % slides.length), 4200);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="group relative aspect-4/5 w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:aspect-4/3 lg:aspect-3/4">
+      {slides.map((s, idx) => (
+        <img
+          key={s.title}
+          src={s.src}
+          alt={s.title}
+          loading="lazy"
+          className={`absolute inset-0 size-full object-cover transition-[opacity,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            idx === i ? "scale-100 opacity-100" : "scale-105 opacity-0"
+          }`}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+      <div className="absolute inset-x-0 bottom-0 p-7">
+        <p className="section-eyebrow text-gold">{slides[i]!.caption}</p>
+        <h3 className="mt-1 text-2xl text-cream">{slides[i]!.title}</h3>
+        <div className="mt-5 flex items-center gap-2">
+          {slides.map((s, idx) => (
+            <button
+              key={s.title}
+              aria-label={`Show ${s.title}`}
+              onClick={() => setI(idx)}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                idx === i ? "w-8 bg-gold-gradient" : "w-3 bg-cream/35 hover:bg-cream/60"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <button
+        aria-label="Previous image"
+        onClick={() => go(-1)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-gold/40 bg-black/35 p-2.5 text-cream opacity-0 backdrop-blur transition-all duration-500 hover:border-gold hover:text-gold group-hover:opacity-100"
+      >
+        <ChevronLeft className="size-4" />
+      </button>
+      <button
+        aria-label="Next image"
+        onClick={() => go(1)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-gold/40 bg-black/35 p-2.5 text-cream opacity-0 backdrop-blur transition-all duration-500 hover:border-gold hover:text-gold group-hover:opacity-100"
+      >
+        <ChevronRight className="size-4" />
+      </button>
+    </div>
+  );
+}
 
 const branches = [
   {
@@ -97,37 +167,8 @@ export function Contact() {
           </form>
         </div>
 
-        <div className="contact-right space-y-4">
-          <div className="overflow-hidden rounded-[1.5rem] border border-gold/20">
-            <iframe
-              title="SASS Hair & Beauty locations"
-              src="https://www.google.com/maps?q=Vijayawada%20Andhra%20Pradesh&output=embed"
-              loading="lazy"
-              className="h-64 w-full grayscale transition-[filter] duration-700 hover:grayscale-0"
-            />
-          </div>
-          {branches.map((b) => (
-            <div
-              key={b.city}
-              className="luxe-card bg-white/[0.03] p-6 transition-colors"
-            >
-              <h3 className="text-xl text-cream">{b.city}</h3>
-              <p className="mt-3 flex items-start gap-3 text-sm text-cream/60">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                {b.address}
-              </p>
-              <p className="mt-2 flex items-center gap-3 text-sm text-cream/60">
-                <Phone className="size-4 text-gold" />
-                <a href={`tel:${b.phone.replace(/\s/g, "")}`} className="link-underline">
-                  {b.phone}
-                </a>
-              </p>
-              <p className="mt-2 flex items-center gap-3 text-sm text-cream/60">
-                <Clock className="size-4 text-gold" />
-                Open daily · 10:00 AM – 9:00 PM
-              </p>
-            </div>
-          ))}
+        <div className="contact-right">
+          <ServiceSlider />
         </div>
       </div>
     </section>
