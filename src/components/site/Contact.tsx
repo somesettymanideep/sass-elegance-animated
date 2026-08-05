@@ -169,7 +169,8 @@ export function Contact() {
   const field =
     "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
   const label =
-    "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-cream/80 transition-all duration-300 peer-focus:top-2 peer-focus:text-[0.6rem] peer-focus:text-gold peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.6rem]";
+    "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-white transition-all duration-300 peer-focus:top-2 peer-focus:text-[0.6rem] peer-focus:text-gold peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.6rem]";
+
 
   const selectCls =
     "w-full appearance-none rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
