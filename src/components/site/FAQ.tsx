@@ -85,59 +85,61 @@ export function FAQ() {
 
   return (
     <section className="bg-background pb-28 md:pb-36">
-      <div ref={ref} className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 lg:grid-cols-[1fr_1.15fr] lg:px-10">
-        <div className="faq-image mx-auto w-full max-w-md lg:max-w-none">
-          <img
-            src={faqImage.url}
-            alt="SASS Hair & Beauty signature services menu"
-            loading="lazy"
-            width={1080}
-            height={1080}
-            className="w-full rounded-2xl shadow-luxe"
-          />
+      <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        {/* Heading — top left of the section */}
+        <div className="reveal-head mb-10 lg:mb-14">
+          <p className="section-eyebrow text-gold">FAQ</p>
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
+            Good to know before you visit
+          </h2>
         </div>
 
-
-        <div>
-          <div className="reveal-head mb-10">
-            <p className="section-eyebrow text-gold">FAQ</p>
-            <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
-              Good to know before you visit
-            </h2>
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.15fr]">
+          <div className="faq-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28">
+            <img
+              src={faqImage.url}
+              alt="SASS Hair & Beauty signature services menu"
+              loading="lazy"
+              width={1080}
+              height={1080}
+              className="w-full rounded-[7px] shadow-luxe"
+            />
           </div>
 
-          {faqs.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={f.q} className="faq-item border-b border-gold/15">
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                >
-                  <span className="font-display text-lg md:text-xl">{f.q}</span>
-                  <Plus
-                    className={`size-5 shrink-0 text-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isOpen ? "rotate-135" : ""
-                    }`}
-                  />
-                </button>
-                <div
-                  className="grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  style={{
-                    gridTemplateRows: isOpen ? "1fr" : "0fr",
-                    opacity: isOpen ? 1 : 0,
-                  }}
-                >
-                  <div className="overflow-hidden">
-                    <p className="pb-6 pr-10 text-sm leading-relaxed text-muted-foreground">
-                      {f.a}
-                    </p>
+          <div>
+            {faqs.map((f, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={f.q} className="faq-item border-b border-gold/15">
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                  >
+                    <span className="font-display text-lg md:text-xl">{f.q}</span>
+                    <Plus
+                      className={`size-5 shrink-0 text-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isOpen ? "rotate-135" : ""
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className="grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      opacity: isOpen ? 1 : 0,
+                    }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="pb-6 pr-10 text-sm leading-relaxed text-muted-foreground">
+                        {f.a}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
