@@ -24,7 +24,7 @@ function ServiceSlider() {
   }, []);
 
   return (
-    <div className="group relative aspect-4/5 w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:aspect-4/3 lg:aspect-3/4">
+    <div className="group relative h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:h-[320px] lg:h-[420px] xl:h-[460px]">
       {slides.map((s, idx) => (
         <img
           key={s.title}
