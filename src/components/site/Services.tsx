@@ -51,7 +51,62 @@ const services: Service[] = [
 ];
 
 export function Services() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".svc-card, .reveal-head", stagger: 0.06 });
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 30, filter: "blur(10px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: el, start: "top 84%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".svc-card",
+        { autoAlpha: 0, y: 48, scale: 0.96, filter: "blur(8px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power3.out",
+          stagger: { each: 0.07, grid: "auto", from: "start" },
+          scrollTrigger: { trigger: ".svc-grid", start: "top 88%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".svc-badge",
+        { autoAlpha: 0, scale: 0.5, rotate: -20 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 0.8,
+          ease: "back.out(2)",
+          stagger: 0.07,
+          delay: 0.2,
+          scrollTrigger: { trigger: ".svc-grid", start: "top 88%", once: true },
+        },
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section id="services" className="relative overflow-hidden bg-cream py-16 md:py-24">
