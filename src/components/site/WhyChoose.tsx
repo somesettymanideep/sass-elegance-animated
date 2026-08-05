@@ -112,12 +112,13 @@ export function WhyChoose() {
           {items.map(({ icon: Icon, title, copy }, i) => (
             <div
               key={title}
-              className={`wc-item group px-4 text-center lg:px-6 ${
-                i > 0 ? "lg:border-l lg:border-gold/25" : ""
-              }`}
+              className="wc-item group relative px-4 text-center lg:px-6"
             >
+              {i > 0 && (
+                <span className="wc-divider pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-gold/25 lg:block" />
+              )}
               <Icon
-                className="mx-auto size-11 text-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:scale-110"
+                className="wc-icon mx-auto size-11 text-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:scale-110"
                 strokeWidth={1.1}
               />
               <h3 className="mt-5 font-button text-sm font-semibold uppercase tracking-[0.06em]">
