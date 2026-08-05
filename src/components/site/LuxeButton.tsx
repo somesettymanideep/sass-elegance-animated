@@ -1,4 +1,5 @@
 import { useRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { useRouter } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
 type Variant = "gold" | "outline" | "ink";
