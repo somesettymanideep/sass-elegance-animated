@@ -157,6 +157,7 @@ export function Contact() {
           </h2>
 
           <form
+            ref={formRef}
             onSubmit={submit}
             className={`mt-10 space-y-4 ${error ? "shake" : ""}`}
             noValidate
