@@ -1,5 +1,6 @@
+import { useEffect, useRef } from "react";
 import { Award, Sparkles, Gem, ShieldCheck, Headset } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+import { gsap, ensureGsap } from "@/lib/motion";
 
 const items = [
   {
@@ -30,7 +31,73 @@ const items = [
 ];
 
 export function WhyChoose() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".wc-item, .reveal-head", stagger: 0.12 });
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 28, filter: "blur(10px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".wc-item",
+        { autoAlpha: 0, y: 42, filter: "blur(8px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".wc-icon",
+        { autoAlpha: 0, scale: 0.7, rotate: -8 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 0.9,
+          ease: "back.out(1.7)",
+          stagger: 0.1,
+          delay: 0.12,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".wc-divider",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "top center",
+          duration: 1.1,
+          ease: "power2.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
+        },
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section id="why" className="relative overflow-hidden bg-background py-16 md:py-20">
