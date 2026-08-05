@@ -30,6 +30,7 @@ export function LuxeButton({
   ...rest
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
+  const router = useRouter();
 
   const ripple = (e: React.MouseEvent) => {
     const el = ref.current;
