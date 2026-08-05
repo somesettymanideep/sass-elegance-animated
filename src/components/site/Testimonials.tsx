@@ -44,10 +44,19 @@ const reviews = [
   },
 ];
 
+const MAX_CLONES = 3;
+
+const loopReviews = reviews
+  .map((r, idx) => ({ ...r, key: `orig-${idx}` }))
+  .concat(
+    reviews.slice(0, MAX_CLONES).map((r, idx) => ({ ...r, key: `clone-${idx}` }))
+  );
+
 export function Testimonials() {
   const ref = useReveal<HTMLDivElement>({ selector: ".reveal-head", stagger: 0.1 });
   const [perView, setPerView] = useState(3);
   const [i, setI] = useState(0);
+  const [noTransition, setNoTransition] = useState(false);
   const paused = useRef(false);
 
   useEffect(() => {
@@ -63,10 +72,20 @@ export function Testimonials() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!paused.current) setI((v) => (v + 1) % pages);
+      if (!paused.current) setI((v) => v + 1);
     }, 5600);
     return () => clearInterval(id);
   }, [pages]);
+
+  useEffect(() => {
+    if (i !== pages) return;
+    const t = setTimeout(() => {
+      setNoTransition(true);
+      setI(0);
+      setTimeout(() => setNoTransition(false), 40);
+    }, 900);
+    return () => clearTimeout(t);
+  }, [i, pages]);
 
   return (
     <section className="bg-background py-24 md:py-32">
@@ -88,11 +107,14 @@ export function Testimonials() {
         >
           <div
             className="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-            style={{ transform: `translate3d(-${i * 100}%, 0, 0)` }}
+            style={{
+              transform: `translate3d(-${i * 100}%, 0, 0)`,
+              transition: noTransition ? "none" : undefined,
+            }}
           >
-            {reviews.map((r) => (
+            {loopReviews.map((r) => (
               <figure
-                key={r.name + r.city}
+                key={r.key}
                 className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3"
               >
                 <div className="flex h-full items-start gap-5 rounded-[14px] border border-border/60 bg-card p-7 shadow-[0_18px_44px_-30px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:-translate-y-1">
