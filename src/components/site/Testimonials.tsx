@@ -44,48 +44,69 @@ const reviews = [
   },
 ];
 
-const MAX_CLONES = 3;
-
-const loopReviews = reviews
-  .map((r, idx) => ({ ...r, key: `orig-${idx}` }))
-  .concat(
-    reviews.slice(0, MAX_CLONES).map((r, idx) => ({ ...r, key: `clone-${idx}` }))
-  );
+const TRANSITION_DURATION = 1200; // ms — slow, cinematic slide timing
+const AUTO_INTERVAL = 7000; // ms
 
 export function Testimonials() {
   const ref = useReveal<HTMLDivElement>({ selector: ".reveal-head", stagger: 0.1 });
   const [perView, setPerView] = useState(3);
-  const [i, setI] = useState(0);
+  const [index, setIndex] = useState(1); // position in the extended array
   const [noTransition, setNoTransition] = useState(false);
   const paused = useRef(false);
 
   useEffect(() => {
-    const set = () => setPerView(window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
-    set();
-    window.addEventListener("resize", set);
-    return () => window.removeEventListener("resize", set);
+    const handleResize = () => {
+      const w = window.innerWidth;
+      setPerView(w < 1024 ? 1 : 3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const pages = Math.max(1, Math.ceil(reviews.length / perView));
+  // Center-mode infinite loop: prepend leading clones and append trailing clones
+  const lead = Math.max(1, Math.floor(perView / 2));
+  const trail = Math.max(1, perView - 1);
 
-  useEffect(() => setI(0), [perView]);
+  const extended = [
+    ...reviews.slice(-lead),
+    ...reviews,
+    ...reviews.slice(0, trail),
+  ].map((r, i) => ({ ...r, extKey: i }));
 
+  const itemWidth = 100 / perView;
+  const translate = 50 - (index + 0.5) * itemWidth;
+
+  // Reset to the first real position whenever visible count changes
+  useEffect(() => {
+    setNoTransition(true);
+    setIndex(lead);
+    const t = setTimeout(() => setNoTransition(false), 60);
+    return () => clearTimeout(t);
+  }, [perView, lead]);
+
+  // Auto-advance
   useEffect(() => {
     const id = setInterval(() => {
-      if (!paused.current) setI((v) => v + 1);
-    }, 5600);
+      if (!paused.current) setIndex((v) => v + 1);
+    }, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [pages]);
+  }, [perView, lead]);
 
+  // Seamless loop reset: when we land on the trailing clone, jump back to the real position
   useEffect(() => {
-    if (i !== pages) return;
+    const maxIndex = reviews.length + lead;
+    if (index !== maxIndex) return;
     const t = setTimeout(() => {
       setNoTransition(true);
-      setI(0);
-      setTimeout(() => setNoTransition(false), 40);
-    }, 900);
+      setIndex(lead);
+      const restore = setTimeout(() => setNoTransition(false), 60);
+      return () => clearTimeout(restore);
+    }, TRANSITION_DURATION);
     return () => clearTimeout(t);
-  }, [i, pages]);
+  }, [index, lead]);
+
+  const activeReal = (index - lead + reviews.length) % reviews.length;
 
   return (
     <section className="bg-background py-24 md:py-32">
@@ -106,56 +127,76 @@ export function Testimonials() {
           onMouseLeave={() => (paused.current = false)}
         >
           <div
-            className="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="flex"
             style={{
-              transform: `translate3d(-${i * 100}%, 0, 0)`,
-              transition: noTransition ? "none" : undefined,
+              transform: `translate3d(${translate}%, 0, 0)`,
+              transition: noTransition ? "none" : `transform ${TRANSITION_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`,
             }}
           >
-            {loopReviews.map((r) => (
-              <figure
-                key={r.key}
-                className="w-full shrink-0 px-3 md:w-1/2 lg:w-1/3"
-              >
-                <div className="flex h-full items-start gap-5 rounded-[14px] border border-border/60 bg-card p-7 shadow-[0_18px_44px_-30px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:-translate-y-1">
-                  <img
-                    src={r.img}
-                    alt={`${r.name} — SASS Hair & Beauty client`}
-                    loading="lazy"
-                    width={512}
-                    height={512}
-                    className="size-16 shrink-0 rounded-full border-2 border-gold/50 object-cover"
-                  />
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <Quote className="size-4 shrink-0 fill-gold text-gold" />
-                      <span className="flex gap-0.5">
-                        {Array.from({ length: 5 }).map((_, s) => (
-                          <Star key={s} className="size-3.5 fill-gold text-gold" />
-                        ))}
-                      </span>
+            {extended.map((r, i) => {
+              const isActive = i === index;
+              return (
+                <figure
+                  key={r.extKey}
+                  className="shrink-0 px-3"
+                  style={{ width: `${itemWidth}%` }}
+                >
+                  <div
+                    className={`flex h-full items-start gap-5 rounded-[14px] border p-7 shadow-[0_18px_44px_-30px_rgba(0,0,0,0.45)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${
+                      isActive
+                        ? "border-gold/40 bg-black text-cream shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                        : "border-border/60 bg-card text-foreground"
+                    }`}
+                  >
+                    <img
+                      src={r.img}
+                      alt={`${r.name} — SASS Hair & Beauty client`}
+                      loading="lazy"
+                      width={512}
+                      height={512}
+                      className="size-16 shrink-0 rounded-full border-2 border-gold/50 object-cover"
+                    />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <Quote className="size-4 shrink-0 fill-gold text-gold" />
+                        <span className="flex gap-0.5">
+                          {Array.from({ length: 5 }).map((_, s) => (
+                            <Star key={s} className="size-3.5 fill-gold text-gold" />
+                          ))}
+                        </span>
+                      </div>
+                      <blockquote
+                        className={`mt-4 text-sm leading-relaxed ${
+                          isActive ? "text-cream/80" : "text-foreground/80"
+                        }`}
+                      >
+                        {r.text}
+                      </blockquote>
+                      <figcaption className="mt-5">
+                        <p className="text-sm font-semibold">– {r.name}</p>
+                        <p
+                          className={`mt-1 text-xs ${
+                            isActive ? "text-cream/60" : "text-muted-foreground"
+                          }`}
+                        >
+                          {r.city}
+                        </p>
+                      </figcaption>
                     </div>
-                    <blockquote className="mt-4 text-sm leading-relaxed text-foreground/80">
-                      {r.text}
-                    </blockquote>
-                    <figcaption className="mt-5">
-                      <p className="text-sm font-semibold">– {r.name}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">{r.city}</p>
-                    </figcaption>
                   </div>
-                </div>
-              </figure>
-            ))}
+                </figure>
+              );
+            })}
           </div>
 
           <div className="mt-10 flex justify-center gap-2.5">
-            {Array.from({ length: pages }).map((_, d) => (
+            {reviews.map((_, d) => (
               <button
                 key={d}
                 aria-label={`Go to slide ${d + 1}`}
-                onClick={() => setI(d)}
+                onClick={() => setIndex(d + lead)}
                 className={`size-2.5 rounded-full transition-all duration-500 ${
-                  d === i ? "bg-gold" : "bg-border"
+                  d === activeReal ? "bg-gold" : "bg-border"
                 }`}
               />
             ))}
