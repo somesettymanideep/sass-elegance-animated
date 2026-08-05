@@ -124,7 +124,7 @@ export function Services() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="svc-grid mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
           {services.map(({ title, copy, img, Icon }) => (
             <article
               key={title}
@@ -139,7 +139,7 @@ export function Services() {
                   height={640}
                   className="aspect-4/3 w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
-                <span className="absolute -bottom-4 left-2 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[12deg] group-hover:scale-110">
+                <span className="svc-badge absolute -bottom-4 left-2 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[12deg] group-hover:scale-110">
                   <Icon className="size-4" strokeWidth={1.4} />
                 </span>
               </div>
