@@ -1,5 +1,5 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { Check, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
 import svcBridal from "@/assets/svc-bridal.jpg";
@@ -24,7 +24,7 @@ function ServiceSlider() {
   }, []);
 
   return (
-    <div className="group relative aspect-4/5 w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:aspect-4/3 lg:aspect-3/4">
+    <div className="group relative h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:h-[320px] lg:h-[420px] xl:h-[460px]">
       {slides.map((s, idx) => (
         <img
           key={s.title}
@@ -93,20 +93,54 @@ const branches = [
 
 export function Contact() {
   const ref = useReveal<HTMLDivElement>({ selector: ".contact-left, .contact-right", stagger: 0.16 });
+  const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<"idle" | "loading" | "done">("idle");
   const [error, setError] = useState("");
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    if (!String(data.get("name") || "").trim() || !String(data.get("phone") || "").trim()) {
+  const readForm = () => {
+    const form = formRef.current;
+    if (!form) return null;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    if (!name || !phone) {
       setError("Please share your name and phone number.");
       setTimeout(() => setError(""), 1200);
-      return;
+      return null;
     }
+    return {
+      name,
+      phone,
+      branch: String(data.get("branch") || branches[0]!.city),
+      notes: String(data.get("notes") || "").trim(),
+    };
+  };
+
+  const bookOnWhatsApp = () => {
+    const v = readForm();
+    if (!v) return;
+    const branch = branches.find((b) => b.city === v.branch) ?? branches[0]!;
+    const message = [
+      "Hello SASS Hair & Beauty! I'd like to book an appointment.",
+      "",
+      `Name: ${v.name}`,
+      `Phone: ${v.phone}`,
+      `Preferred branch: ${branch.city}`,
+      v.notes ? `Looking for: ${v.notes}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const number = branch.phone.replace(/\D/g, "");
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+  };
+
+  const submit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!readForm()) return;
     setState("loading");
     setTimeout(() => setState("done"), 1200);
   };
+
 
   const field =
     "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
@@ -123,6 +157,7 @@ export function Contact() {
           </h2>
 
           <form
+            ref={formRef}
             onSubmit={submit}
             className={`mt-10 space-y-4 ${error ? "shake" : ""}`}
             noValidate
@@ -164,6 +199,18 @@ export function Contact() {
                 </span>
               )}
             </LuxeButton>
+
+            <button
+              type="button"
+              onClick={bookOnWhatsApp}
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 px-6 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold transition-all duration-500 hover:bg-gold-gradient hover:text-ink"
+            >
+              <MessageCircle className="size-4" /> Book on WhatsApp
+            </button>
+            <p className="text-center text-[0.7rem] text-cream/50">
+              Your details are prefilled into the chat with your chosen branch.
+            </p>
+
           </form>
         </div>
 
