@@ -167,37 +167,8 @@ export function Contact() {
           </form>
         </div>
 
-        <div className="contact-right space-y-4">
-          <div className="overflow-hidden rounded-[1.5rem] border border-gold/20">
-            <iframe
-              title="SASS Hair & Beauty locations"
-              src="https://www.google.com/maps?q=Vijayawada%20Andhra%20Pradesh&output=embed"
-              loading="lazy"
-              className="h-64 w-full grayscale transition-[filter] duration-700 hover:grayscale-0"
-            />
-          </div>
-          {branches.map((b) => (
-            <div
-              key={b.city}
-              className="luxe-card bg-white/[0.03] p-6 transition-colors"
-            >
-              <h3 className="text-xl text-cream">{b.city}</h3>
-              <p className="mt-3 flex items-start gap-3 text-sm text-cream/60">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                {b.address}
-              </p>
-              <p className="mt-2 flex items-center gap-3 text-sm text-cream/60">
-                <Phone className="size-4 text-gold" />
-                <a href={`tel:${b.phone.replace(/\s/g, "")}`} className="link-underline">
-                  {b.phone}
-                </a>
-              </p>
-              <p className="mt-2 flex items-center gap-3 text-sm text-cream/60">
-                <Clock className="size-4 text-gold" />
-                Open daily · 10:00 AM – 9:00 PM
-              </p>
-            </div>
-          ))}
+        <div className="contact-right">
+          <ServiceSlider />
         </div>
       </div>
     </section>
