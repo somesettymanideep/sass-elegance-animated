@@ -70,11 +70,11 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <SplitBanner />
         <WhyChoose />
         <Services />
         <Gallery />
         <Bridal />
-        <SplitBanner />
         <Stats />
         <Testimonials />
         <Experts />
