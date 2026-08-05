@@ -8,9 +8,11 @@ interface Props {
   subtitle: string;
   image: string;
   crumb: string;
+  hideCircle?: boolean;
 }
 
-export function PageHero({ eyebrow, title, italic, subtitle, image, crumb }: Props) {
+
+export function PageHero({ eyebrow, title, italic, subtitle, image, crumb, hideCircle }: Props) {
   const ref = useReveal<HTMLDivElement>({ selector: ".ph-fade", stagger: 0.14 });
 
   return (
@@ -25,11 +27,14 @@ export function PageHero({ eyebrow, title, italic, subtitle, image, crumb }: Pro
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/95" />
 
-      <span className="floaty pointer-events-none absolute right-[12%] top-[30%] size-40 rounded-full border border-gold/20" />
+      {!hideCircle && (
+        <span className="floaty pointer-events-none absolute right-[12%] top-[30%] size-40 rounded-full border border-gold/20" />
+      )}
       <span
         className="floaty pointer-events-none absolute left-[8%] bottom-[20%] size-2 rounded-full bg-gold"
         style={{ animationDelay: "1.4s" }}
       />
+
 
       <div ref={ref} className="relative mx-auto max-w-[1400px] px-6 pb-16 pt-32 lg:px-10 lg:pb-20 lg:pt-40">
         <nav aria-label="Breadcrumb" className="ph-fade">
