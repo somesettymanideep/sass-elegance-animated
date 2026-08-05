@@ -78,14 +78,13 @@ export function Testimonials() {
   }, [pages]);
 
   useEffect(() => {
-    if (i === pages) {
-      const t = setTimeout(() => {
-        setNoTransition(true);
-        setI(0);
-        setTimeout(() => setNoTransition(false), 40);
-      }, 900);
-      return () => clearTimeout(t);
-    }
+    if (i !== pages) return;
+    const t = setTimeout(() => {
+      setNoTransition(true);
+      setI(0);
+      setTimeout(() => setNoTransition(false), 40);
+    }, 900);
+    return () => clearTimeout(t);
   }, [i, pages]);
 
   return (
