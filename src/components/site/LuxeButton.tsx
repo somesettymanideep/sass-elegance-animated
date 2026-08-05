@@ -55,7 +55,23 @@ export function LuxeButton({
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
         className={cls}
-        onClick={ripple}
+        onClick={(e) => {
+          ripple(e);
+          if (
+            href &&
+            href.startsWith("/") &&
+            !href.startsWith("//") &&
+            !href.includes("#") &&
+            !e.defaultPrevented &&
+            e.button === 0 &&
+            !e.metaKey &&
+            !e.ctrlKey &&
+            !e.shiftKey
+          ) {
+            e.preventDefault();
+            router.navigate({ to: href });
+          }
+        }}
       >
         {children}
       </a>
