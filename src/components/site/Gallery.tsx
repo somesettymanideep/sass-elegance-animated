@@ -19,23 +19,52 @@ const reels = [
   { src: reel4.url, poster: poster4.url, tag: "Makeover", title: "Complete salon makeover" },
 ];
 
+const SNAP_POINTS = [0, 25, 50, 75, 100];
+
 function BeforeAfter() {
   const [pos, setPos] = useState(38);
+  const [dragging, setDragging] = useState(false);
   const wrap = useRef<HTMLDivElement | null>(null);
 
-  const move = (clientX: number) => {
+  const move = (clientX: number, snap = false) => {
     const rect = wrap.current?.getBoundingClientRect();
     if (!rect) return;
-    setPos(Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100)));
+    let next = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    if (snap) {
+      const near = SNAP_POINTS.find((p) => Math.abs(p - next) <= 6);
+      if (near !== undefined) next = near;
+    }
+    setPos(next);
+  };
+
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 5));
+    if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 5));
   };
 
   return (
     <div
       ref={wrap}
-      className="relative aspect-4/5 w-full select-none overflow-hidden rounded-[1.5rem] border border-gold/20 sm:aspect-16/11"
-      onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
-      onPointerDown={(e) => move(e.clientX)}
-      onTouchMove={(e) => e.touches[0] && move(e.touches[0].clientX)}
+      role="slider"
+      tabIndex={0}
+      aria-label="Before and after comparison"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(pos)}
+      onKeyDown={onKey}
+      className="relative aspect-4/5 w-full touch-pan-y select-none overflow-hidden rounded-[1.5rem] border border-gold/20 outline-none focus-visible:border-gold/60 sm:aspect-16/11"
+      style={{ touchAction: dragging ? "none" : "pan-y" }}
+      onPointerDown={(e) => {
+        (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+        setDragging(true);
+        move(e.clientX);
+      }}
+      onPointerMove={(e) => dragging && move(e.clientX)}
+      onPointerUp={(e) => {
+        setDragging(false);
+        move(e.clientX, true);
+      }}
+      onPointerCancel={() => setDragging(false)}
     >
       <img
         src={after}
@@ -55,9 +84,14 @@ function BeforeAfter() {
           className="size-full object-cover object-top"
         />
       </div>
-      <div className="absolute inset-y-0 w-px bg-gold-gradient" style={{ left: `${pos}%` }}>
-        <span className="absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold-gradient text-ink shadow-gold">
-          <MoveHorizontal className="size-5" />
+      <div
+        className="absolute inset-y-0 w-0.5 bg-gold-gradient"
+        style={{ left: `${pos}%`, transition: dragging ? "none" : "left 0.35s cubic-bezier(0.22,1,0.36,1)" }}
+      >
+        <span
+          className={`absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold-gradient text-ink shadow-gold transition-transform duration-300 sm:size-12 ${dragging ? "scale-110" : ""}`}
+        >
+          <MoveHorizontal className="size-7 sm:size-5" />
         </span>
       </div>
       <span className="absolute bottom-4 left-4 rounded-full bg-black/55 px-3 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-cream backdrop-blur">
