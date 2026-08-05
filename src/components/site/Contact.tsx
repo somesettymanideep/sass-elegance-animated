@@ -24,7 +24,7 @@ function ServiceSlider() {
   }, []);
 
   return (
-    <div className="group relative h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:h-[320px] lg:h-[420px] xl:h-[460px]">
+    <div className="group relative h-full min-h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:min-h-[320px] lg:min-h-0">
       {slides.map((s, idx) => (
         <img
           key={s.title}
@@ -131,9 +131,6 @@ export function Contact() {
     notes: "",
   });
 
-  const message = buildWhatsAppMessage(form);
-  const messageLength = message.length;
-  const MAX_CHARS = 4096;
 
   const updateForm = (key: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
@@ -167,18 +164,17 @@ export function Contact() {
   };
 
   const field =
-    "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
+    "peer w-full rounded-xl border border-border bg-black/25 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow,background-color] duration-400 focus:border-gold focus:bg-black/35 focus:shadow-gold";
   const label =
     "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-white transition-all duration-300 peer-focus:top-2 peer-focus:text-[0.6rem] peer-focus:text-gold peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.6rem]";
 
-
   const selectCls =
-    "w-full appearance-none rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
+    "w-full appearance-none rounded-xl border border-border bg-black/25 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow,background-color] duration-400 focus:border-gold focus:bg-black/35 focus:shadow-gold";
 
   return (
     <section id="contact" className="bg-ink py-28 text-cream md:py-36">
       <div ref={ref} className="mx-auto grid max-w-[1400px] gap-10 px-6 lg:grid-cols-2 lg:px-10">
-        <div className="contact-left">
+        <div className="contact-left flex flex-col">
           <p className="section-eyebrow text-gold">Book an Appointment</p>
           <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
             Let's plan your next look
@@ -249,21 +245,6 @@ export function Contact() {
             </LuxeButton>
 
             <div className="space-y-2">
-              <div className="rounded-xl border border-gold/20 bg-card/40 p-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">WhatsApp preview</p>
-                  <p className="text-[0.65rem] text-cream/60">
-                    {messageLength}/{MAX_CHARS}
-                  </p>
-                </div>
-                <textarea
-                  readOnly
-                  value={message}
-                  rows={6}
-                  className="w-full resize-none rounded-lg border border-border/60 bg-black/30 p-3 text-xs leading-relaxed text-cream/90 outline-none"
-                  aria-label="WhatsApp message preview"
-                />
-              </div>
 
               <button
                 type="button"
@@ -279,7 +260,7 @@ export function Contact() {
           </form>
         </div>
 
-        <div className="contact-right">
+        <div className="contact-right h-full">
           <ServiceSlider />
         </div>
       </div>
