@@ -5,7 +5,6 @@ const stats = [
   { value: 32, suffix: "+", label: "Professional stylists" },
   { value: 42000, suffix: "+", label: "Happy clients" },
   { value: 3, suffix: "", label: "Flagship branches" },
-  { value: 186000, suffix: "+", label: "Treatments completed" },
   { value: 4.9, suffix: "/5", label: "Google rating", decimals: 1 },
 ];
 
@@ -47,16 +46,17 @@ export function AboutStats() {
             Numbers we are quietly proud of
           </h2>
         </div>
-        <div className="mt-16 grid grid-cols-2 gap-y-14 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-16 grid grid-cols-2 gap-y-14 md:grid-cols-3 lg:grid-cols-5">
           {stats.map((s, i) => (
             <div
               key={s.label}
               className={[
-                "flex justify-center px-2",
-                i % 2 === 1 ? "border-l border-dashed border-cream/20" : "",
+                "flex justify-center px-2 border-l border-dashed border-cream/20",
+                i % 2 === 0 ? "border-l-0" : "",
                 "md:border-l md:border-dashed md:border-cream/20",
-                i % 3 === 0 ? "md:border-l-0 lg:border-l" : "",
-                i === 0 ? "lg:border-l-0" : "",
+                i % 3 === 0 ? "md:border-l-0" : "",
+                "lg:border-l lg:border-dashed lg:border-cream/20",
+                i % 5 === 0 ? "lg:border-l-0" : "",
               ].join(" ")}
             >
               <Stat s={s} dark={i % 3 === 1} />
