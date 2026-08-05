@@ -162,14 +162,14 @@ export function Gallery() {
   }, [active]);
 
   return (
-    <section id="gallery" className="bg-background py-28 md:py-36">
+    <section id="gallery" className="bg-ink py-28 md:py-36">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="reveal-head max-w-2xl">
           <p className="section-eyebrow text-gold">Before &amp; After</p>
-          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05]">
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.4vw,3.6rem)] leading-[1.05] text-cream">
             Transformations worth the drive
           </h2>
-          <p className="mt-5 text-muted-foreground">
+          <p className="mt-5 text-cream/70">
             Drag the handle to see the difference a SASS consultation makes — then watch the real
             makeovers filmed inside our studios.
           </p>
@@ -180,8 +180,8 @@ export function Gallery() {
         </div>
 
         <div className="reveal-head mt-16 flex flex-wrap items-end justify-between gap-4">
-          <h3 className="font-display text-2xl md:text-3xl">Live transformation reels</h3>
-          <p className="text-sm text-muted-foreground">Hover to preview · tap to watch full</p>
+          <h3 className="font-display text-2xl md:text-3xl text-cream">Live transformation reels</h3>
+          <p className="text-sm text-cream/70">Hover to preview · tap to watch full</p>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
