@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { X, ChevronLeft, ChevronRight, MoveHorizontal } from "lucide-react";
+import { X, MoveHorizontal, Play, Volume2, VolumeX } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import before from "@/assets/before.jpg";
 import after from "@/assets/after.jpg";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import hero from "@/assets/hero.jpg";
-import bridal from "@/assets/bridal.jpg";
-import interior from "@/assets/interior.jpg";
+import reel1 from "@/assets/reel1.mp4.asset.json";
+import reel2 from "@/assets/reel2.mp4.asset.json";
+import reel3 from "@/assets/reel3.mp4.asset.json";
+import reel4 from "@/assets/reel4.mp4.asset.json";
+import poster1 from "@/assets/reel1-poster.jpg.asset.json";
+import poster2 from "@/assets/reel2-poster.jpg.asset.json";
+import poster3 from "@/assets/reel3-poster.jpg.asset.json";
+import poster4 from "@/assets/reel4-poster.jpg.asset.json";
 
-const shots = [
-  { src: g1, alt: "Caramel balayage close-up", span: "row-span-2" },
-  { src: interior, alt: "SASS salon interior", span: "" },
-  { src: after, alt: "Glossy blowout transformation", span: "row-span-2" },
-  { src: g2, alt: "Gold styling tools on marble", span: "" },
-  { src: bridal, alt: "South Indian bridal makeup", span: "row-span-2" },
-  { src: hero, alt: "Editorial hair styling", span: "" },
+const reels = [
+  { src: reel1.url, poster: poster1.url, tag: "Colour", title: "Fashion colour transformation" },
+  { src: reel2.url, poster: poster2.url, tag: "Bridal", title: "Bridal makeover reveal" },
+  { src: reel3.url, poster: poster3.url, tag: "Styling", title: "Signature blowout styling" },
+  { src: reel4.url, poster: poster4.url, tag: "Makeover", title: "Complete salon makeover" },
 ];
 
 function BeforeAfter() {
@@ -54,10 +55,7 @@ function BeforeAfter() {
           className="size-full object-cover object-top"
         />
       </div>
-      <div
-        className="absolute inset-y-0 w-px bg-gold-gradient"
-        style={{ left: `${pos}%` }}
-      >
+      <div className="absolute inset-y-0 w-px bg-gold-gradient" style={{ left: `${pos}%` }}>
         <span className="absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold-gradient text-ink shadow-gold">
           <MoveHorizontal className="size-5" />
         </span>
@@ -72,20 +70,62 @@ function BeforeAfter() {
   );
 }
 
+function ReelCard({
+  reel,
+  onOpen,
+}: {
+  reel: (typeof reels)[number];
+  onOpen: () => void;
+}) {
+  const video = useRef<HTMLVideoElement | null>(null);
+
+  return (
+    <button
+      onClick={onOpen}
+      onMouseEnter={() => void video.current?.play().catch(() => {})}
+      onMouseLeave={() => {
+        video.current?.pause();
+        if (video.current) video.current.currentTime = 0;
+      }}
+      className="gal-item group relative aspect-9/16 overflow-hidden rounded-[1.25rem] border border-gold/15 text-left transition-[transform,border-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold/60 hover:shadow-gold"
+    >
+      <video
+        ref={video}
+        src={reel.src}
+        poster={reel.poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        className="size-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+      />
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/25" />
+      <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-black/45 px-3 py-1 text-[0.6rem] uppercase tracking-[0.22em] text-gold backdrop-blur">
+        {reel.tag}
+      </span>
+      <span className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold-gradient text-ink opacity-90 shadow-gold transition-opacity duration-500 group-hover:opacity-0">
+        <Play className="size-5 translate-x-px fill-current" />
+      </span>
+      <span className="absolute inset-x-4 bottom-4 block font-display text-lg leading-tight text-cream">
+        {reel.title}
+      </span>
+    </button>
+  );
+}
+
 export function Gallery() {
   const ref = useReveal<HTMLDivElement>({ selector: ".gal-item, .reveal-head", stagger: 0.09 });
-  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [active, setActive] = useState<number | null>(null);
+  const [muted, setMuted] = useState(false);
 
   useEffect(() => {
-    if (lightbox === null) return;
+    if (active === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
-      if (e.key === "ArrowRight") setLightbox((i) => ((i ?? 0) + 1) % shots.length);
-      if (e.key === "ArrowLeft") setLightbox((i) => ((i ?? 0) - 1 + shots.length) % shots.length);
+      if (e.key === "Escape") setActive(null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox]);
+  }, [active]);
 
   return (
     <section id="gallery" className="bg-background py-28 md:py-36">
@@ -96,7 +136,8 @@ export function Gallery() {
             Transformations worth the drive
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Drag the handle to see the difference a SASS consultation makes.
+            Drag the handle to see the difference a SASS consultation makes — then watch the real
+            makeovers filmed inside our studios.
           </p>
         </div>
 
@@ -104,30 +145,23 @@ export function Gallery() {
           <BeforeAfter />
         </div>
 
-        <div className="mt-6 grid auto-rows-[180px] grid-cols-2 gap-4 md:grid-cols-3 md:auto-rows-[220px]">
-          {shots.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => setLightbox(i)}
-              className={`gal-item group relative overflow-hidden rounded-[1.25rem] border border-gold/15 ${s.span}`}
-            >
-              <img
-                src={s.src}
-                alt={s.alt}
-                loading="lazy"
-                className="size-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
-              />
-              <span className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/35" />
-            </button>
+        <div className="reveal-head mt-16 flex flex-wrap items-end justify-between gap-4">
+          <h3 className="font-display text-2xl md:text-3xl">Live transformation reels</h3>
+          <p className="text-sm text-muted-foreground">Hover to preview · tap to watch full</p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          {reels.map((r, i) => (
+            <ReelCard key={i} reel={r} onOpen={() => setActive(i)} />
           ))}
         </div>
       </div>
 
-      {lightbox !== null && (
+      {active !== null && (
         <div
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/92 p-6 backdrop-blur-sm"
+          className="fixed inset-0 z-90 flex items-center justify-center bg-black/92 p-6 backdrop-blur-sm"
           style={{ animation: "fade-in 0.35s ease-out both" }}
-          onClick={() => setLightbox(null)}
+          onClick={() => setActive(null)}
         >
           <button
             aria-label="Close"
@@ -136,32 +170,28 @@ export function Gallery() {
             <X className="size-5" />
           </button>
           <button
-            aria-label="Previous"
+            aria-label={muted ? "Unmute" : "Mute"}
             onClick={(e) => {
               e.stopPropagation();
-              setLightbox((i) => ((i ?? 0) - 1 + shots.length) % shots.length);
+              setMuted((m) => !m);
             }}
-            className="absolute left-4 rounded-full border border-gold/30 p-3 text-cream md:left-10"
+            className="absolute left-6 top-6 rounded-full border border-gold/30 p-3 text-cream"
           >
-            <ChevronLeft className="size-5" />
+            {muted ? <VolumeX className="size-5" /> : <Volume2 className="size-5" />}
           </button>
-          <img
-            src={shots[lightbox]!.src}
-            alt={shots[lightbox]!.alt}
-            className="max-h-[84vh] max-w-[90vw] rounded-2xl object-contain"
+          <video
+            key={active}
+            src={reels[active]!.src}
+            poster={reels[active]!.poster}
+            autoPlay
+            loop
+            controls
+            muted={muted}
+            playsInline
+            className="max-h-[86vh] w-auto rounded-2xl border border-gold/20 object-contain"
             style={{ animation: "scale-in 0.45s cubic-bezier(0.22,1,0.36,1) both" }}
             onClick={(e) => e.stopPropagation()}
           />
-          <button
-            aria-label="Next"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightbox((i) => ((i ?? 0) + 1) % shots.length);
-            }}
-            className="absolute right-4 rounded-full border border-gold/30 p-3 text-cream md:right-10"
-          >
-            <ChevronRight className="size-5" />
-          </button>
         </div>
       )}
     </section>
