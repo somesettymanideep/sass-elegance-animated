@@ -219,9 +219,10 @@ export function Contact() {
                   </option>
                 ))}
               </select>
-              <span className="pointer-events-none absolute left-4 top-2 text-[0.6rem] uppercase tracking-[0.16em] text-gold">
+              <span className="pointer-events-none absolute left-4 top-2 text-[0.6rem] uppercase tracking-[0.16em] text-white">
                 Preferred branch
               </span>
+
             </div>
             <div className="relative">
               <textarea
