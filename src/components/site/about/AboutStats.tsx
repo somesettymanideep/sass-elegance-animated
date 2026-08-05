@@ -5,7 +5,6 @@ const stats = [
   { value: 32, suffix: "+", label: "Professional stylists" },
   { value: 42000, suffix: "+", label: "Happy clients" },
   { value: 3, suffix: "", label: "Flagship branches" },
-  { value: 186000, suffix: "+", label: "Treatments completed" },
   { value: 4.9, suffix: "/5", label: "Google rating", decimals: 1 },
 ];
 
