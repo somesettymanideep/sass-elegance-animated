@@ -71,9 +71,9 @@ function Index() {
       <main>
         <Hero />
         <SplitBanner />
-        <WhyChoose />
         <Services />
         <Gallery />
+        <WhyChoose />
         <Contact />
         <Bridal />
         <Stats />
