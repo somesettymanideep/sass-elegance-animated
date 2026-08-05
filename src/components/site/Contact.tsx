@@ -248,21 +248,6 @@ export function Contact() {
             </LuxeButton>
 
             <div className="space-y-2">
-              <div className="rounded-xl border border-gold/20 bg-card/40 p-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">WhatsApp preview</p>
-                  <p className="text-[0.65rem] text-cream/60">
-                    {messageLength}/{MAX_CHARS}
-                  </p>
-                </div>
-                <textarea
-                  readOnly
-                  value={message}
-                  rows={6}
-                  className="w-full resize-none rounded-lg border border-border/60 bg-black/30 p-3 text-xs leading-relaxed text-cream/90 outline-none"
-                  aria-label="WhatsApp message preview"
-                />
-              </div>
 
               <button
                 type="button"
