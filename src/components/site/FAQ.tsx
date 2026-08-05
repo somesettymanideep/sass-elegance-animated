@@ -28,22 +28,75 @@ const faqs = [
 ];
 
 export function FAQ() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".faq-item, .reveal-head, .faq-image", stagger: 0.08 });
+  const ref = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState<number | null>(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".faq-image",
+        { autoAlpha: 0, x: -60, scale: 0.94, filter: "blur(14px)" },
+        {
+          autoAlpha: 1,
+          x: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1.25,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 40, filter: "blur(12px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 80%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".faq-item",
+        { autoAlpha: 0, y: 28, filter: "blur(8px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.85,
+          ease: "power3.out",
+          stagger: 0.09,
+          scrollTrigger: { trigger: el, start: "top 76%", once: true },
+        },
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="bg-background pb-28 md:pb-36">
       <div ref={ref} className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 lg:grid-cols-[1fr_1.15fr] lg:px-10">
-        <div className="faq-image reveal-head mx-auto w-full max-w-md lg:max-w-none">
+        <div className="faq-image mx-auto w-full max-w-md lg:max-w-none">
           <img
             src={faqImage.url}
             alt="SASS Hair & Beauty signature services menu"
             loading="lazy"
             width={1080}
             height={1080}
-            className="w-full rounded-full shadow-luxe"
+            className="w-full rounded-2xl shadow-luxe"
           />
         </div>
+
 
         <div>
           <div className="reveal-head mb-10">
