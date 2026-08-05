@@ -75,12 +75,12 @@ function Index() {
         <Gallery />
         <WhyChoose />
         <Contact />
+        <FAQ />
         <Bridal />
         <Stats />
         <Testimonials />
         <Brands />
         <Membership />
-        <FAQ />
       </main>
       <Footer />
       <FloatingActions />
