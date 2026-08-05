@@ -24,7 +24,7 @@ function ServiceSlider() {
   }, []);
 
   return (
-    <div className="group relative h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:h-[320px] lg:h-[420px] xl:h-[460px]">
+    <div className="group relative h-full min-h-[260px] w-full overflow-hidden rounded-[1.5rem] border border-gold/20 sm:min-h-[320px] lg:min-h-0">
       {slides.map((s, idx) => (
         <img
           key={s.title}
@@ -167,13 +167,12 @@ export function Contact() {
   };
 
   const field =
-    "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
+    "peer w-full rounded-xl border border-border bg-black/25 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow,background-color] duration-400 focus:border-gold focus:bg-black/35 focus:shadow-gold";
   const label =
     "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-white transition-all duration-300 peer-focus:top-2 peer-focus:text-[0.6rem] peer-focus:text-gold peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.6rem]";
 
-
   const selectCls =
-    "w-full appearance-none rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
+    "w-full appearance-none rounded-xl border border-border bg-black/25 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow,background-color] duration-400 focus:border-gold focus:bg-black/35 focus:shadow-gold";
 
   return (
     <section id="contact" className="bg-ink py-28 text-cream md:py-36">
