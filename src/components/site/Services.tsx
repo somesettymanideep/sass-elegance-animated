@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   Scissors,
@@ -14,7 +15,7 @@ import {
   Brush,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+import { gsap, ensureGsap } from "@/lib/motion";
 import haircut from "@/assets/svc-haircut.jpg";
 import threading from "@/assets/svc-threading.jpg";
 import colour from "@/assets/svc-colour.jpg";
@@ -51,7 +52,62 @@ const services: Service[] = [
 ];
 
 export function Services() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".svc-card, .reveal-head", stagger: 0.06 });
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ensureGsap();
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 30, filter: "blur(10px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: el, start: "top 84%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".svc-card",
+        { autoAlpha: 0, y: 48, scale: 0.96, filter: "blur(8px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power3.out",
+          stagger: { each: 0.07, grid: "auto", from: "start" },
+          scrollTrigger: { trigger: ".svc-grid", start: "top 88%", once: true },
+        },
+      );
+
+      gsap.fromTo(
+        ".svc-badge",
+        { autoAlpha: 0, scale: 0.5, rotate: -20 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 0.8,
+          ease: "back.out(2)",
+          stagger: 0.07,
+          delay: 0.2,
+          scrollTrigger: { trigger: ".svc-grid", start: "top 88%", once: true },
+        },
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section id="services" className="relative overflow-hidden bg-cream py-16 md:py-24">
@@ -68,7 +124,7 @@ export function Services() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="svc-grid mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
           {services.map(({ title, copy, img, Icon }) => (
             <article
               key={title}
@@ -83,7 +139,7 @@ export function Services() {
                   height={640}
                   className="aspect-4/3 w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
-                <span className="absolute -bottom-4 left-2 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[12deg] group-hover:scale-110">
+                <span className="svc-badge absolute -bottom-4 left-2 flex size-9 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[12deg] group-hover:scale-110">
                   <Icon className="size-4" strokeWidth={1.4} />
                 </span>
               </div>
