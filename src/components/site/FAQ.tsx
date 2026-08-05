@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Plus } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+import { gsap } from "gsap";
+import { ensureGsap } from "@/lib/motion";
 import faqImage from "@/assets/best_hair_and_beauty_clinic.png.asset.json";
 
 const faqs = [
