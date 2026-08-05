@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Check, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent, type ChangeEvent } from "react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
 import svcBridal from "@/assets/svc-bridal.jpg";
@@ -91,47 +91,72 @@ const branches = [
   },
 ];
 
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-11.485c-3.866 0-7.007 3.141-7.007 7.007 0 1.382.402 2.67 1.093 3.764l-1.118 4.08 4.17-1.093c1.043.566 2.224.893 3.862.893 3.866 0 7.007-3.141 7.007-7.007s-3.141-7.007-7.007-7.007m0 12.813c-1.135 0-2.193-.34-3.08-.926l-.221-.139-2.57.674.686-2.505-.151-.24c-.642-1.018-1.02-2.222-1.02-3.515 0-3.205 2.608-5.813 5.813-5.813s5.813 2.608 5.813 5.813-2.608 5.813-5.813 5.813z" />
+    </svg>
+  );
+}
+
+function buildWhatsAppMessage(values: { name: string; phone: string; branch: string; notes: string }) {
+  const branch = branches.find((b) => b.city === values.branch) ?? branches[0]!;
+  return [
+    "Hello SASS Hair & Beauty! I'd like to book an appointment.",
+    "",
+    values.name ? `Name: ${values.name}` : "",
+    values.phone ? `Phone: ${values.phone}` : "",
+    `Preferred branch: ${branch.city}`,
+    values.notes ? `Looking for: ${values.notes}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 export function Contact() {
   const ref = useReveal<HTMLDivElement>({ selector: ".contact-left, .contact-right", stagger: 0.16 });
   const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<"idle" | "loading" | "done">("idle");
   const [error, setError] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    branch: branches[0]!.city,
+    notes: "",
+  });
+
+  const message = buildWhatsAppMessage(form);
+  const messageLength = message.length;
+  const MAX_CHARS = 4096;
+
+  const updateForm = (key: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [key]: e.target.value }));
+  };
 
   const readForm = () => {
-    const form = formRef.current;
-    if (!form) return null;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
+    const name = form.name.trim();
+    const phone = form.phone.trim();
     if (!name || !phone) {
       setError("Please share your name and phone number.");
       setTimeout(() => setError(""), 1200);
       return null;
     }
-    return {
-      name,
-      phone,
-      branch: String(data.get("branch") || branches[0]!.city),
-      notes: String(data.get("notes") || "").trim(),
-    };
+    return { name, phone, branch: form.branch, notes: form.notes.trim() };
   };
 
   const bookOnWhatsApp = () => {
     const v = readForm();
     if (!v) return;
     const branch = branches.find((b) => b.city === v.branch) ?? branches[0]!;
-    const message = [
-      "Hello SASS Hair & Beauty! I'd like to book an appointment.",
-      "",
-      `Name: ${v.name}`,
-      `Phone: ${v.phone}`,
-      `Preferred branch: ${branch.city}`,
-      v.notes ? `Looking for: ${v.notes}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    const msg = buildWhatsAppMessage(v);
     const number = branch.phone.replace(/\D/g, "");
-    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   };
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
@@ -141,11 +166,12 @@ export function Contact() {
     setTimeout(() => setState("done"), 1200);
   };
 
-
   const field =
-    "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
+    "peer w-full rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
   const label =
     "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-muted-foreground transition-all duration-300 peer-focus:top-2 peer-focus:text-[0.6rem] peer-focus:text-gold peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[0.6rem]";
+  const selectCls =
+    "w-full appearance-none rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm text-white outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold";
 
   return (
     <section id="contact" className="bg-ink py-28 text-cream md:py-36">
@@ -163,20 +189,32 @@ export function Contact() {
             noValidate
           >
             <div className="relative">
-              <input name="name" placeholder=" " className={field} />
+              <input
+                name="name"
+                placeholder=" "
+                className={field}
+                value={form.name}
+                onChange={updateForm("name")}
+              />
               <span className={label}>Full name</span>
             </div>
             <div className="relative">
-              <input name="phone" placeholder=" " inputMode="tel" className={field} />
+              <input
+                name="phone"
+                placeholder=" "
+                inputMode="tel"
+                className={field}
+                value={form.phone}
+                onChange={updateForm("phone")}
+              />
               <span className={label}>Phone number</span>
             </div>
             <div className="relative">
-              <select
-                name="branch"
-                className="w-full appearance-none rounded-xl border border-border bg-card/60 px-4 pb-2.5 pt-6 text-sm outline-none transition-[border-color,box-shadow] duration-400 focus:border-gold focus:shadow-gold"
-              >
+              <select name="branch" className={selectCls} value={form.branch} onChange={updateForm("branch")}>
                 {branches.map((b) => (
-                  <option key={b.city}>{b.city}</option>
+                  <option key={b.city} value={b.city} className="bg-ink text-cream">
+                    {b.city}
+                  </option>
                 ))}
               </select>
               <span className="pointer-events-none absolute left-4 top-2 text-[0.6rem] uppercase tracking-[0.16em] text-gold">
@@ -184,7 +222,14 @@ export function Contact() {
               </span>
             </div>
             <div className="relative">
-              <textarea name="notes" rows={4} placeholder=" " className={field} />
+              <textarea
+                name="notes"
+                rows={4}
+                placeholder=" "
+                className={field}
+                value={form.notes}
+                onChange={updateForm("notes")}
+              />
               <span className={label}>What are you looking for?</span>
             </div>
 
@@ -200,17 +245,34 @@ export function Contact() {
               )}
             </LuxeButton>
 
-            <button
-              type="button"
-              onClick={bookOnWhatsApp}
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 px-6 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold transition-all duration-500 hover:bg-gold-gradient hover:text-ink"
-            >
-              <MessageCircle className="size-4" /> Book on WhatsApp
-            </button>
-            <p className="text-center text-[0.7rem] text-cream/50">
-              Your details are prefilled into the chat with your chosen branch.
-            </p>
+            <div className="space-y-2">
+              <div className="rounded-xl border border-gold/20 bg-card/40 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">WhatsApp preview</p>
+                  <p className="text-[0.65rem] text-cream/60">
+                    {messageLength}/{MAX_CHARS}
+                  </p>
+                </div>
+                <textarea
+                  readOnly
+                  value={message}
+                  rows={6}
+                  className="w-full resize-none rounded-lg border border-border/60 bg-black/30 p-3 text-xs leading-relaxed text-cream/90 outline-none"
+                  aria-label="WhatsApp message preview"
+                />
+              </div>
 
+              <button
+                type="button"
+                onClick={bookOnWhatsApp}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-500 hover:bg-[#1fae56] hover:shadow-[0_8px_24px_rgba(37,211,102,0.28)] active:scale-[0.98]"
+              >
+                <WhatsAppIcon className="size-4" /> Book on WhatsApp
+              </button>
+              <p className="text-center text-[0.7rem] text-cream/50">
+                Your details are prefilled into the chat with your chosen branch.
+              </p>
+            </div>
           </form>
         </div>
 
