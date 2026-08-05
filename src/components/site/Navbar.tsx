@@ -105,26 +105,26 @@ export function Navbar() {
                 >
                   <div className="rounded-xl border border-gold/20 bg-ink/95 p-2 backdrop-blur-xl shadow-luxe">
                     {l.children.map((c) => (
-                      <Link
+                      <a
                         key={c.href}
-                        to={c.href}
+                        href={c.href}
                         onClick={() => setBranchesOpen(false)}
                         className="block rounded-lg px-4 py-2.5 text-sm text-cream/80 transition-colors hover:bg-gold/10 hover:text-gold"
                       >
                         {c.label}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
               </li>
             ) : (
               <li key={l.href}>
-                <Link
-                  to={l.href}
+                <a
+                  href={l.href}
                   className="link-underline text-[0.78rem] font-medium uppercase tracking-[0.18em] text-cream/85"
                 >
                   {l.label}
-                </Link>
+                </a>
               </li>
             ),
           )}
@@ -209,21 +209,21 @@ export function Navbar() {
                   )}
                 >
                   {l.children.map((c) => (
-                    <Link
+                    <a
                       key={c.href}
-                      to={c.href}
+                      href={c.href}
                       onClick={() => setOpen(false)}
                       className="block py-2 pl-3 text-lg text-cream/70 transition-colors hover:text-gold"
                     >
                       {c.label}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>
             ) : (
-              <Link
+              <a
                 key={l.href}
-                to={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
                 className="border-b border-cream/10 py-4 font-display text-2xl text-cream transition-colors hover:text-gold"
                 style={{
@@ -235,7 +235,7 @@ export function Navbar() {
                 }}
               >
                 {l.label}
-              </Link>
+              </a>
             ),
           )}
           <LuxeButton as="a" href="/contact" className="mt-8 w-full">
