@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useReveal } from "@/lib/motion";
+import faqImage from "@/assets/best_hair_and_beauty_clinic.png.asset.json";
 
 const faqs = [
   {
@@ -26,20 +27,31 @@ const faqs = [
 ];
 
 export function FAQ() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".faq-item, .reveal-head", stagger: 0.08 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".faq-item, .reveal-head, .faq-image", stagger: 0.08 });
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section className="bg-background pb-28 md:pb-36">
-      <div ref={ref} className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
-        <div className="reveal-head">
-          <p className="section-eyebrow text-gold">FAQ</p>
-          <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
-            Good to know before you visit
-          </h2>
+      <div ref={ref} className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 lg:grid-cols-[1fr_1.15fr] lg:px-10">
+        <div className="faq-image reveal-head mx-auto w-full max-w-md lg:max-w-none">
+          <img
+            src={faqImage.url}
+            alt="SASS Hair & Beauty signature services menu"
+            loading="lazy"
+            width={1080}
+            height={1080}
+            className="w-full rounded-full shadow-luxe"
+          />
         </div>
 
         <div>
+          <div className="reveal-head mb-10">
+            <p className="section-eyebrow text-gold">FAQ</p>
+            <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
+              Good to know before you visit
+            </h2>
+          </div>
+
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
