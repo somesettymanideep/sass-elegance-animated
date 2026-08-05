@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   Scissors,
@@ -14,7 +15,7 @@ import {
   Brush,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useReveal } from "@/lib/motion";
+import { gsap, ensureGsap } from "@/lib/motion";
 import haircut from "@/assets/svc-haircut.jpg";
 import threading from "@/assets/svc-threading.jpg";
 import colour from "@/assets/svc-colour.jpg";
