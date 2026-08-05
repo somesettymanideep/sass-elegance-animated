@@ -37,7 +37,7 @@ export function PixelCurtain() {
       gsap.killTweensOf(cells());
       gsap.fromTo(
         cells(),
-        { autoAlpha: 0, scale: 0.6 },
+        { autoAlpha: 0, scale: 0.92 },
         {
           autoAlpha: 1,
           scale: 1,
@@ -54,7 +54,7 @@ export function PixelCurtain() {
       gsap.killTweensOf(cells());
       gsap.to(cells(), {
         autoAlpha: 0,
-        scale: 0.6,
+        scale: 0.92,
         duration: 0.34,
         ease: "power2.inOut",
         delay: 0.08,
