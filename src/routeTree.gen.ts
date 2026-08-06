@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as VijayawadaHairBeautyClinicRouteImport } from './routes/vijayawada-hair-beauty-clinic'
 import { Route as BranchesCityRouteImport } from './routes/branches.$city'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,12 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VijayawadaHairBeautyClinicRoute =
+  VijayawadaHairBeautyClinicRouteImport.update({
+    id: '/vijayawada-hair-beauty-clinic',
+    path: '/vijayawada-hair-beauty-clinic',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BranchesCityRoute = BranchesCityRouteImport.update({
   id: '/branches/$city',
   path: '/branches/$city',
@@ -46,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
+  '/vijayawada-hair-beauty-clinic': typeof VijayawadaHairBeautyClinicRoute
   '/branches/$city': typeof BranchesCityRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +61,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
+  '/vijayawada-hair-beauty-clinic': typeof VijayawadaHairBeautyClinicRoute
   '/branches/$city': typeof BranchesCityRoute
 }
 export interface FileRoutesById {
@@ -61,14 +70,34 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
+  '/vijayawada-hair-beauty-clinic': typeof VijayawadaHairBeautyClinicRoute
   '/branches/$city': typeof BranchesCityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/services' | '/branches/$city'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/vijayawada-hair-beauty-clinic'
+    | '/branches/$city'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services' | '/branches/$city'
-  id: '__root__' | '/' | '/about' | '/contact' | '/services' | '/branches/$city'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/vijayawada-hair-beauty-clinic'
+    | '/branches/$city'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/vijayawada-hair-beauty-clinic'
+    | '/branches/$city'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +105,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   ServicesRoute: typeof ServicesRoute
+  VijayawadaHairBeautyClinicRoute: typeof VijayawadaHairBeautyClinicRoute
   BranchesCityRoute: typeof BranchesCityRoute
 }
 
@@ -109,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vijayawada-hair-beauty-clinic': {
+      id: '/vijayawada-hair-beauty-clinic'
+      path: '/vijayawada-hair-beauty-clinic'
+      fullPath: '/vijayawada-hair-beauty-clinic'
+      preLoaderRoute: typeof VijayawadaHairBeautyClinicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/branches/$city': {
       id: '/branches/$city'
       path: '/branches/$city'
@@ -124,18 +161,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   ServicesRoute: ServicesRoute,
+  VijayawadaHairBeautyClinicRoute: VijayawadaHairBeautyClinicRoute,
   BranchesCityRoute: BranchesCityRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
