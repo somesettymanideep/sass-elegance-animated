@@ -91,41 +91,44 @@ export function VjaServiceGrid() {
     <section id="services" className="bg-background py-20 md:py-24">
       <div ref={ref} className="mx-auto max-w-[1280px] px-6">
         <div className="v-head"><Head title="Our Services" /></div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {serviceGroups.map(({ title, image, items, more }) => (
             <article
               key={title}
-              className="v-tile group relative isolate overflow-hidden rounded-[14px] border border-gold/20 bg-ink text-cream transition-[transform,box-shadow,border-color] duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+              className="v-tile group relative flex overflow-hidden rounded-[10px] bg-ink text-cream shadow-luxe transition-[transform,box-shadow] duration-700 hover:-translate-y-2 hover:shadow-gold"
             >
-              <img
-                src={image}
-                alt={`${title} in Vijayawada at SASS Hair & Beauty`}
-                loading="lazy"
-                className="absolute inset-0 -z-10 size-full object-cover object-left transition-transform duration-[1300ms] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/45 via-black/80 to-black/95" />
-              <div className="flex min-h-[300px] flex-col justify-between p-5 pl-[45%]">
+              <div className="relative w-[38%] shrink-0 overflow-hidden">
+                <img
+                  src={image}
+                  alt={`${title} in Vijayawada at SASS Hair & Beauty`}
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-[1300ms] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-ink" />
+              </div>
+              <div className="flex min-h-[290px] min-w-0 flex-1 flex-col justify-between p-4 pl-3">
                 <div>
-                  <h3 className="font-button text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-gold">{title}</h3>
-                  <ul className="mt-3 space-y-1.5">
+                  <h3 className="font-button text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-gold">{title}</h3>
+                  <ul className="mt-3 space-y-[7px]">
                     {items.map((i) => (
-                      <li key={i} className="flex items-start gap-2 text-[0.72rem] leading-snug text-cream/80">
-                        <span className="mt-1.5 size-1 shrink-0 rounded-full bg-gold" /> {i}
+                      <li key={i} className="flex items-start gap-1.5 text-[0.7rem] leading-snug text-cream/85">
+                        <span className="mt-[1px] shrink-0 text-[0.6rem] text-gold">◈</span> {i}
                       </li>
                     ))}
                   </ul>
-                  {more && <p className="mt-2 text-[0.68rem] italic text-gold">+ {more}</p>}
+                  {more && <p className="mt-2 text-[0.66rem] text-gold">+ {more}</p>}
                 </div>
                 <a
                   href="#book"
-                  className="mt-5 inline-flex w-fit items-center gap-2 rounded-[6px] bg-gold-gradient px-4 py-2 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 group-hover:-translate-y-0.5"
+                  className="mx-auto mt-4 inline-flex w-fit items-center justify-center rounded-[4px] bg-gold-gradient px-6 py-2 font-button text-[0.56rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 group-hover:-translate-y-0.5"
                 >
-                  View All <ArrowRight className="size-3" />
+                  View All
                 </a>
               </div>
             </article>
           ))}
         </div>
+
       </div>
     </section>
   );
