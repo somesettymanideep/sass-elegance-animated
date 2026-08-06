@@ -217,6 +217,8 @@ const clips = [
   { src: reel2.url, poster: poster2.url, tag: "Bridal", title: "Bridal makeover reveal" },
   { src: reel3.url, poster: poster3.url, tag: "Styling", title: "Signature blowout styling" },
   { src: reel4.url, poster: poster4.url, tag: "Makeover", title: "Complete salon makeover" },
+  { src: reel5.url, poster: poster5.url, tag: "Studio", title: "Inside the SASS studio" },
+  { src: reel6.url, poster: poster6.url, tag: "Salon", title: "A day at SASS Hair & Beauty" },
 ];
 
 function VideoSlider() {
