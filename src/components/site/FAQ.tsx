@@ -84,7 +84,7 @@ export function FAQ() {
   }, []);
 
   return (
-    <section className="bg-background pb-28 md:pb-36">
+    <section className="bg-background py-28 md:py-36">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         {/* Heading — top left of the section */}
         <div className="reveal-head mb-10 lg:mb-14">
@@ -126,7 +126,7 @@ export function FAQ() {
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-6 sm:py-5"
+                    className="flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-6 sm:py-4"
                   >
                     <span
                       className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
@@ -153,8 +153,8 @@ export function FAQ() {
                       opacity: isOpen ? 1 : 0,
                     }}
                   >
-                    <div className="overflow-hidden px-5 pb-4 sm:px-6">
-                      <div className="border-t border-gold/10 pt-3">
+                    <div className="overflow-hidden px-5 sm:px-6">
+                      <div className="border-t border-gold/10 py-4">
                         <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                           {f.a}
                         </p>
