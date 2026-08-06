@@ -151,31 +151,31 @@ export function BranchLocation({ branch }: { branch: Branch }) {
           </div>
         </div>
 
-        <div className="bl-item rounded-[24px] border border-gold/25 bg-background/70 p-8 shadow-luxe backdrop-blur-md md:p-10">
+        <div className="bl-item rounded-[24px] border border-gold/25 bg-ink p-8 shadow-luxe md:p-10">
           <p className="section-eyebrow text-gold">Visit Us</p>
-          <h2 className="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.08]">
+          <h2 className="mt-4 text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.08] text-cream">
             SASS Hair &amp; Beauty — {branch.city}
           </h2>
           <div className="mt-8 space-y-4">
-            <p className="flex items-start gap-3 text-sm text-foreground/75">
+            <p className="flex items-start gap-3 text-sm text-cream/75">
               <MapPin className="mt-0.5 size-4 shrink-0 text-gold" /> {branch.address}
             </p>
-            <p className="flex items-center gap-3 text-sm text-foreground/75">
+            <p className="flex items-center gap-3 text-sm text-cream/75">
               <Clock className="size-4 shrink-0 text-gold" /> {branch.hours}
             </p>
-            <p className="flex items-center gap-3 text-sm text-foreground/75">
+            <p className="flex items-center gap-3 text-sm text-cream/75">
               <Phone className="size-4 shrink-0 text-gold" />
-              <a href={`tel:${tel}`} className="link-underline">{branch.phone}</a>
+              <a href={`tel:${tel}`} className="link-underline text-cream">{branch.phone}</a>
             </p>
-            <p className="flex items-center gap-3 text-sm text-foreground/75">
+            <p className="flex items-center gap-3 text-sm text-cream/75">
               <MessageCircle className="size-4 shrink-0 text-gold" />
-              <a href={`https://wa.me/${wa}`} target="_blank" rel="noreferrer" className="link-underline">
+              <a href={`https://wa.me/${wa}`} target="_blank" rel="noreferrer" className="link-underline text-cream">
                 WhatsApp us
               </a>
             </p>
-            <p className="flex items-center gap-3 text-sm text-foreground/75">
+            <p className="flex items-center gap-3 text-sm text-cream/75">
               <Mail className="size-4 shrink-0 text-gold" />
-              <a href={`mailto:${branch.email}`} className="link-underline">{branch.email}</a>
+              <a href={`mailto:${branch.email}`} className="link-underline text-cream">{branch.email}</a>
             </p>
           </div>
 
@@ -190,7 +190,7 @@ export function BranchLocation({ branch }: { branch: Branch }) {
             </a>
             <a
               href={`tel:${tel}`}
-              className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-6 py-3 font-button text-[0.66rem] font-semibold uppercase tracking-[0.18em] transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:text-gold"
+              className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-6 py-3 font-button text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-cream transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:text-gold"
             >
               <Phone className="size-3.5" /> Call now
             </a>
