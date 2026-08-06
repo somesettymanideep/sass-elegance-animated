@@ -27,6 +27,11 @@ export function BranchHero({ branch }: { branch: Branch }) {
   const tel = `tel:${branch.phone.replace(/\s/g, "")}`;
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [muted, setMuted] = useState(true);
+  const isGuntur = branch.slug === "guntur";
+  const reel = isGuntur ? gunturReel : heroReel;
+  const poster = isGuntur ? gunturPoster : heroPoster;
+
+
 
   const toggleSound = () => {
     const v = videoRef.current;
