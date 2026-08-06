@@ -477,7 +477,7 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
 
 /* ---------------- Section 6 — Gallery ---------------- */
 
-const shots = [
+const baseShots = [
   { src: storeFront, alt: "SASS salon storefront", cat: "Storefront", span: "row-span-2" },
   { src: storeReception, alt: "Salon reception desk", cat: "Reception", span: "" },
   { src: storeStyling, alt: "Styling floor with chairs and mirrors", cat: "Styling Floor", span: "" },
