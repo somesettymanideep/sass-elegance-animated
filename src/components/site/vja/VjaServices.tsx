@@ -184,14 +184,15 @@ const gallery: Record<string, { before: string; after: string }[]> = {
   ],
 };
 const tabs = Object.keys(gallery);
+type Pair = { before: string; after: string };
 
 export function VjaBeforeAfter() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-tile", stagger: 0.07 });
-  const [tab, setTab] = useState(tabs[0]);
-  const items = gallery[tab];
+  const [tab, setTab] = useState<string>(tabs[0] as string);
+  const items: Pair[] = gallery[tab] ?? [];
   const shift = (dir: number) => {
     const i = (tabs.indexOf(tab) + dir + tabs.length) % tabs.length;
-    setTab(tabs[i]);
+    setTab(tabs[i] as string);
   };
 
   return (
@@ -223,7 +224,7 @@ export function VjaBeforeAfter() {
           </button>
 
           <div className="grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {items.map((pair, i) => (
+            {items.map((pair: Pair, i: number) => (
               <article key={i} className="v-tile group overflow-hidden rounded-[14px] border border-gold/20 shadow-luxe">
                 <div className="grid grid-cols-2">
                   {[["Before", pair.before], ["After", pair.after]].map(([label, src]) => (
