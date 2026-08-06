@@ -1,8 +1,10 @@
-import { Star, Users, BadgeCheck, Sparkles, Phone, Scissors, Crown, Gem, HeartHandshake } from "lucide-react";
+import { useRef, useState } from "react";
+import { Star, Users, BadgeCheck, Sparkles, Phone, Scissors, Crown, Gem, HeartHandshake, Volume2, VolumeX } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "../LuxeButton";
 import type { Branch } from "@/lib/branches";
-import interior from "@/assets/interior.jpg";
+import heroReel from "@/assets/hero-reel.mp4.asset.json";
+import heroPoster from "@/assets/hero-reel-poster.jpg.asset.json";
 
 const badges = [
   { Icon: Star, label: "4.9 Rating", sub: "★★★★★" },
@@ -21,6 +23,16 @@ const floating = [
 export function BranchHero({ branch }: { branch: Branch }) {
   const ref = useReveal<HTMLDivElement>({ selector: ".bh-item", stagger: 0.1 });
   const tel = `tel:${branch.phone.replace(/\s/g, "")}`;
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [muted, setMuted] = useState(true);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) void v.play().catch(() => {});
+  };
 
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-32 text-cream md:pb-28 md:pt-40">
@@ -66,15 +78,29 @@ export function BranchHero({ branch }: { branch: Branch }) {
         </div>
 
         <div className="bh-item relative">
-          <div className="overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
-            <img
-              src={interior}
-              alt={`Luxury salon interior at SASS Hair & Beauty ${branch.city}`}
-              width={1200}
-              height={1400}
-              className="aspect-4/5 w-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 md:aspect-4/4"
+          <div className="relative overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
+            <video
+              ref={videoRef}
+              src={heroReel.url}
+              poster={heroPoster.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`SASS Hair & Beauty ${branch.city} salon showreel`}
+              className="aspect-4/5 w-full object-cover md:aspect-4/4"
             />
+            <button
+              type="button"
+              onClick={toggleSound}
+              aria-label={muted ? "Unmute video" : "Mute video"}
+              className="absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full border border-gold/40 bg-black/55 text-gold backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:border-gold hover:bg-black/75"
+            >
+              {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+            </button>
           </div>
+
           {floating.map(({ Icon, label, pos }) => (
             <div
               key={label}
