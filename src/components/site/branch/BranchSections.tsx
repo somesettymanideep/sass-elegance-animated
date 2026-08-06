@@ -40,6 +40,13 @@ import poster1 from "@/assets/reel1-poster.jpg.asset.json";
 import poster2 from "@/assets/reel2-poster.jpg.asset.json";
 import poster3 from "@/assets/reel3-poster.jpg.asset.json";
 import poster4 from "@/assets/reel4-poster.jpg.asset.json";
+import salonIcon from "@/assets/why-beauty-salon.svg.asset.json";
+import employeesIcon from "@/assets/employees.svg.asset.json";
+import makeupIcon from "@/assets/why-makeup.svg.asset.json";
+import skincareIcon from "@/assets/skincare.svg.asset.json";
+import productsIcon from "@/assets/why-products.svg.asset.json";
+import safeIcon from "@/assets/why-safe.svg.asset.json";
+import consumerIcon from "@/assets/why-consumer.svg.asset.json";
 
 /* ---------------- Section 2 — Why Choose SASS ---------------- */
 
