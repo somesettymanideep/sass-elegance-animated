@@ -76,18 +76,18 @@ function ServiceSlider() {
 const branches = [
   {
     city: "Vijayawada",
-    address: "MG Road, Labbipet, Vijayawada 520010",
-    phone: "+91 90000 11122",
+    address: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet, Vijayawada 520010",
+    phone: "+91 72868 11999",
   },
   {
     city: "Guntur",
-    address: "Brodipet 4th Line, Guntur 522002",
-    phone: "+91 90000 11133",
+    address: "1st Floor, Phoenix Mall, Srinivasarao Pet, Guntur 522004",
+    phone: "+91 89071 11999",
   },
   {
     city: "Rajahmundry",
-    address: "Danavaipeta Main Road, Rajahmundry 533103",
-    phone: "+91 90000 11144",
+    address: "Prasaditya Mall, Ave Appa Rao Road, Venkateswara Nagar, Rajamahendravaram 533103",
+    phone: "+91 95502 81116",
   },
 ];
 

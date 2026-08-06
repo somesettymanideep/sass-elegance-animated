@@ -21,12 +21,12 @@ export const branches: Branch[] = [
     slug: "vijayawada",
     city: "Vijayawada",
     tag: "Flagship & bridal suite",
-    address: "MG Road, Labbipet, Vijayawada 520010",
-    phone: "+91 90000 11122",
+    address: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet, Vijayawada 520010",
+    phone: "+91 72868 11999",
     email: "vijayawada@sasshairbeauty.com",
     hours: "Monday – Sunday · 9:00 AM – 9:00 PM",
     image: vijayawada,
-    q: "MG Road Labbipet Vijayawada",
+    q: "SASS hair and beauty PVP Square MG Road Vijayawada",
     intro:
       "Our flagship address on MG Road — a full-floor luxury salon with a private bridal suite, dedicated colour bar and senior stylist consultation lounge.",
     highlights: [
@@ -41,12 +41,12 @@ export const branches: Branch[] = [
     slug: "guntur",
     city: "Guntur",
     tag: "Colour lab & academy",
-    address: "Brodipet 4th Line, Guntur 522002",
-    phone: "+91 90000 11133",
+    address: "1st Floor, Phoenix Mall, Srinivasarao Pet, Guntur 522004",
+    phone: "+91 89071 11999",
     email: "guntur@sasshairbeauty.com",
     hours: "Monday – Sunday · 9:30 AM – 9:00 PM",
     image: guntur,
-    q: "Brodipet Guntur",
+    q: "SASS hair and beauty Phoenix Mall Guntur",
     intro:
       "The Guntur studio is our colour laboratory and training academy — where fashion shades, creative highlights and technical education come together.",
     highlights: [
@@ -61,12 +61,12 @@ export const branches: Branch[] = [
     slug: "rajahmundry",
     city: "Rajahmundry",
     tag: "Hair & skin studio",
-    address: "Danavaipeta Main Road, Rajahmundry 533103",
-    phone: "+91 90000 11144",
+    address: "Prasaditya Mall, Ave Appa Rao Road, Venkateswara Nagar, Rajamahendravaram 533103",
+    phone: "+91 95502 81116",
     email: "rajahmundry@sasshairbeauty.com",
     hours: "Monday – Sunday · 9:30 AM – 8:30 PM",
     image: rajahmundryAsset.url,
-    q: "Danavaipeta Rajahmundry",
+    q: "SASS Hair and beauty Prasaditya Mall Rajahmundry",
     intro:
       "A calm hair and skin studio on Danavaipeta Main Road, built around personalised consultations, premium treatments and unhurried service.",
     highlights: [

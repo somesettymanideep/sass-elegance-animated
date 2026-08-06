@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
           description,
           priceRange: "₹₹₹",
           areaServed: ["Vijayawada", "Guntur", "Rajahmundry"],
-          telephone: "+91 90000 11122",
+          telephone: "+91 72868 11999",
           address: [
             {
               "@type": "PostalAddress",

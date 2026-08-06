@@ -16,9 +16,9 @@ import makeup from "@/assets/svc-makeup.jpg";
 import colour from "@/assets/svc-colour.jpg";
 import facial from "@/assets/svc-facial.jpg";
 
-const PHONE = "+91 90000 11122";
-const TEL = "tel:+919000011122";
-const WA = "https://wa.me/919000011122";
+const PHONE = "+91 72868 11999";
+const TEL = "tel:+917286811999";
+const WA = "https://wa.me/917286811999";
 
 /* -------- 10. Testimonials -------- */
 const reviews = [
@@ -288,7 +288,7 @@ export function VjaExperts() {
 
 /* -------- 13. FAQ -------- */
 export const vjaFaqs = [
-  { q: "Where is the SASS Hair & Beauty clinic in Vijayawada located?", a: "We are on MG Road, Labbipet, Vijayawada 520010 — minutes from Benz Circle and easily reachable from Governorpet and Patamata." },
+  { q: "Where is the SASS Hair & Beauty clinic in Vijayawada located?", a: "We are on 2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet, Vijayawada 520010 — minutes from Benz Circle and easily reachable from Governorpet and Patamata." },
   { q: "Do I need an appointment?", a: "Walk-ins are welcome, but we recommend booking so your preferred stylist and consultation slot are reserved." },
   { q: "Which products do you use?", a: "Only globally certified professional brands including L'Oréal, Kérastase, Olaplex, Schwarzkopf and Wella." },
   { q: "How much does laser hair removal cost in Vijayawada?", a: "Pricing depends on the treatment area and sessions required. Your first consultation and patch test are complimentary." },
@@ -525,7 +525,7 @@ export function VjaContact() {
           <h3 className="font-display text-lg text-gold">Contact Us</h3>
           <ul className="mt-4 space-y-3 text-xs text-cream/65">
             <li className="flex items-center gap-2"><Phone className="size-4 text-gold" /><a href={TEL} className="link-underline">{PHONE}</a></li>
-            <li className="flex items-center gap-2"><Phone className="size-4 text-gold" /><a href="tel:+919000011133" className="link-underline">+91 90000 11133</a></li>
+            <li className="flex items-center gap-2"><Phone className="size-4 text-gold" /><a href="tel:+918907111999" className="link-underline">+91 89071 11999</a></li>
             <li className="flex items-center gap-2"><Mail className="size-4 text-gold" /><a href="mailto:hello@sasshairbeauty.in" className="link-underline">hello@sasshairbeauty.in</a></li>
             <li className="flex items-center gap-2"><Mail className="size-4 text-gold" /><a href="mailto:info@sasshairbeauty.in" className="link-underline">info@sasshairbeauty.in</a></li>
           </ul>

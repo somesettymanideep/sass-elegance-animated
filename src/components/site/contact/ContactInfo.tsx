@@ -5,8 +5,8 @@ const cards = [
   {
     icon: Phone,
     title: "Call us",
-    lines: ["+91 90000 11122", "+91 90000 11133"],
-    href: "tel:+919000011122",
+    lines: ["+91 72868 11999", "+91 89071 11999"],
+    href: "tel:+917286811999",
   },
   {
     icon: Mail,
@@ -29,7 +29,7 @@ const cards = [
 const socials = [
   { Icon: Instagram, label: "Instagram", href: "https://instagram.com" },
   { Icon: Facebook, label: "Facebook", href: "https://facebook.com" },
-  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/919000011122" },
+  { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/917286811999" },
   { Icon: Youtube, label: "YouTube", href: "https://youtube.com" },
 ];
 

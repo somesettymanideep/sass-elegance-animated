@@ -45,7 +45,7 @@ export const Route = createFileRoute("/vijayawada-hair-beauty-clinic")({
             description: DESC,
             url: URL,
             image: "https://sass-elegance-animated.lovable.app/favicon.png",
-            telephone: "+91 90000 11122",
+            telephone: "+91 72868 11999",
             email: "vijayawada@sasshairbeauty.com",
             priceRange: "₹₹",
             address: {
