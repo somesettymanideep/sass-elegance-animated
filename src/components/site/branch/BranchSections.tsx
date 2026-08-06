@@ -47,6 +47,8 @@ import skincareIcon from "@/assets/skincare.svg.asset.json";
 import productsIcon from "@/assets/why-products.svg.asset.json";
 import safeIcon from "@/assets/why-safe.svg.asset.json";
 import consumerIcon from "@/assets/why-consumer.svg.asset.json";
+import hairIcon from "@/assets/hair.svg.asset.json";
+import consultationIcon from "@/assets/consultation.svg.asset.json";
 
 /* ---------------- Section 2 — Why Choose SASS ---------------- */
 
