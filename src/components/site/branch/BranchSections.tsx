@@ -43,15 +43,15 @@ import poster4 from "@/assets/reel4-poster.jpg.asset.json";
 
 /* ---------------- Section 2 — Why Choose SASS ---------------- */
 
-const reasons: { Icon: LucideIcon; title: string }[] = [
-  { Icon: Gem, title: "Premium Salon Experience" },
-  { Icon: BadgeCheck, title: "Certified Hair Stylists" },
-  { Icon: Crown, title: "Bridal Makeup Experts" },
-  { Icon: Droplets, title: "Luxury Hair Treatments" },
-  { Icon: Palette, title: "International Colour Techniques" },
-  { Icon: ShieldCheck, title: "Hygiene & Safety Standards" },
-  { Icon: Sparkles, title: "Premium Imported Products" },
-  { Icon: MessageCircle, title: "Personalised Consultation" },
+const reasons: { icon: string; title: string }[] = [
+  { icon: salonIcon.url, title: "Premium Salon Experience" },
+  { icon: employeesIcon.url, title: "Certified Hair Stylists" },
+  { icon: makeupIcon.url, title: "Bridal Makeup Experts" },
+  { icon: skincareIcon.url, title: "Luxury Hair Treatments" },
+  { icon: productsIcon.url, title: "International Colour Techniques" },
+  { icon: safeIcon.url, title: "Hygiene & Safety Standards" },
+  { icon: skincareIcon.url, title: "Premium Imported Products" },
+  { icon: consumerIcon.url, title: "Personalised Consultation" },
 ];
 
 export function BranchWhy({ branch }: { branch: Branch }) {
@@ -72,15 +72,21 @@ export function BranchWhy({ branch }: { branch: Branch }) {
         </div>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map(({ Icon, title }) => (
+          {reasons.map(({ icon, title }) => (
             <article
               key={title}
               className="bw-item group rounded-[20px] border border-gold/20 bg-card/70 p-7 backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
-              <span className="flex size-12 items-center justify-center rounded-full bg-ink text-gold transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
-                <Icon className="size-5" strokeWidth={1.5} />
+              <span className="flex size-14 items-center justify-center">
+                <img
+                  src={icon}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="size-11 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-110"
+                />
               </span>
-              <h3 className="mt-6 font-display text-lg leading-snug">{title}</h3>
+              <h3 className="mt-5 font-display text-lg leading-snug">{title}</h3>
             </article>
           ))}
         </div>
