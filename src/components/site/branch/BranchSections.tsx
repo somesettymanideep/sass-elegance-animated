@@ -56,11 +56,11 @@ const reasons: { icon: string; title: string }[] = [
   { icon: salonIcon.url, title: "Premium Salon Experience" },
   { icon: employeesIcon.url, title: "Certified Hair Stylists" },
   { icon: makeupIcon.url, title: "Bridal Makeup Experts" },
-  { icon: skincareIcon.url, title: "Luxury Hair Treatments" },
+  { icon: hairIcon.url, title: "Luxury Hair Treatments" },
   { icon: productsIcon.url, title: "International Colour Techniques" },
   { icon: safeIcon.url, title: "Hygiene & Safety Standards" },
   { icon: skincareIcon.url, title: "Premium Imported Products" },
-  { icon: consumerIcon.url, title: "Personalised Consultation" },
+  { icon: consultationIcon.url, title: "Personalised Consultation" },
 ];
 
 export function BranchWhy({ branch }: { branch: Branch }) {
