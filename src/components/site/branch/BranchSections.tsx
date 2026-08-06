@@ -486,10 +486,22 @@ const shots = [
   { src: storeNail, alt: "Nail and pedicure lounge", cat: "Nail Lounge", span: "" },
 ];
 
+const rajahmundryShots = [
+  { src: rjy2.url, alt: "SASS Hair & Beauty Rajahmundry storefront at Prasaditya Mall", cat: "Storefront", span: "row-span-2" },
+  { src: rjy6.url, alt: "SASS Rajahmundry reception desk", cat: "Reception", span: "" },
+  { src: rjy3.url, alt: "Styling floor with lit mirrors", cat: "Styling Floor", span: "" },
+  { src: rjy4.url, alt: "Kids styling chair at SASS Rajahmundry", cat: "Kids Zone", span: "row-span-2" },
+  { src: rjy8.url, alt: "Hair wash lounge with backwash units", cat: "Wash Lounge", span: "" },
+  { src: rjy1.url, alt: "Private facial and skin treatment room", cat: "Skin Studio", span: "" },
+  { src: rjy5.url, alt: "Marble corridor of the salon", cat: "Interiors", span: "" },
+  { src: rjy7.url, alt: "Styling stations along the salon corridor", cat: "Studio", span: "" },
+];
 
-export function BranchGallery() {
+export function BranchGallery({ slug }: { slug?: string }) {
+  const shots = slug === "rajahmundry" ? rajahmundryShots : baseShots;
   const ref = useReveal<HTMLDivElement>({ selector: ".bg-item, .bg-head", stagger: 0.07 });
   const [lightbox, setLightbox] = useState<number | null>(null);
+
 
   useEffect(() => {
     if (lightbox === null) return;
