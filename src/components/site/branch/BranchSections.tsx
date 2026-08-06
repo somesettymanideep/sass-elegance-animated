@@ -153,7 +153,7 @@ function Slider() {
   return (
     <div
       ref={wrap}
-      className="relative aspect-4/5 w-full select-none overflow-hidden rounded-[24px] border border-gold/25 sm:aspect-16/10"
+      className="relative mx-auto h-[240px] w-full max-w-4xl select-none overflow-hidden rounded-[24px] border border-gold/25 sm:h-[340px] lg:h-[400px]"
       onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
       onPointerDown={(e) => move(e.clientX)}
       onTouchMove={(e) => e.touches[0] && move(e.touches[0].clientX)}
@@ -171,13 +171,75 @@ function Slider() {
   );
 }
 
-const transformations = [
-  { title: "Hair Colour", image: colour },
-  { title: "Keratin", image: keratin },
-  { title: "Smoothening", image: smoothening },
-  { title: "Haircut", image: haircut },
-  { title: "Bridal Makeover", image: bridalMakeup },
+const clips = [
+  { src: reel1.url, poster: poster1.url, tag: "Colour", title: "Fashion colour transformation" },
+  { src: reel2.url, poster: poster2.url, tag: "Bridal", title: "Bridal makeover reveal" },
+  { src: reel3.url, poster: poster3.url, tag: "Styling", title: "Signature blowout styling" },
+  { src: reel4.url, poster: poster4.url, tag: "Makeover", title: "Complete salon makeover" },
 ];
+
+function VideoSlider() {
+  const track = useRef<HTMLDivElement | null>(null);
+
+  const scrollBy = (dir: number) => {
+    const el = track.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth * 0.6), behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative">
+      <div
+        ref={track}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6"
+      >
+        {clips.map((c) => (
+          <figure
+            key={c.src}
+            className="bt-item group relative aspect-9/16 w-[68%] shrink-0 snap-center overflow-hidden rounded-[18px] border border-gold/20 sm:w-[45%] md:w-[31%] lg:w-[23%]"
+          >
+            <video
+              src={c.src}
+              poster={c.poster}
+              muted
+              loop
+              playsInline
+              preload="none"
+              onMouseEnter={(e) => void e.currentTarget.play().catch(() => {})}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+              }}
+              className="size-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+            />
+            <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-black/20" />
+            <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-black/45 px-3 py-1 text-[0.58rem] uppercase tracking-[0.2em] text-gold backdrop-blur">
+              {c.tag}
+            </span>
+            <figcaption className="absolute inset-x-4 bottom-4 font-display text-base leading-tight text-cream">
+              {c.title}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <button
+        aria-label="Previous videos"
+        onClick={() => scrollBy(-1)}
+        className="absolute -left-3 top-1/2 hidden size-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-background/90 text-foreground shadow-luxe transition-colors hover:border-gold hover:text-gold md:flex"
+      >
+        <ChevronLeft className="size-5" />
+      </button>
+      <button
+        aria-label="Next videos"
+        onClick={() => scrollBy(1)}
+        className="absolute -right-3 top-1/2 hidden size-11 -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-background/90 text-foreground shadow-luxe transition-colors hover:border-gold hover:text-gold md:flex"
+      >
+        <ChevronRight className="size-5" />
+      </button>
+    </div>
+  );
+}
 
 export function BranchTransformations() {
   const ref = useReveal<HTMLDivElement>({ selector: ".bt-item, .bt-head", stagger: 0.08 });
@@ -192,25 +254,17 @@ export function BranchTransformations() {
 
         <div className="bt-item mt-12"><Slider /></div>
 
-        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-5">
-          {transformations.map((t) => (
-            <figure key={t.title} className="bt-item group relative overflow-hidden rounded-[18px] border border-gold/20">
-              <img
-                src={t.image}
-                alt={`${t.title} transformation`}
-                loading="lazy"
-                className="aspect-4/5 w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-center text-[0.62rem] uppercase tracking-[0.2em] text-cream">
-                {t.title}
-              </figcaption>
-            </figure>
-          ))}
+        <div className="bt-head mt-14 flex flex-wrap items-end justify-between gap-3">
+          <h3 className="font-display text-2xl md:text-3xl">Transformation reels</h3>
+          <p className="text-sm text-muted-foreground">Hover to preview · swipe to browse</p>
         </div>
+
+        <div className="mt-6"><VideoSlider /></div>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Section 5 — Testimonials ---------------- */
 
