@@ -7,6 +7,14 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import type { Branch } from "@/lib/branches";
+import rjy1 from "@/assets/rjy-store-1.jpg.asset.json";
+import rjy2 from "@/assets/rjy-store-2.jpg.asset.json";
+import rjy3 from "@/assets/rjy-store-3.jpg.asset.json";
+import rjy4 from "@/assets/rjy-store-4.jpg.asset.json";
+import rjy5 from "@/assets/rjy-store-5.jpg.asset.json";
+import rjy6 from "@/assets/rjy-store-6.jpg.asset.json";
+import rjy7 from "@/assets/rjy-store-7.jpg.asset.json";
+import rjy8 from "@/assets/rjy-store-8.jpg.asset.json";
 import haircut from "@/assets/svc-haircut.jpg";
 import hairspa from "@/assets/svc-hairspa.jpg";
 import colour from "@/assets/svc-colour.jpg";
@@ -477,7 +485,7 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
 
 /* ---------------- Section 6 — Gallery ---------------- */
 
-const shots = [
+const baseShots = [
   { src: storeFront, alt: "SASS salon storefront", cat: "Storefront", span: "row-span-2" },
   { src: storeReception, alt: "Salon reception desk", cat: "Reception", span: "" },
   { src: storeStyling, alt: "Styling floor with chairs and mirrors", cat: "Styling Floor", span: "" },
@@ -486,10 +494,22 @@ const shots = [
   { src: storeNail, alt: "Nail and pedicure lounge", cat: "Nail Lounge", span: "" },
 ];
 
+const rajahmundryShots = [
+  { src: rjy2.url, alt: "SASS Hair & Beauty Rajahmundry storefront at Prasaditya Mall", cat: "Storefront", span: "row-span-2" },
+  { src: rjy6.url, alt: "SASS Rajahmundry reception desk", cat: "Reception", span: "" },
+  { src: rjy3.url, alt: "Styling floor with lit mirrors", cat: "Styling Floor", span: "" },
+  { src: rjy4.url, alt: "Kids styling chair at SASS Rajahmundry", cat: "Kids Zone", span: "row-span-2" },
+  { src: rjy8.url, alt: "Hair wash lounge with backwash units", cat: "Wash Lounge", span: "" },
+  { src: rjy1.url, alt: "Private facial and skin treatment room", cat: "Skin Studio", span: "" },
+  { src: rjy5.url, alt: "Marble corridor of the salon", cat: "Interiors", span: "" },
+  { src: rjy7.url, alt: "Styling stations along the salon corridor", cat: "Studio", span: "" },
+];
 
-export function BranchGallery() {
+export function BranchGallery({ slug }: { slug?: string }) {
+  const shots = slug === "rajahmundry" ? rajahmundryShots : baseShots;
   const ref = useReveal<HTMLDivElement>({ selector: ".bg-item, .bg-head", stagger: 0.07 });
   const [lightbox, setLightbox] = useState<number | null>(null);
+
 
   useEffect(() => {
     if (lightbox === null) return;
