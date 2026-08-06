@@ -84,7 +84,7 @@ function BranchPage() {
         <BranchGallery slug={branch.slug} />
         <BranchConsultation branch={branch} />
         <BranchLocation branch={branch} />
-        <BranchFAQ />
+        <BranchFAQ branch={branch} />
         <BranchCTA branch={branch} />
       </main>
       <Footer />

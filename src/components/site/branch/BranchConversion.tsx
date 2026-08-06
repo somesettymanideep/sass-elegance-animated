@@ -6,6 +6,7 @@ import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "../LuxeButton";
 import type { Branch } from "@/lib/branches";
 import { branches } from "@/lib/branches";
+import faqImage from "@/assets/best_hair_and_beauty_clinic.png.asset.json";
 
 const serviceOptions = [
   "Hair Cut", "Hair Styling", "Threading", "Fashion Colours", "Hair Smoothening",
@@ -203,50 +204,109 @@ export function BranchLocation({ branch }: { branch: Branch }) {
 
 /* ---------------- Section 9 — FAQ ---------------- */
 
-const faqs = [
-  { q: "How do I book an appointment?", a: "Use the consultation form on this page, call the branch directly, or message us on WhatsApp. Our front desk confirms most slots within the hour." },
-  { q: "Do you provide bridal makeup?", a: "Yes. We offer HD and airbrush bridal makeup, draping, hairstyling and full bridal packages, including trials and on-location service." },
-  { q: "Which hair colour brands do you use?", a: "L'Oréal Professionnel, Schwarzkopf and Wella colour systems, always paired with Olaplex bond protection." },
-  { q: "Do I need an appointment?", a: "Walk-ins are welcome, but weekends fill quickly. Booking ahead guarantees your preferred stylist and a consultation slot." },
-  { q: "What is included in keratin treatment?", a: "A strand test, clarifying wash, keratin application, sealing with heat, and an aftercare kit consultation for lasting results." },
-  { q: "Do you offer consultation?", a: "Every service starts with a complimentary consultation covering hair analysis, face shape, tone and lifestyle." },
-];
+function branchFaqs(branch: Branch) {
+  return [
+    {
+      q: `What services are available at SASS ${branch.city}?`,
+      a: `Our ${branch.city} branch offers precision hair cuts and styling, global colour and balayage, keratin, botox and smoothening, hair spa and advanced scalp treatments, facials and skin care, bridal and party makeup, threading, and manicure & pedicure.`,
+    },
+    {
+      q: `How do I book an appointment at ${branch.city}?`,
+      a: `Use the consultation form on this page, call ${branch.phone}, or message us on WhatsApp. Our ${branch.city} front desk confirms most slots within the hour.`,
+    },
+    {
+      q: `Where exactly is the ${branch.city} salon located?`,
+      a: `${branch.address}. Parking is available on site and the salon is easy to reach from the main road — tap "Get directions" above for live navigation.`,
+    },
+    {
+      q: `What are the working hours in ${branch.city}?`,
+      a: `${branch.hours}. Weekends and muhurtham season fill fast, so we recommend booking your slot a few days ahead.`,
+    },
+    {
+      q: `Do you offer bridal makeup and packages at ${branch.city}?`,
+      a: `Yes. HD and airbrush bridal makeup, saree draping, bridal hairstyling, trials and on-location service are all available, along with pre-bridal skin and hair packages.`,
+    },
+    {
+      q: "Which brands and products do you use?",
+      a: "L'Oréal Professionnel, Schwarzkopf, Wella, Matrix, Kérastase and Olaplex bond protection with every colour and chemical service.",
+    },
+    {
+      q: "Is the consultation free?",
+      a: `Every service at ${branch.city} starts with a complimentary consultation covering hair analysis, scalp and skin condition, face shape and lifestyle before we recommend anything.`,
+    },
+  ];
+}
 
-export function BranchFAQ() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".bf-item, .bf-head", stagger: 0.07 });
+export function BranchFAQ({ branch }: { branch: Branch }) {
+  const ref = useReveal<HTMLDivElement>({ selector: ".bf-item, .bf-head, .bf-image", stagger: 0.07 });
   const [open, setOpen] = useState<number | null>(0);
+  const faqs = branchFaqs(branch);
 
   return (
     <section className="bg-background py-20 md:py-28">
-      <div ref={ref} className="mx-auto grid max-w-[1400px] gap-12 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
-        <div className="bf-head">
+      <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <div className="bf-head mb-10 lg:mb-14">
           <p className="section-eyebrow text-gold">FAQ</p>
-          <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.06]">Questions, answered</h2>
+          <h2 className="mt-2 font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.06]">
+            {branch.city} — questions, answered
+          </h2>
         </div>
-        <div>
-          {faqs.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={f.q} className="bf-item border-b border-gold/15">
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                >
-                  <span className="font-display text-lg md:text-xl">{f.q}</span>
-                  <Plus className={`size-5 shrink-0 text-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-135" : ""}`} />
-                </button>
+
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.15fr]">
+          <div className="bf-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28">
+            <img
+              src={faqImage.url}
+              alt={`SASS Hair & Beauty ${branch.city} signature services`}
+              loading="lazy"
+              width={1080}
+              height={1080}
+              className="w-full rounded-[7px] shadow-luxe"
+            />
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((f, i) => {
+              const isOpen = open === i;
+              const num = String(i + 1).padStart(2, "0");
+              return (
                 <div
-                  className="grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+                  key={f.q}
+                  className={`bf-item group relative overflow-hidden rounded-[7px] border border-gold/10 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-gold/30 hover:shadow-luxe ${isOpen ? "shadow-luxe" : ""}`}
                 >
-                  <div className="overflow-hidden">
-                    <p className="pb-6 pr-10 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                  <div
+                    className={`absolute left-0 top-0 h-full w-[3px] bg-gold-gradient transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                  />
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center gap-5 px-5 py-4 text-left sm:px-6"
+                  >
+                    <span
+                      className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
+                        isOpen
+                          ? "border-gold bg-gold text-black"
+                          : "border-gold/25 bg-cream text-gold group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-black"
+                      }`}
+                    >
+                      {num}
+                    </span>
+                    <span className="flex-1 font-display text-base sm:text-lg md:text-xl">{f.q}</span>
+                    <Plus className={`size-5 shrink-0 text-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-135" : "group-hover:rotate-90"}`} />
+                  </button>
+                  <div
+                    className="grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+                  >
+                    <div className="overflow-hidden px-5 sm:px-6">
+                      <div className="border-t border-gold/10 py-4">
+                        <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{f.a}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
