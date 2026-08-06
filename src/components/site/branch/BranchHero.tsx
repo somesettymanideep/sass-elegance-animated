@@ -1,8 +1,10 @@
-import { Star, Users, BadgeCheck, Sparkles, Phone, Scissors, Crown, Gem, HeartHandshake } from "lucide-react";
+import { useRef, useState } from "react";
+import { Star, Users, BadgeCheck, Sparkles, Phone, Scissors, Crown, Gem, HeartHandshake, Volume2, VolumeX } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "../LuxeButton";
 import type { Branch } from "@/lib/branches";
-import interior from "@/assets/interior.jpg";
+import heroReel from "@/assets/hero-reel.mp4.asset.json";
+import heroPoster from "@/assets/hero-reel-poster.jpg.asset.json";
 
 const badges = [
   { Icon: Star, label: "4.9 Rating", sub: "★★★★★" },
