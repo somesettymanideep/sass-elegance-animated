@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Star, Check, Instagram, Facebook, Phone, Mail, MapPin, Clock, Plus, MessageCircle, Navigation,
+  ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "../LuxeButton";
@@ -25,9 +26,39 @@ const reviews = [
   { name: "Anusha R.", area: "Vijayawada", image: client2, text: "I got my bridal makeover here and it was beyond my expectations. Highly recommended!" },
   { name: "Kavya L.", area: "Vijayawada", image: client3, text: "Amazing skin treatment results! My skin feels so fresh and glowing. Thank you SASS!" },
   { name: "Sravani M.", area: "Vijayawada", image: client2, text: "Keratin treatment here changed my hair completely — smooth, shiny and frizz free for months." },
-  { name: "Harika S.", area: "Vijayawada", image: client3, text: "Loved the hydra facial and the nail spa. Clean, luxurious and truly worth every rupee." },
+  { name: "Harika S.", area: "Vijayawada", image: client3, text: "Loved the hydra facial and the nail spa. Clean, luxurious and worth every rupee." },
   { name: "Divya P.", area: "Vijayawada", image: client1, text: "Laser sessions were comfortable and the team explained everything patiently. Great results." },
+  { name: "Meghana T.", area: "Vijayawada", image: client3, text: "My global colour looks so natural. They matched it to my skin tone perfectly." },
+  { name: "Lasya K.", area: "Vijayawada", image: client1, text: "Hygiene and ambience are top class. My go-to salon in Vijayawada now." },
+  { name: "Sindhu V.", area: "Vijayawada", image: client2, text: "Booked a monthly membership — the value and the service quality are unmatched." },
 ];
+
+function Laurel({ flip }: { flip?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 60 110"
+      className={`h-24 w-14 text-gold ${flip ? "-scale-x-100" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path d="M46 6C24 20 12 44 14 72c1 14 6 24 12 32" />
+      {Array.from({ length: 7 }).map((_, i) => {
+        const t = i / 6;
+        const x = 46 - 32 * t * t - 2 * t;
+        const y = 10 + 88 * t;
+        return (
+          <g key={i}>
+            <path d={`M${x} ${y} c-10 -6 -16 -2 -18 4 c7 4 14 3 18 -4Z`} fill="currentColor" stroke="none" opacity="0.85" />
+            <path d={`M${x} ${y} c-2 -10 -8 -13 -14 -11 c1 8 7 12 14 11Z`} fill="currentColor" stroke="none" opacity="0.6" />
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
 
 export function VjaTestimonials() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.09 });
@@ -37,71 +68,90 @@ export function VjaTestimonials() {
 
   return (
     <section className="relative overflow-hidden bg-cream py-20 md:py-24">
-      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
-        <div className="v-head"><Head title="What Our Clients Say" /></div>
-        <p className="mx-auto mt-4 max-w-md text-center text-sm leading-relaxed text-muted-foreground">
-          Real stories from real people who trusted us with their beauty and confidence.
-        </p>
+      <div ref={ref} className="mx-auto max-w-[1320px] px-6">
+        <div className="v-head text-center">
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-px w-12 bg-gold/60" />
+            <p className="text-[0.7rem] uppercase tracking-[0.34em] text-gold">Testimonials</p>
+            <span className="h-px w-12 bg-gold/60" />
+          </div>
+          <h2 className="mt-3 font-display text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08]">
+            What Our <span className="text-gold">Clients</span> Say
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Real stories from real people who trusted us with their beauty and confidence.
+          </p>
+        </div>
 
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[0.8fr_2.2fr]">
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[0.78fr_2.22fr]">
           {/* Rating summary */}
           <div className="v-card flex flex-col items-center text-center">
-            <div className="flex items-end justify-center gap-3">
-              <span className="select-none text-[3.2rem] leading-none text-gold/50" aria-hidden>❦</span>
-              <div>
-                <p className="font-display text-[3.2rem] leading-none">
-                  4.9<span className="text-2xl text-muted-foreground">/5</span>
+            <div className="flex items-center justify-center">
+              <Laurel />
+              <div className="-mx-2">
+                <p className="font-display text-[3.4rem] font-semibold leading-none">
+                  4.9<span className="text-2xl font-normal text-muted-foreground">/5</span>
                 </p>
-                <div className="mt-2 flex justify-center gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}
+                <div className="mt-3 flex justify-center gap-1.5 text-gold">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-5 fill-current" />)}
                 </div>
               </div>
-              <span className="-scale-x-100 select-none text-[3.2rem] leading-none text-gold/50" aria-hidden>❦</span>
+              <Laurel flip />
             </div>
-            <p className="mt-4 text-sm font-semibold">1250+ Happy Clients</p>
-            <div className="mt-5 flex items-center gap-3 rounded-full border border-gold/20 bg-card px-5 py-3 shadow-luxe">
-              <span className="font-display text-xl font-bold text-gold">G</span>
+            <p className="mt-3 text-lg">
+              <span className="font-semibold">1250+</span> Happy Clients
+            </p>
+            <div className="mt-6 flex items-center gap-4 rounded-[18px] border border-gold/15 bg-card px-6 py-4 shadow-luxe">
+              <svg viewBox="0 0 48 48" className="size-8 shrink-0" aria-hidden>
+                <path fill="#4285F4" d="M45 24c0-1.6-.1-2.7-.4-3.9H24v7.1h12c-.2 1.9-1.5 4.7-4.4 6.6l6.7 5.2C42.2 35.5 45 30.3 45 24z" />
+                <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-6.9-5.4c-1.9 1.3-4.4 2.2-7.6 2.2-5.8 0-10.7-3.8-12.5-9.1l-7.1 5.5C8.1 41.1 15.4 46 24 46z" />
+                <path fill="#FBBC05" d="M11.5 28.4c-.5-1.4-.8-2.9-.8-4.4s.3-3 .8-4.4l-7.1-5.5C2.9 17 2 20.4 2 24s.9 7 2.4 9.9l7.1-5.5z" />
+                <path fill="#EA4335" d="M24 10.6c4.1 0 6.9 1.8 8.5 3.3l6.2-6C34.9 4.4 29.9 2 24 2 15.4 2 8.1 6.9 4.4 14.1l7.1 5.5c1.8-5.3 6.7-9 12.5-9z" />
+              </svg>
               <div className="text-left">
-                <p className="text-xs text-muted-foreground">Rated <span className="font-semibold text-foreground">4.9/5</span> on Google</p>
-                <div className="mt-0.5 flex gap-0.5 text-gold">
-                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3 fill-current" />)}
+                <p className="text-sm text-muted-foreground">
+                  Rated <span className="font-semibold text-foreground">4.9/5</span> on Google
+                </p>
+                <div className="mt-1 flex gap-1 text-gold">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" />)}
                 </div>
               </div>
             </div>
           </div>
 
           {/* Slider */}
-          <div className="relative">
+          <div className="relative px-2 sm:px-10">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{ transform: `translate3d(-${page * 100}%, 0, 0)` }}
               >
                 {Array.from({ length: pages }).map((_, p) => (
-                  <div key={p} className="grid w-full shrink-0 gap-6 px-1 md:grid-cols-3">
+                  <div key={p} className="grid w-full shrink-0 gap-6 px-1 py-2 md:grid-cols-3">
                     {reviews.slice(p * 3, p * 3 + 3).map(({ name, area, image, text }) => (
                       <article
                         key={name}
-                        className="v-card group rounded-[14px] border border-gold/20 bg-card p-6 shadow-luxe transition-all duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+                        className="v-card group rounded-[16px] bg-card p-6 shadow-[0_18px_45px_-28px_rgba(0,0,0,0.45)] ring-1 ring-gold/10 transition-all duration-700 hover:-translate-y-2 hover:ring-gold/40"
                       >
                         <div className="flex items-start justify-between">
-                          <span className="font-display text-4xl leading-none text-gold/40">“</span>
+                          <span className="font-display text-[2.6rem] leading-[0.8] text-gold/45">“</span>
                           <div className="mt-2 flex gap-1 text-gold">
-                            {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" />)}
+                            {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}
                           </div>
                         </div>
-                        <div className="mt-4 flex gap-4">
+                        <div className="mt-3 flex items-start gap-4">
                           <img
                             src={image}
                             alt={`${name} — SASS Hair & Beauty Vijayawada client`}
                             loading="lazy"
-                            className="size-14 shrink-0 rounded-full object-cover ring-2 ring-gold/40"
+                            className="size-[68px] shrink-0 rounded-full object-cover ring-2 ring-gold/30"
                           />
-                          <p className="text-xs leading-relaxed text-muted-foreground">{text}</p>
+                          <p className="text-[0.8rem] leading-[1.7] text-muted-foreground">{text}</p>
                         </div>
-                        <div className="mt-6">
-                          <p className="font-display text-sm leading-none">{name}</p>
-                          <p className="mt-1.5 text-[0.58rem] uppercase tracking-[0.18em] text-muted-foreground">{area}</p>
+                        <span className="mt-5 block h-px w-14 bg-gold/60" />
+                        <div className="mt-4">
+                          <p className="text-sm font-semibold">{name}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">{area}</p>
                         </div>
                       </article>
                     ))}
@@ -113,16 +163,16 @@ export function VjaTestimonials() {
             <button
               aria-label="Previous testimonials"
               onClick={() => go(-1)}
-              className="absolute -left-4 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-gold/30 bg-card text-foreground shadow-luxe transition-colors hover:bg-gold hover:text-ink"
+              className="absolute left-0 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-card text-foreground shadow-[0_10px_26px_-14px_rgba(0,0,0,0.5)] ring-1 ring-gold/15 transition-colors hover:bg-gold hover:text-ink"
             >
-              ‹
+              <ChevronLeft className="size-4" />
             </button>
             <button
               aria-label="Next testimonials"
               onClick={() => go(1)}
-              className="absolute -right-4 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-gold/30 bg-card text-foreground shadow-luxe transition-colors hover:bg-gold hover:text-ink"
+              className="absolute right-0 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-card text-foreground shadow-[0_10px_26px_-14px_rgba(0,0,0,0.5)] ring-1 ring-gold/15 transition-colors hover:bg-gold hover:text-ink"
             >
-              ›
+              <ChevronRight className="size-4" />
             </button>
 
             <div className="mt-8 flex justify-center gap-2.5">
@@ -141,6 +191,7 @@ export function VjaTestimonials() {
     </section>
   );
 }
+
 
 
 /* -------- 11. Packages & offers -------- */
