@@ -465,15 +465,16 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
 /* ---------------- Section 6 — Gallery ---------------- */
 
 const shots = [
-  { src: interior, alt: "Salon interior", cat: "Salon Interior", span: "row-span-2" },
-  { src: hero, alt: "Hair styling", cat: "Hair Styling", span: "" },
-  { src: colour, alt: "Hair colours", cat: "Hair Colours", span: "" },
-  { src: bridalMakeup, alt: "Bridal makeup", cat: "Bridal Makeup", span: "row-span-2" },
-  { src: g2, alt: "Facials", cat: "Facials", span: "" },
-  { src: pedicure, alt: "Pedicure & manicure", cat: "Pedicure", span: "" },
-  { src: keratin, alt: "Hair treatments", cat: "Hair Treatments", span: "row-span-2" },
-  { src: g1, alt: "Manicure detail", cat: "Manicure", span: "" },
+  { src: storeFront, alt: "SASS salon storefront", cat: "Storefront", span: "row-span-2" },
+  { src: storeReception, alt: "Salon reception desk", cat: "Reception", span: "" },
+  { src: storeStyling, alt: "Styling floor with chairs and mirrors", cat: "Styling Floor", span: "" },
+  { src: storeBridalSuite, alt: "Private bridal suite", cat: "Bridal Suite", span: "row-span-2" },
+  { src: storeWash, alt: "Hair wash lounge", cat: "Wash Lounge", span: "" },
+  { src: storeNail, alt: "Nail and pedicure lounge", cat: "Nail Lounge", span: "" },
+  { src: storeLounge, alt: "Waiting lounge", cat: "Client Lounge", span: "row-span-2" },
+  { src: storeRetail, alt: "Premium product retail shelves", cat: "Product Bar", span: "" },
 ];
+
 
 export function BranchGallery() {
   const ref = useReveal<HTMLDivElement>({ selector: ".bg-item, .bg-head", stagger: 0.07 });
