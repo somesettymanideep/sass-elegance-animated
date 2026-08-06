@@ -79,7 +79,7 @@ function BranchPage() {
         <BranchServices />
         <BranchTransformations />
         <BranchTestimonials branch={branch} />
-        <BranchGallery />
+        <BranchGallery slug={branch.slug} />
         <BranchConsultation branch={branch} />
         <BranchLocation branch={branch} />
         <BranchFAQ />
