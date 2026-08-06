@@ -38,43 +38,63 @@ export function FAQ() {
     ensureGsap();
 
     const ctx = gsap.context(() => {
+      // Image: elegant slide-in from left with subtle scale and blur
       gsap.fromTo(
         ".faq-image",
-        { autoAlpha: 0, x: -60, scale: 0.94, filter: "blur(14px)" },
+        { autoAlpha: 0, x: -80, scale: 1.04, filter: "blur(16px)" },
         {
           autoAlpha: 1,
           x: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.25,
-          ease: "power3.out",
+          duration: 1.4,
+          ease: "power4.out",
+          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        },
+      );
+
+      // Heading block: fade up with blur
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 50, filter: "blur(14px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.1,
+          ease: "power4.out",
           scrollTrigger: { trigger: el, start: "top 82%", once: true },
         },
       );
 
+      // FAQ cards: staggered fade + slide + scale + blur
       gsap.fromTo(
-        ".reveal-head",
-        { autoAlpha: 0, y: 40, filter: "blur(12px)" },
+        ".faq-item",
+        { autoAlpha: 0, y: 45, x: 40, scale: 0.98, filter: "blur(12px)" },
         {
           autoAlpha: 1,
           y: 0,
+          x: 0,
+          scale: 1,
           filter: "blur(0px)",
           duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 80%", once: true },
+          ease: "power4.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
         },
       );
 
+      // FAQ number badges: pop in after their cards appear
       gsap.fromTo(
-        ".faq-item",
-        { autoAlpha: 0, y: 28, filter: "blur(8px)" },
+        ".faq-item .faq-num",
+        { autoAlpha: 0, scale: 0.6, y: 10 },
         {
           autoAlpha: 1,
+          scale: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 0.85,
-          ease: "power3.out",
-          stagger: 0.09,
+          duration: 0.6,
+          ease: "back.out(1.8)",
+          stagger: 0.12,
           scrollTrigger: { trigger: el, start: "top 76%", once: true },
         },
       );
@@ -95,7 +115,7 @@ export function FAQ() {
         </div>
 
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.15fr]">
-          <div className="faq-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28">
+          <div className="faq-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28" style={{ willChange: "transform, opacity, filter" }}>
             <img
               src={faqImage.url}
               alt="SASS Hair & Beauty signature services menu"
@@ -103,6 +123,7 @@ export function FAQ() {
               width={1080}
               height={1080}
               className="w-full rounded-[7px] shadow-luxe"
+              style={{ willChange: "transform, opacity, filter" }}
             />
           </div>
 
@@ -116,6 +137,7 @@ export function FAQ() {
                   className={`faq-item group relative overflow-hidden rounded-[7px] border border-gold/10 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-gold/30 hover:shadow-luxe focus-within:border-gold/30 focus-within:shadow-luxe ${
                     isOpen ? "shadow-luxe" : ""
                   }`}
+                  style={{ willChange: "transform, opacity, filter" }}
                 >
                   {/* Active gold accent bar */}
                   <div
@@ -129,7 +151,7 @@ export function FAQ() {
                     className="flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-6 sm:py-4"
                   >
                     <span
-                      className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
+                      className={`faq-num flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
                         isOpen
                           ? "border-gold bg-gold text-black"
                           : "border-gold/25 bg-cream text-gold group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-black"
