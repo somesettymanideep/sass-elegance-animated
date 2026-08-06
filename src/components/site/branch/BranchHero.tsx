@@ -85,7 +85,7 @@ export function BranchHero({ branch }: { branch: Branch }) {
         </div>
 
         <div className="bh-item relative">
-          <div className="relative overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
+          <div className="relative mx-auto max-w-[26rem] overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
             <video
               ref={videoRef}
               src={reel.url}
@@ -96,7 +96,7 @@ export function BranchHero({ branch }: { branch: Branch }) {
               playsInline
               preload="metadata"
               aria-label={`SASS Hair & Beauty ${branch.city} salon showreel`}
-              className="aspect-4/5 w-full object-cover md:aspect-4/4"
+              className="mx-auto aspect-9/16 w-full max-w-[26rem] object-cover"
             />
             <button
               type="button"
