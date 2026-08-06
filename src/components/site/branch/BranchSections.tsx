@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import {
   Sparkles, BadgeCheck, Crown, Droplets, Palette, ShieldCheck, Gem, MessageCircle,
-  Scissors, Waves, Flower2, Feather, Wind, Smile, Hand, Star, MoveHorizontal, X,
+  Star, MoveHorizontal, X,
   ChevronLeft, ChevronRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import type { Branch } from "@/lib/branches";
 import haircut from "@/assets/svc-haircut.jpg";
+import hairspa from "@/assets/svc-hairspa.jpg";
 import colour from "@/assets/svc-colour.jpg";
-import keratin from "@/assets/svc-keratin.jpg";
 import smoothening from "@/assets/svc-smoothening.jpg";
+import keratin from "@/assets/svc-keratin.jpg";
 import bridalMakeup from "@/assets/svc-bridal.jpg";
+import bridal from "@/assets/svc-bridal.jpg";
 import bridalHair from "@/assets/bridal.jpg";
 import pedicure from "@/assets/svc-pedicure.jpg";
+import manicure from "@/assets/svc-manicure.jpg";
+import facial from "@/assets/svc-facial.jpg";
+import makeup from "@/assets/svc-makeup.jpg";
 import threading from "@/assets/svc-threading.jpg";
 import interior from "@/assets/interior.jpg";
 import hero from "@/assets/hero.jpg";
@@ -72,63 +77,59 @@ export function BranchWhy({ branch }: { branch: Branch }) {
 
 /* ---------------- Section 3 — Signature Services ---------------- */
 
-const services: { title: string; copy: string; image: string; Icon: LucideIcon }[] = [
-  { title: "Hair Cuts", copy: "Precision cuts shaped to your face and lifestyle.", image: haircut, Icon: Scissors },
-  { title: "Hair Styling", copy: "Blow-dries, curls and editorial finishes for any occasion.", image: hero, Icon: Wind },
-  { title: "Threading", copy: "Perfectly shaped brows with gentle, precise threading.", image: threading, Icon: Feather },
-  { title: "Fashion Colours", copy: "Balayage, global colour and creative fashion shades.", image: colour, Icon: Palette },
-  { title: "Hair Smoothening", copy: "Silky, manageable hair with lasting smoothness.", image: smoothening, Icon: Waves },
-  { title: "Keratin Treatment", copy: "Frizz-free shine with salon-grade keratin therapy.", image: keratin, Icon: Droplets },
-  { title: "Hair Spa", copy: "Deep-conditioning rituals that restore scalp health.", image: g1, Icon: Sparkles },
-  { title: "Facials", copy: "Advanced facials tailored to your skin type.", image: g2, Icon: Smile },
-  { title: "Pedicure", copy: "Luxury foot care in our dedicated lounge.", image: pedicure, Icon: Flower2 },
-  { title: "Manicure", copy: "Immaculate nails with premium finishes.", image: pedicure, Icon: Hand },
-  { title: "Bridal Makeup", copy: "HD bridal artistry that lasts the whole muhurtham.", image: bridalMakeup, Icon: Crown },
-  { title: "Party Makeup", copy: "Occasion glam with a soft, camera-ready finish.", image: bridalHair, Icon: Star },
-  { title: "Advanced Hair Treatments", copy: "Olaplex bond therapy and scalp correction protocols.", image: interior, Icon: Gem },
+const serviceGroups: { title: string; image: string; items: string[]; more?: string }[] = [
+  { title: "Hair Services", image: colour, items: ["Hair Cut & Styling", "Hair Spa", "Hair Coloring", "Hair Smoothening", "Keratin Treatment", "Hair Botox"], more: "7 More Services" },
+  { title: "Beauty & Skin Services", image: facial, items: ["Hydra Facial", "Medi Facial", "Skin Brightening", "Acne Treatment", "Pigmentation Treatment", "Anti-Aging Treatments"], more: "5 More Services" },
+  { title: "Laser Treatments", image: g1, items: ["Laser Hair Removal", "Tattoo Removal", "Scar Removal", "Pigmentation Laser", "Stretch Mark Removal", "Laser Skin Tightening"] },
+  { title: "Bridal Services", image: bridal, items: ["Bridal Makeup", "Engagement Makeup", "Reception Makeup", "HD Makeup", "Airbrush Makeup", "Pre-Bridal Packages"], more: "2 More Services" },
+  { title: "Nail & Spa Services", image: manicure, items: ["Manicure", "Pedicure", "Nail Extensions", "Gel Nails", "Nail Art", "Head Massage"], more: "2 More Services" },
+  { title: "Hair Treatments", image: hairspa, items: ["Hair Fall Treatment", "PRP Hair Treatment", "Dandruff Treatment", "Scalp Detox", "Protein Treatment", "Ozone Therapy"] },
+  { title: "Makeup & Styling", image: makeup, items: ["Party Makeup", "HD Makeup", "Airbrush Makeup", "Hairstyling", "Saree Draping", "Groom Packages"] },
+  { title: "Body Care", image: interior, items: ["Body Massage", "Body Spa", "Body Polishing", "Detan Treatment", "Stretch Mark Therapy", "Slimming Treatments"] },
 ];
 
 export function BranchServices() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".bs-card, .bs-head", stagger: 0.06 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".bs-card, .bs-head", stagger: 0.05 });
   return (
-    <section id="services" className="bg-cream py-20 md:py-28">
-      <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
+    <section id="services" className="bg-background py-20 md:py-28">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6 lg:px-10">
         <div className="bs-head mx-auto max-w-2xl text-center">
           <p className="section-eyebrow text-gold">Signature Services</p>
-          <h2 className="mt-2 font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
-            The full luxury menu
-          </h2>
+          <h2 className="font-semibold text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.1]">Our Services</h2>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map(({ title, copy, image, Icon }) => (
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {serviceGroups.map(({ title, image, items, more }) => (
             <article
               key={title}
-              className="bs-card group relative flex flex-col overflow-hidden rounded-[22px] border border-gold/25 bg-background p-3 text-center shadow-luxe transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+              className="bs-card group relative flex overflow-hidden rounded-[10px] bg-ink text-cream shadow-luxe transition-[transform,box-shadow] duration-700 hover:-translate-y-2 hover:shadow-gold"
             >
-              <div className="overflow-hidden rounded-[18px]">
+              <div className="relative w-[38%] shrink-0 overflow-hidden">
                 <img
                   src={image}
                   alt={`${title} at SASS Hair & Beauty`}
                   loading="lazy"
-                  width={800}
-                  height={1000}
-                  className="aspect-4/5 w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-[1300ms] group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-ink" />
               </div>
-              <div className="relative -mt-7 flex justify-center">
-                <span className="flex size-14 items-center justify-center rounded-full border border-gold/60 bg-ink text-gold shadow-gold transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
-                  <Icon className="size-6" strokeWidth={1.4} />
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col px-4 pb-6 pt-3">
-                <h3 className="font-display text-lg uppercase tracking-[0.06em]">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+              <div className="flex min-h-[290px] min-w-0 flex-1 flex-col justify-between p-4 pl-3">
+                <div>
+                  <h3 className="font-button text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-gold">{title}</h3>
+                  <ul className="mt-3 space-y-[7px]">
+                    {items.map((i) => (
+                      <li key={i} className="flex items-start gap-1.5 text-[0.7rem] leading-snug text-cream/85">
+                        <span className="mt-[1px] shrink-0 text-[0.6rem] text-gold">◈</span> {i}
+                      </li>
+                    ))}
+                  </ul>
+                  {more && <p className="mt-2 text-[0.66rem] text-gold">+ {more}</p>}
+                </div>
                 <a
-                  href="#consultation"
-                  className="mx-auto mt-5 inline-block font-button text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-gold transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100"
+                  href="#book"
+                  className="mx-auto mt-4 inline-flex w-fit items-center justify-center rounded-[4px] bg-gold-gradient px-6 py-2 font-button text-[0.56rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 group-hover:-translate-y-0.5"
                 >
-                  Learn more
+                  View All
                 </a>
               </div>
             </article>
