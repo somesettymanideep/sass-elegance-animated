@@ -137,6 +137,7 @@ export function FAQ() {
                   className={`faq-item group relative overflow-hidden rounded-[7px] border border-gold/10 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-gold/30 hover:shadow-luxe focus-within:border-gold/30 focus-within:shadow-luxe ${
                     isOpen ? "shadow-luxe" : ""
                   }`}
+                  style={{ willChange: "transform, opacity, filter" }}
                 >
                   {/* Active gold accent bar */}
                   <div
