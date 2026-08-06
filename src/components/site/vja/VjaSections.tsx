@@ -21,87 +21,120 @@ const WA = "https://wa.me/919000011122";
 
 /* -------- 10. Testimonials -------- */
 const reviews = [
-  { name: "Sravani Movva", area: "Labbipet", image: client1, text: "The keratin treatment transformed my hair completely. Truly the best hair clinic in Vijayawada." },
-  { name: "Divya Reddy", area: "Benz Circle", image: client2, text: "My bridal makeup lasted the entire wedding day. The team is professional and so warm." },
-  { name: "Anusha K.", area: "Patamata", image: client3, text: "Hydra facial results were instant. Clean, hygienic and genuinely premium service." },
+  { name: "Priya M.", area: "Vijayawada", image: client1, text: "Best salon in Vijayawada! The staff is very professional and the results are always amazing." },
+  { name: "Anusha R.", area: "Vijayawada", image: client2, text: "I did keratin treatment here and my hair has never been this smooth. Highly recommended!" },
+  { name: "Kavya L.", area: "Vijayawada", image: client3, text: "Bridal makeup was just perfect! They made my big day even more special." },
+];
+const bars = [
+  { star: 5, pct: 99 },
+  { star: 4, pct: 4 },
+  { star: 3, pct: 1 },
+  { star: 2, pct: 0 },
+  { star: 1, pct: 0 },
 ];
 
 export function VjaTestimonials() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.09 });
   return (
-    <section className="bg-background py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Client Testimonials" title="Loved across" italic="Vijayawada" /></div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {reviews.map(({ name, area, image, text }) => (
-            <article
-              key={name}
-              className="v-card group rounded-[24px] border border-gold/20 bg-card/70 p-8 backdrop-blur-md transition-all duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
-            >
-              <div className="flex gap-1 text-gold">
+    <section className="bg-cream py-20 md:py-24">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
+        <div className="v-head"><Head title="What Our Clients Say" /></div>
+        <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_2.15fr]">
+          <div className="v-card rounded-[14px] border border-gold/20 bg-card p-7 shadow-luxe">
+            <div className="flex items-center gap-3">
+              <p className="font-display text-4xl leading-none">4.9<span className="text-xl text-muted-foreground">/5</span></p>
+              <div className="flex gap-0.5 text-gold">
                 {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">“{text}”</p>
-              <div className="mt-7 flex items-center gap-3">
-                <img src={image} alt={name} loading="lazy" className="size-11 rounded-full object-cover ring-2 ring-gold/40" />
-                <div>
-                  <p className="font-display text-base leading-none">{name}</p>
-                  <p className="mt-1 text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">{area}</p>
+            </div>
+            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">1,250+ Happy Clients</p>
+            <div className="mt-6 space-y-2.5">
+              {bars.map(({ star, pct }) => (
+                <div key={star} className="flex items-center gap-3 text-xs text-muted-foreground">
+                  <span className="flex w-8 items-center gap-1">{star}<Star className="size-3 fill-gold text-gold" /></span>
+                  <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-gold/15">
+                    <span className="block h-full rounded-full bg-gold-gradient" style={{ width: `${pct}%` }} />
+                  </span>
+                  <span className="w-8 text-right">{pct}%</span>
                 </div>
-              </div>
-            </article>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {reviews.map(({ name, area, image, text }) => (
+              <article
+                key={name}
+                className="v-card group rounded-[14px] border border-gold/20 bg-card p-6 transition-all duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+              >
+                <div className="flex gap-1 text-gold">
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" />)}
+                </div>
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">“{text}”</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <img src={image} alt={name} loading="lazy" className="size-10 rounded-full object-cover ring-2 ring-gold/40" />
+                  <div>
+                    <p className="font-display text-sm leading-none">– {name}</p>
+                    <p className="mt-1 text-[0.58rem] uppercase tracking-[0.18em] text-muted-foreground">{area}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* -------- 11. Packages -------- */
+/* -------- 11. Packages & offers -------- */
 const packages = [
-  { name: "Hair Care", price: "₹2,499", best: false, items: ["Cut & blow dry", "Hair spa ritual", "Scalp analysis", "Home-care advice"] },
-  { name: "Skin Care", price: "₹3,499", best: false, items: ["Hydra facial", "Clean-up", "Brightening mask", "Dermat consult"] },
-  { name: "Bridal", price: "₹24,999", best: true, items: ["Pre-bridal 4 sessions", "HD bridal makeup", "Hair styling & draping", "Reception look"] },
-  { name: "Membership", price: "₹9,999/yr", best: false, items: ["20% off all services", "Priority booking", "2 free facials", "Birthday makeover"] },
-  { name: "Festival Offer", price: "Flat 30% off", best: false, items: ["On colour & keratin", "Weekday exclusive", "Valid all branches", "Limited period"] },
+  { name: "Hair Care Package", price: "₹2,499", copy: "Hair spa, Hair cut, Hair smoothening & more" },
+  { name: "Skin Care Package", price: "₹3,499", copy: "Hydra facial, Clean up, Skin polishing & more" },
+  { name: "Bridal Package", price: "₹15,999", copy: "HD makeup, Hairstyle, Saree draping & more" },
+  { name: "Monthly Membership", price: "₹2,999", suffix: "/Month", copy: "Unlimited services with exclusive benefits" },
 ];
 
 export function VjaPackages() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.08 });
   return (
-    <section className="bg-cream py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Packages" title="Transparent luxury" italic="pricing" /></div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map(({ name, price, best, items }) => (
+    <section className="bg-background py-20 md:py-24">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
+        <div className="v-head"><Head title="Packages & Offers" /></div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {packages.map(({ name, price, suffix, copy }) => (
             <article
               key={name}
-              className={`v-card relative rounded-[24px] border p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-gold ${
-                best ? "border-gold bg-ink text-cream shadow-gold" : "border-gold/20 bg-card"
-              }`}
+              className="v-card flex flex-col rounded-[14px] border border-gold/20 bg-card p-6 transition-all duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
-              {best && (
-                <span className="absolute -top-3 left-8 rounded-full bg-gold-gradient px-4 py-1 font-button text-[0.55rem] uppercase tracking-[0.2em] text-ink">
-                  Best Seller
-                </span>
-              )}
-              <h3 className="font-display text-2xl">{name}</h3>
-              <p className="mt-3 font-display text-3xl text-gold">{price}</p>
-              <ul className="mt-6 space-y-3">
-                {items.map((i) => (
-                  <li key={i} className={`flex items-start gap-2.5 text-sm ${best ? "text-cream/75" : "text-muted-foreground"}`}>
-                    <Check className="mt-0.5 size-4 shrink-0 text-gold" /> {i}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="font-display text-lg">{name}</h3>
+              <p className="mt-3 text-[0.6rem] uppercase tracking-[0.16em] text-muted-foreground">Starts from</p>
+              <p className="mt-1 font-display text-3xl">
+                {price}
+                {suffix && <span className="text-sm text-muted-foreground">{suffix}</span>}
+              </p>
+              <p className="mt-3 flex-1 text-xs leading-relaxed text-muted-foreground">{copy}</p>
               <a
                 href="#book"
-                className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-gold/50 px-6 py-3 font-button text-[0.65rem] uppercase tracking-[0.2em] transition-all duration-500 hover:-translate-y-1 hover:bg-gold-gradient hover:text-ink"
+                className="mt-6 inline-flex items-center justify-center rounded-[6px] bg-ink px-5 py-2.5 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-cream transition-all duration-500 hover:-translate-y-1 hover:bg-gold-gradient hover:text-ink"
               >
-                Book Now
+                View Details
               </a>
             </article>
           ))}
+
+          <article className="v-card relative overflow-hidden rounded-[14px] border border-gold/40 bg-ink p-7 text-center text-cream shadow-gold">
+            <span className="floaty pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-gold/20 blur-3xl" />
+            <p className="relative font-display text-xl text-gold">Special Offer</p>
+            <p className="relative mt-3 font-display text-4xl leading-none text-gold-gradient">20% OFF</p>
+            <p className="relative mt-3 text-xs uppercase tracking-[0.16em] text-cream/70">On Your First Service</p>
+            <a
+              href="#book"
+              className="relative mt-6 inline-flex rounded-[6px] bg-gold-gradient px-6 py-2.5 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 hover:-translate-y-1"
+            >
+              Book Now
+            </a>
+          </article>
         </div>
       </div>
     </section>
