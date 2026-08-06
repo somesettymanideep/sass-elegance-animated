@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   Sparkles, BadgeCheck, Crown, Droplets, Palette, ShieldCheck, Gem, MessageCircle,
-  Scissors, Waves, Flower2, Feather, Wind, Smile, Hand, Star, MoveHorizontal, X,
+  Star, MoveHorizontal, X,
   ChevronLeft, ChevronRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
