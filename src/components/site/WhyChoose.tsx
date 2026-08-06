@@ -1,30 +1,34 @@
 import { useEffect, useRef } from "react";
-import { Award, Sparkles, Gem, ShieldCheck, Headset } from "lucide-react";
 import { gsap, ensureGsap } from "@/lib/motion";
+import salonIcon from "@/assets/why-beauty-salon.svg.asset.json";
+import makeupIcon from "@/assets/why-makeup.svg.asset.json";
+import productsIcon from "@/assets/why-products.svg.asset.json";
+import safeIcon from "@/assets/why-safe.svg.asset.json";
+import consumerIcon from "@/assets/why-consumer.svg.asset.json";
 
 const items = [
   {
-    icon: Award,
+    icon: salonIcon.url,
     title: "Premium Experience",
     copy: "Luxury salon experience with world-class services.",
   },
   {
-    icon: Sparkles,
+    icon: makeupIcon.url,
     title: "Expert Stylists",
     copy: "Trained & certified professionals at your service.",
   },
   {
-    icon: Gem,
+    icon: productsIcon.url,
     title: "High Quality Products",
     copy: "We use only top-quality, skin & hair safe products.",
   },
   {
-    icon: ShieldCheck,
+    icon: safeIcon.url,
     title: "Hygiene & Cleanliness",
     copy: "100% hygiene and sterilized equipment.",
   },
   {
-    icon: Headset,
+    icon: consumerIcon.url,
     title: "Customer Satisfaction",
     copy: "Your satisfaction is our top priority.",
   },
@@ -109,7 +113,7 @@ export function WhyChoose() {
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-          {items.map(({ icon: Icon, title, copy }, i) => (
+          {items.map(({ icon, title, copy }, i) => (
             <div
               key={title}
               className="wc-item group relative px-4 text-center lg:px-6"
@@ -117,9 +121,12 @@ export function WhyChoose() {
               {i > 0 && (
                 <span className="wc-divider pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-gold/25 lg:block" />
               )}
-              <Icon
-                className="wc-icon mx-auto size-11 text-gold transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:scale-110"
-                strokeWidth={1.1}
+              <img
+                src={icon}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="wc-icon mx-auto size-12 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:scale-110"
               />
               <h3 className="mt-5 font-button text-sm font-semibold uppercase tracking-[0.06em]">
                 {title}
