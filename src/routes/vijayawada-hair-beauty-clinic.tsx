@@ -5,9 +5,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { VjaHero } from "@/components/site/vja/VjaHero";
-import {
-  VjaWhy, VjaHairServices, VjaSkin, VjaLaser, VjaBridal, VjaNails, VjaProcess, VjaBeforeAfter,
-} from "@/components/site/vja/VjaServices";
+import { VjaWhy, VjaServiceGrid, VjaProcess, VjaBeforeAfter } from "@/components/site/vja/VjaServices";
 import {
   VjaTestimonials, VjaPackages, VjaExperts, VjaFAQ, VjaBlogs, VjaAreas, VjaBooking, VjaContact, vjaFaqs,
 } from "@/components/site/vja/VjaSections";
