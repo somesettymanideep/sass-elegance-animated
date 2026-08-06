@@ -30,9 +30,7 @@ import storeFront from "@/assets/store-front.jpg";
 import storeReception from "@/assets/store-reception.jpg";
 import storeStyling from "@/assets/store-styling-floor.jpg";
 import storeWash from "@/assets/store-wash-lounge.jpg";
-import storeRetail from "@/assets/store-retail.jpg";
 import storeBridalSuite from "@/assets/store-bridal-suite.jpg";
-import storeLounge from "@/assets/store-lounge.jpg";
 import storeNail from "@/assets/store-nail-lounge.jpg";
 import reel1 from "@/assets/reel1.mp4.asset.json";
 import reel2 from "@/assets/reel2.mp4.asset.json";
@@ -471,8 +469,6 @@ const shots = [
   { src: storeBridalSuite, alt: "Private bridal suite", cat: "Bridal Suite", span: "row-span-2" },
   { src: storeWash, alt: "Hair wash lounge", cat: "Wash Lounge", span: "" },
   { src: storeNail, alt: "Nail and pedicure lounge", cat: "Nail Lounge", span: "" },
-  { src: storeLounge, alt: "Waiting lounge", cat: "Client Lounge", span: "row-span-2" },
-  { src: storeRetail, alt: "Premium product retail shelves", cat: "Product Bar", span: "" },
 ];
 
 
