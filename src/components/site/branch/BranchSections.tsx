@@ -26,6 +26,22 @@ import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import before from "@/assets/before.jpg";
 import after from "@/assets/after.jpg";
+import storeFront from "@/assets/store-front.jpg";
+import storeReception from "@/assets/store-reception.jpg";
+import storeStyling from "@/assets/store-styling-floor.jpg";
+import storeWash from "@/assets/store-wash-lounge.jpg";
+import storeRetail from "@/assets/store-retail.jpg";
+import storeBridalSuite from "@/assets/store-bridal-suite.jpg";
+import storeLounge from "@/assets/store-lounge.jpg";
+import storeNail from "@/assets/store-nail-lounge.jpg";
+import reel1 from "@/assets/reel1.mp4.asset.json";
+import reel2 from "@/assets/reel2.mp4.asset.json";
+import reel3 from "@/assets/reel3.mp4.asset.json";
+import reel4 from "@/assets/reel4.mp4.asset.json";
+import poster1 from "@/assets/reel1-poster.jpg.asset.json";
+import poster2 from "@/assets/reel2-poster.jpg.asset.json";
+import poster3 from "@/assets/reel3-poster.jpg.asset.json";
+import poster4 from "@/assets/reel4-poster.jpg.asset.json";
 
 /* ---------------- Section 2 — Why Choose SASS ---------------- */
 
