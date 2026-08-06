@@ -18,6 +18,7 @@ import {
   BranchFAQ,
   BranchCTA,
 } from "@/components/site/branch/BranchConversion";
+import { BranchPackages } from "@/components/site/branch/BranchPackages";
 import { getBranch } from "@/lib/branches";
 
 export const Route = createFileRoute("/branches/$city")({
@@ -78,6 +79,7 @@ function BranchPage() {
         <BranchWhy branch={branch} />
         <BranchServices />
         <BranchTransformations />
+        <BranchPackages branch={branch} />
         <BranchTestimonials branch={branch} />
         <BranchGallery slug={branch.slug} />
         <BranchConsultation branch={branch} />
