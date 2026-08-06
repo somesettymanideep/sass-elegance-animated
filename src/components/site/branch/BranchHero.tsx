@@ -5,6 +5,8 @@ import { LuxeButton } from "../LuxeButton";
 import type { Branch } from "@/lib/branches";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import heroPoster from "@/assets/hero-reel-poster.jpg.asset.json";
+import gunturReel from "@/assets/guntur-reel.mp4.asset.json";
+import gunturPoster from "@/assets/guntur-reel-poster.jpg.asset.json";
 
 const badges = [
   { Icon: Star, label: "4.9 Rating", sub: "★★★★★" },
