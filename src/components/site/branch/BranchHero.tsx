@@ -23,6 +23,16 @@ const floating = [
 export function BranchHero({ branch }: { branch: Branch }) {
   const ref = useReveal<HTMLDivElement>({ selector: ".bh-item", stagger: 0.1 });
   const tel = `tel:${branch.phone.replace(/\s/g, "")}`;
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [muted, setMuted] = useState(true);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) void v.play().catch(() => {});
+  };
 
   return (
     <section className="relative overflow-hidden bg-ink pb-20 pt-32 text-cream md:pb-28 md:pt-40">
