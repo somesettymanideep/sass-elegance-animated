@@ -47,7 +47,7 @@ export const Route = createFileRoute("/")({
           address: [
             {
               "@type": "PostalAddress",
-              streetAddress: "MG Road, Labbipet",
+              streetAddress: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet",
               addressLocality: "Vijayawada",
               addressRegion: "Andhra Pradesh",
               addressCountry: "IN",

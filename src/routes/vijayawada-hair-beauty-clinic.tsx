@@ -50,7 +50,7 @@ export const Route = createFileRoute("/vijayawada-hair-beauty-clinic")({
             priceRange: "₹₹",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "MG Road, Labbipet",
+              streetAddress: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet",
               addressLocality: "Vijayawada",
               postalCode: "520010",
               addressRegion: "Andhra Pradesh",

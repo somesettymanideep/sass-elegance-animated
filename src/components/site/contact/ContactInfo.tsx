@@ -17,7 +17,7 @@ const cards = [
   {
     icon: MapPin,
     title: "Flagship",
-    lines: ["MG Road, Labbipet", "Vijayawada 520010"],
+    lines: ["2nd Floor, PVP Square, MG Road", "Mogalrajapuram, Vijayawada 520010"],
   },
   {
     icon: Clock,
