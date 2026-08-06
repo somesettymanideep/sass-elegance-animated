@@ -86,13 +86,13 @@ export function BranchWhy({ branch }: { branch: Branch }) {
               key={title}
               className="bw-item group rounded-[20px] border border-gold/20 bg-card/70 p-7 backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
-              <span className="flex size-14 items-center justify-center">
+              <span className="flex size-16 items-center justify-center rounded-full bg-ink ring-1 ring-gold/30 transition-[box-shadow,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:shadow-gold">
                 <img
                   src={icon}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
-                  className="size-11 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-110"
+                  className="size-9 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-110"
                 />
               </span>
               <h3 className="mt-5 font-display text-lg leading-snug">{title}</h3>
