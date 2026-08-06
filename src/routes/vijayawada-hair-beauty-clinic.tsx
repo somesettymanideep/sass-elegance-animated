@@ -111,11 +111,7 @@ function VijayawadaClinicPage() {
       <main>
         <VjaHero />
         <VjaWhy />
-        <VjaHairServices />
-        <VjaSkin />
-        <VjaLaser />
-        <VjaBridal />
-        <VjaNails />
+        <VjaServiceGrid />
         <VjaProcess />
         <VjaBeforeAfter />
         <VjaTestimonials />
