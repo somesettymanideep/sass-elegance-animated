@@ -12,6 +12,7 @@ export interface Branch {
   hours: string;
   image: string;
   q: string;
+  mapEmbed: string;
   intro: string;
   highlights: string[];
 }
@@ -27,6 +28,7 @@ export const branches: Branch[] = [
     hours: "Monday – Sunday · 9:00 AM – 9:00 PM",
     image: vijayawada,
     q: "SASS hair and beauty PVP Square MG Road Vijayawada",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61207.488515262055!2d80.56650304863281!3d16.502452700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbe0e42abaa1%3A0xc9060a3286b543a7!2sSASS%20hair%20and%20beauty!5e0!3m2!1sen!2sin!4v1786008105215!5m2!1sen!2sin",
     intro:
       "Our flagship address on MG Road — a full-floor luxury salon with a private bridal suite, dedicated colour bar and senior stylist consultation lounge.",
     highlights: [
@@ -47,6 +49,7 @@ export const branches: Branch[] = [
     hours: "Monday – Sunday · 9:30 AM – 9:00 PM",
     image: guntur,
     q: "SASS hair and beauty Phoenix Mall Guntur",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61273.93483576873!2d80.36059484863281!3d16.291187500000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4a75ebbed2925b%3A0x436c9dfb0d921422!2sSASS%20hair%20and%20beauty!5e0!3m2!1sen!2sin!4v1786008032944!5m2!1sen!2sin",
     intro:
       "The Guntur studio is our colour laboratory and training academy — where fashion shades, creative highlights and technical education come together.",
     highlights: [
@@ -67,6 +70,7 @@ export const branches: Branch[] = [
     hours: "Monday – Sunday · 9:30 AM – 8:30 PM",
     image: rajahmundryAsset.url,
     q: "SASS Hair and beauty Prasaditya Mall Rajahmundry",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61043.02376963011!2d81.7256108486328!3d17.014397700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a377219a19f9%3A0x83a2fe53a7870d21!2sSass%20Hair%20and%20beauty!5e0!3m2!1sen!2sin!4v1786008220424!5m2!1sen!2sin",
     intro:
       "A calm hair and skin studio on Danavaipeta Main Road, built around personalised consultations, premium treatments and unhurried service.",
     highlights: [

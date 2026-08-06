@@ -392,7 +392,7 @@ export function VjaAreas() {
           <div className="v-map overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
             <iframe
               title="SASS Hair & Beauty Vijayawada service area map"
-              src="https://www.google.com/maps?q=MG%20Road%20Labbipet%20Vijayawada&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61207.488515262055!2d80.56650304863281!3d16.502452700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbe0e42abaa1%3A0xc9060a3286b543a7!2sSASS%20hair%20and%20beauty!5e0!3m2!1sen!2sin!4v1786008105215!5m2!1sen!2sin"
               loading="lazy"
               className="h-[420px] w-full"
             />
@@ -514,7 +514,7 @@ export function VjaContact() {
           <div className="overflow-hidden rounded-[10px] border border-gold/25">
             <iframe
               title="SASS Hair & Beauty Vijayawada location map"
-              src="https://www.google.com/maps?q=MG%20Road%20Labbipet%20Vijayawada&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61207.488515262055!2d80.56650304863281!3d16.502452700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fbe0e42abaa1%3A0xc9060a3286b543a7!2sSASS%20hair%20and%20beauty!5e0!3m2!1sen!2sin!4v1786008105215!5m2!1sen!2sin"
               loading="lazy"
               className="h-40 w-full"
             />

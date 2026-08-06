@@ -137,7 +137,7 @@ export function BranchLocation({ branch }: { branch: Branch }) {
         <div className="bl-item overflow-hidden rounded-[24px] border border-gold/25 bg-background shadow-luxe">
           <iframe
             title={`Map of SASS Hair & Beauty ${branch.city}`}
-            src={`https://www.google.com/maps?q=${encodeURIComponent(branch.q)}&output=embed`}
+            src={branch.mapEmbed}
             loading="lazy"
             className="h-[340px] w-full md:h-[420px]"
           />

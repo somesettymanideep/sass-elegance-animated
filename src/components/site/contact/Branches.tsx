@@ -1,29 +1,8 @@
 import { Navigation, Phone } from "lucide-react";
 import { useReveal } from "@/lib/motion";
+import { branches as branchData } from "@/lib/branches";
 
-const branches = [
-  {
-    city: "Vijayawada",
-    tag: "Flagship & bridal suite",
-    address: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet, Vijayawada 520010",
-    phone: "+91 72868 11999",
-    q: "SASS hair and beauty PVP Square MG Road Vijayawada",
-  },
-  {
-    city: "Guntur",
-    tag: "Colour lab & academy",
-    address: "1st Floor, Phoenix Mall, Srinivasarao Pet, Guntur 522004",
-    phone: "+91 89071 11999",
-    q: "SASS hair and beauty Phoenix Mall Guntur",
-  },
-  {
-    city: "Rajahmundry",
-    tag: "Hair & skin studio",
-    address: "Prasaditya Mall, Ave Appa Rao Road, Venkateswara Nagar, Rajamahendravaram 533103",
-    phone: "+91 95502 81116",
-    q: "SASS Hair and beauty Prasaditya Mall Rajahmundry",
-  },
-];
+const branches = branchData;
 
 export function Branches() {
   const ref = useReveal<HTMLDivElement>({ selector: ".br-card, .br-head", stagger: 0.12 });
@@ -43,7 +22,7 @@ export function Branches() {
             <article id={`branch-${b.city.toLowerCase()}`} key={b.city} className="br-card luxe-card overflow-hidden bg-white/[0.03]">
               <iframe
                 title={`Map of SASS ${b.city}`}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(b.q)}&output=embed`}
+                src={b.mapEmbed}
                 loading="lazy"
                 className="h-52 w-full"
               />
