@@ -294,25 +294,25 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
   const activeReal = (index - lead + reviews.length) % reviews.length;
 
   return (
-    <section className="bg-cream py-24 text-foreground md:py-32">
+    <section className="bg-ink py-24 text-cream md:py-32">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="br-head text-center">
           <p className="section-eyebrow text-gold">Client Testimonials</p>
           <h2 className="mx-auto mt-2 max-w-2xl font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
             Loved by <span className="text-gold">{branch.city}</span>
           </h2>
-          <div className="mx-auto mt-6 flex w-fit items-center gap-4 rounded-full border border-gold/25 bg-white px-6 py-3 shadow-luxe">
+          <div className="mx-auto mt-6 flex w-fit items-center gap-4 rounded-full border border-gold/30 bg-cream/5 px-6 py-3 shadow-[0_18px_44px_-30px_rgba(0,0,0,0.55)] backdrop-blur-sm">
             <GoogleLogo className="size-6" />
             <div className="text-left">
               <div className="flex items-center gap-1.5">
-                <span className="font-semibold text-foreground">4.9</span>
+                <span className="font-semibold text-cream">4.9</span>
                 <span className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <Star key={s} className="size-3 fill-gold text-gold" />
                   ))}
                 </span>
               </div>
-              <p className="text-[0.65rem] text-muted-foreground">Google Reviews · 5000+ clients</p>
+              <p className="text-[0.65rem] text-cream/60">Google Reviews · 5000+ clients</p>
             </div>
           </div>
         </div>
@@ -338,15 +338,15 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
                   style={{ width: `${itemWidth}%` }}
                 >
                   <div
-                    className={`flex h-full flex-col items-center gap-5 rounded-[14px] border p-7 text-center shadow-[0_18px_44px_-30px_rgba(0,0,0,0.45)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${
+                    className={`flex h-full flex-col items-center gap-5 rounded-[14px] border p-7 text-center shadow-[0_18px_44px_-30px_rgba(0,0,0,0.55)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${
                       isActive
-                        ? "border-gold/40 bg-ink text-cream shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
-                        : "border-border/60 bg-white text-foreground"
+                        ? "border-gold/50 bg-[#1a1a1a] shadow-[0_28px_70px_-24px_rgba(231,185,97,0.22)]"
+                        : "border-white/10 bg-black/60 text-cream/90"
                     }`}
                   >
                     <span
                       className={`flex size-16 items-center justify-center rounded-full border font-display text-2xl transition-all duration-700 ${
-                        isActive ? "border-gold/40 bg-gold/10 text-gold" : "border-gold/30 text-foreground"
+                        isActive ? "border-gold/40 bg-gold/15 text-gold" : "border-white/15 text-cream/80"
                       }`}
                     >
                       {r.name.charAt(0)}
@@ -357,14 +357,14 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
                           <Star key={s} className="size-3.5 fill-gold text-gold" />
                         ))}
                       </div>
-                      <blockquote className={`mt-4 text-sm leading-relaxed ${isActive ? "text-cream/80" : "text-muted-foreground"}`}>
+                      <blockquote className={`mt-4 text-sm leading-relaxed ${isActive ? "text-cream/90" : "text-cream/70"}`}>
                         “{r.text}”
                       </blockquote>
                       <figcaption className="mt-5">
                         <p className="text-sm font-semibold">– {r.name}</p>
-                        <p className={`mt-1 text-xs ${isActive ? "text-cream/60" : "text-muted-foreground"}`}>{r.service}</p>
+                        <p className={`mt-1 text-xs ${isActive ? "text-cream/60" : "text-cream/50"}`}>{r.service}</p>
                       </figcaption>
-                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-3 py-1 text-[0.6rem] uppercase tracking-[0.18em] text-gold">
+                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.6rem] uppercase tracking-[0.18em] text-gold">
                         <GoogleLogo className="size-3" /> Google review
                       </div>
                     </div>
@@ -380,7 +380,7 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
                 key={d}
                 aria-label={`Go to review ${d + 1}`}
                 onClick={() => setIndex(d + lead)}
-                className={`size-2.5 rounded-full transition-all duration-500 ${d === activeReal ? "bg-gold" : "bg-border"}`}
+                className={`size-2.5 rounded-full transition-all duration-500 ${d === activeReal ? "bg-gold" : "bg-cream/25 hover:bg-cream/45"}`}
               />
             ))}
           </div>
