@@ -471,8 +471,6 @@ const shots = [
   { src: storeBridalSuite, alt: "Private bridal suite", cat: "Bridal Suite", span: "row-span-2" },
   { src: storeWash, alt: "Hair wash lounge", cat: "Wash Lounge", span: "" },
   { src: storeNail, alt: "Nail and pedicure lounge", cat: "Nail Lounge", span: "" },
-  { src: storeLounge, alt: "Waiting lounge", cat: "Client Lounge", span: "row-span-2" },
-  { src: storeRetail, alt: "Premium product retail shelves", cat: "Product Bar", span: "" },
 ];
 
 
