@@ -115,7 +115,7 @@ export function FAQ() {
         </div>
 
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.15fr]">
-          <div className="faq-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28">
+          <div className="faq-image mx-auto w-full max-w-md lg:max-w-none lg:sticky lg:top-28" style={{ willChange: "transform, opacity, filter" }}>
             <img
               src={faqImage.url}
               alt="SASS Hair & Beauty signature services menu"
@@ -123,6 +123,7 @@ export function FAQ() {
               width={1080}
               height={1080}
               className="w-full rounded-[7px] shadow-luxe"
+              style={{ willChange: "transform, opacity, filter" }}
             />
           </div>
 
