@@ -218,76 +218,169 @@ const reviews = [
   { name: "Anusha Kolli", service: "Bridal Package", text: "They handled my entire bridal party across two days. The makeup held through a 14-hour muhurtham." },
   { name: "Divya Prasad", service: "Olaplex Bond Therapy", text: "Genuinely rescued my hair after a bad smoothening elsewhere. Six months in and it still feels new." },
   { name: "Karthik Varma", service: "Precision Cut", text: "Cleanest, most professional studio in the city. Booking is effortless and the stylists actually listen." },
+  { name: "Harika Sannidhi", service: "Keratin Treatment", text: "My frizz disappeared for months. The staff explained every step and the ambience is unmatched." },
+  { name: "Priya Mantri", service: "Party Makeup", text: "Got compliments all evening. They understood my outfit and matched the look perfectly." },
 ];
+
+const TRANSITION_DURATION = 1200;
+const AUTO_INTERVAL = 7000;
+
+function GoogleLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23.5 12.28c0-.86-.08-1.68-.22-2.48H12v4.7h6.45c-.28 1.48-1.11 2.74-2.36 3.58v2.98h3.82c2.24-2.06 3.53-5.1 3.53-8.78z" fill="#4285F4" />
+      <path d="M12 24c3.24 0 5.96-1.08 7.94-2.91l-3.82-2.98c-1.08.72-2.45 1.15-4.12 1.15-3.17 0-5.85-2.14-6.81-5.01H1.47v3.09C3.45 21.34 7.39 24 12 24z" fill="#34A853" />
+      <path d="M5.19 14.25c-.24-.72-.38-1.49-.38-2.25s.14-1.53.38-2.25V6.66H1.47A11.98 11.98 0 000 12c0 1.93.47 3.75 1.29 5.34l3.9-3.09z" fill="#FBBC05" />
+      <path d="M12 4.77c1.78 0 3.38.61 4.64 1.81l3.48-3.48C17.95 1.18 15.23 0 12 0 7.39 0 3.45 2.66 1.47 6.66l3.72 2.89c.96-2.87 3.64-5.01 6.81-5.01z" fill="#EA4335" />
+    </svg>
+  );
+}
 
 export function BranchTestimonials({ branch }: { branch: Branch }) {
   const ref = useReveal<HTMLDivElement>({ selector: ".br-head", stagger: 0.1 });
-  const [i, setI] = useState(0);
+  const [perView, setPerView] = useState(3);
+  const [index, setIndex] = useState(1);
+  const [noTransition, setNoTransition] = useState(false);
   const paused = useRef(false);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      if (!paused.current) setI((v) => (v + 1) % reviews.length);
-    }, 5200);
-    return () => clearInterval(id);
+    const handleResize = () => {
+      const w = window.innerWidth;
+      setPerView(w < 1024 ? 1 : 3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const lead = Math.max(1, Math.floor(perView / 2));
+  const trail = Math.max(1, perView - 1);
+
+  const extended = [
+    ...reviews.slice(-lead),
+    ...reviews,
+    ...reviews.slice(0, trail),
+  ].map((r, i) => ({ ...r, extKey: i }));
+
+  const itemWidth = 100 / perView;
+  const translate = 50 - (index + 0.5) * itemWidth;
+
+  useEffect(() => {
+    setNoTransition(true);
+    setIndex(lead);
+    const t = setTimeout(() => setNoTransition(false), 60);
+    return () => clearTimeout(t);
+  }, [perView, lead]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!paused.current) setIndex((v) => v + 1);
+    }, AUTO_INTERVAL);
+    return () => clearInterval(id);
+  }, [perView, lead]);
+
+  useEffect(() => {
+    const maxIndex = reviews.length + lead;
+    if (index !== maxIndex) return;
+    const t = setTimeout(() => {
+      setNoTransition(true);
+      setIndex(lead);
+      const restore = setTimeout(() => setNoTransition(false), 60);
+      return () => clearTimeout(restore);
+    }, TRANSITION_DURATION);
+    return () => clearTimeout(t);
+  }, [index, lead]);
+
+  const activeReal = (index - lead + reviews.length) % reviews.length;
+
   return (
-    <section className="bg-ink py-20 text-cream md:py-28">
+    <section className="bg-cream py-24 text-foreground md:py-32">
       <div ref={ref} className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="br-head text-center">
           <p className="section-eyebrow text-gold">Client Testimonials</p>
           <h2 className="mx-auto mt-2 max-w-2xl font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
-            Loved by {branch.city}
+            Loved by <span className="text-gold">{branch.city}</span>
           </h2>
+          <div className="mx-auto mt-6 flex w-fit items-center gap-4 rounded-full border border-gold/25 bg-white px-6 py-3 shadow-luxe">
+            <GoogleLogo className="size-6" />
+            <div className="text-left">
+              <div className="flex items-center gap-1.5">
+                <span className="font-semibold text-foreground">4.9</span>
+                <span className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star key={s} className="size-3 fill-gold text-gold" />
+                  ))}
+                </span>
+              </div>
+              <p className="text-[0.65rem] text-muted-foreground">Google Reviews · 5000+ clients</p>
+            </div>
+          </div>
         </div>
 
         <div
-          className="relative mt-12 overflow-hidden"
+          className="relative mt-14 overflow-hidden"
           onMouseEnter={() => (paused.current = true)}
           onMouseLeave={() => (paused.current = false)}
         >
           <div
-            className="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-            style={{ transform: `translate3d(-${i * 100}%, 0, 0)` }}
+            className="flex"
+            style={{
+              transform: `translate3d(${translate}%, 0, 0)`,
+              transition: noTransition ? "none" : `transform ${TRANSITION_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+            }}
           >
-            {reviews.map((r) => (
-              <figure key={r.name} className="w-full shrink-0 px-1 md:px-10">
-                <div className="mx-auto max-w-3xl rounded-[24px] border border-gold/25 bg-white/5 p-10 text-center backdrop-blur-md md:p-14">
-                  <span className="mx-auto flex size-16 items-center justify-center rounded-full border border-gold/40 bg-gold/10 font-display text-2xl text-gold">
-                    {r.name.charAt(0)}
-                  </span>
-                  <div className="mt-5 flex justify-center gap-1">
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <Star key={s} className="size-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <blockquote className="mt-6 font-display text-xl leading-relaxed md:text-2xl">
-                    “{r.text}”
-                  </blockquote>
-                  <figcaption className="mt-7 text-sm uppercase tracking-[0.2em] text-cream/70">
-                    {r.name} · <span className="text-gold">{r.service}</span>
-                  </figcaption>
-                  <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-[0.6rem] uppercase tracking-[0.18em]">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-3 py-1.5 text-gold">
-                      <BadgeCheck className="size-3.5" /> Verified client
+            {extended.map((r, i) => {
+              const isActive = i === index;
+              return (
+                <figure
+                  key={r.extKey}
+                  className="shrink-0 px-3"
+                  style={{ width: `${itemWidth}%` }}
+                >
+                  <div
+                    className={`flex h-full flex-col items-center gap-5 rounded-[14px] border p-7 text-center shadow-[0_18px_44px_-30px_rgba(0,0,0,0.45)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${
+                      isActive
+                        ? "border-gold/40 bg-ink text-cream shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                        : "border-border/60 bg-white text-foreground"
+                    }`}
+                  >
+                    <span
+                      className={`flex size-16 items-center justify-center rounded-full border font-display text-2xl transition-all duration-700 ${
+                        isActive ? "border-gold/40 bg-gold/10 text-gold" : "border-gold/30 text-foreground"
+                      }`}
+                    >
+                      {r.name.charAt(0)}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/20 px-3 py-1.5 text-cream/70">
-                      <Star className="size-3.5 fill-gold text-gold" /> Google review
-                    </span>
+                    <div className="flex flex-col items-center">
+                      <div className="flex justify-center gap-0.5">
+                        {Array.from({ length: 5 }).map((_, s) => (
+                          <Star key={s} className="size-3.5 fill-gold text-gold" />
+                        ))}
+                      </div>
+                      <blockquote className={`mt-4 text-sm leading-relaxed ${isActive ? "text-cream/80" : "text-muted-foreground"}`}>
+                        “{r.text}”
+                      </blockquote>
+                      <figcaption className="mt-5">
+                        <p className="text-sm font-semibold">– {r.name}</p>
+                        <p className={`mt-1 text-xs ${isActive ? "text-cream/60" : "text-muted-foreground"}`}>{r.service}</p>
+                      </figcaption>
+                      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-3 py-1 text-[0.6rem] uppercase tracking-[0.18em] text-gold">
+                        <GoogleLogo className="size-3" /> Google review
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </figure>
-            ))}
+                </figure>
+              );
+            })}
           </div>
 
-          <div className="mt-9 flex justify-center gap-2">
+          <div className="mt-10 flex justify-center gap-2.5">
             {reviews.map((_, d) => (
               <button
                 key={d}
                 aria-label={`Go to review ${d + 1}`}
-                onClick={() => setI(d)}
-                className={`h-1 rounded-full transition-all duration-500 ${d === i ? "w-10 bg-gold-gradient" : "w-4 bg-cream/25"}`}
+                onClick={() => setIndex(d + lead)}
+                className={`size-2.5 rounded-full transition-all duration-500 ${d === activeReal ? "bg-gold" : "bg-border"}`}
               />
             ))}
           </div>
@@ -296,6 +389,7 @@ export function BranchTestimonials({ branch }: { branch: Branch }) {
     </section>
   );
 }
+
 
 /* ---------------- Section 6 — Gallery ---------------- */
 
