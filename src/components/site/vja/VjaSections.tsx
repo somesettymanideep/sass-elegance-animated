@@ -312,96 +312,130 @@ export function VjaBooking() {
   const field = "w-full rounded-[14px] border border-gold/25 bg-black/25 px-4 py-3 text-sm text-cream placeholder:text-cream/40 outline-none transition-colors focus:border-gold";
 
   return (
-    <section id="book" className="relative overflow-hidden bg-ink py-24 text-cream md:py-32">
+    <section id="book" className="relative overflow-hidden bg-ink py-16 text-cream md:py-20">
       <span className="floaty pointer-events-none absolute -right-32 top-10 size-96 rounded-full bg-gold/10 blur-[140px]" />
-      <div ref={ref} className="relative mx-auto grid max-w-[1200px] gap-12 px-6 lg:grid-cols-2">
-        <div className="v-col rounded-[24px] border border-gold/25 bg-white/5 p-8 backdrop-blur-md md:p-10">
-          <p className="section-eyebrow text-gold">Book Appointment</p>
-          <h2 className="mt-2 font-semibold text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.08]">
-            Reserve your <span className="italic text-gold-gradient">slot</span>
-          </h2>
-          <form onSubmit={submit} className="mt-8 space-y-4">
-            <input required placeholder="Your name" className={field} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            <input required type="tel" placeholder="Phone number" className={field} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+      <div ref={ref} className="relative mx-auto grid max-w-[1280px] gap-10 px-6 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+        <div className="v-col">
+          <h2 className="font-display text-xl text-gold">Book Your Appointment</h2>
+          <form onSubmit={submit} className="mt-5 grid gap-3 sm:grid-cols-2">
+            <input required placeholder="Your Name*" className={field} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <input required type="tel" placeholder="Phone Number*" className={field} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
             <select className={field} value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
               {serviceOptions.map((s) => <option key={s} className="text-ink">{s}</option>)}
             </select>
             <input type="date" className={field} value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
-            <textarea rows={3} placeholder="Anything we should know?" className={field} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+            <input type="time" className={`${field} sm:col-span-2`} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
             <button
               type="submit"
-              className="sticky bottom-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-gradient px-8 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink transition-transform duration-500 hover:-translate-y-1"
+              className="sm:col-span-2 inline-flex items-center justify-center rounded-[6px] bg-gold-gradient px-8 py-3 font-button text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-ink transition-transform duration-500 hover:-translate-y-1"
             >
-              <MessageCircle className="size-4" /> Send on WhatsApp
+              Book Appointment
             </button>
           </form>
         </div>
 
-        <div className="v-col space-y-5">
-          <a href={WA} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-[24px] border border-gold/25 bg-white/5 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-gold">
-            <MessageCircle className="size-6 text-gold" strokeWidth={1.4} />
-            <div><p className="font-display text-xl">WhatsApp Us</p><p className="mt-1 text-sm text-cream/60">Instant replies, 9 AM – 9 PM</p></div>
-          </a>
-          <a href={TEL} className="flex items-center gap-4 rounded-[24px] border border-gold/25 bg-white/5 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-gold">
-            <Phone className="size-6 text-gold" strokeWidth={1.4} />
-            <div><p className="font-display text-xl">Call Now</p><p className="mt-1 text-sm text-cream/60">{PHONE}</p></div>
-          </a>
-          <div className="rounded-[24px] border border-gold/25 bg-white/5 p-7 backdrop-blur-md">
-            <div className="flex items-center gap-3"><Clock className="size-5 text-gold" strokeWidth={1.4} /><p className="font-display text-xl">Working Hours</p></div>
-            <p className="mt-4 text-sm text-cream/70">Monday – Sunday · 9:00 AM – 9:00 PM</p>
-            <p className="mt-1.5 text-xs text-cream/45">Open all days including public holidays</p>
+        <div className="v-col lg:border-l lg:border-gold/20 lg:pl-8">
+          <h3 className="font-display text-lg text-gold">Or Book via WhatsApp</h3>
+          <div className="mt-5 flex items-start gap-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[#25D366] text-ink">
+              <MessageCircle className="size-5" />
+            </span>
+            <p className="text-xs leading-relaxed text-cream/65">Get instant confirmation on WhatsApp</p>
           </div>
-          <div className="overflow-hidden rounded-[24px] border border-gold/25">
-            <img src={interior} alt="SASS Hair & Beauty Vijayawada interior" loading="lazy" className="h-56 w-full object-cover transition-transform duration-[1400ms] hover:scale-105" />
+          <a
+            href={WA}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-[6px] bg-[#25D366] px-5 py-2.5 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 hover:-translate-y-1"
+          >
+            <MessageCircle className="size-4" /> Chat on WhatsApp
+          </a>
+        </div>
+
+        <div className="v-col lg:border-l lg:border-gold/20 lg:pl-8">
+          <h3 className="font-display text-lg text-gold">Call Us Now</h3>
+          <div className="mt-5 flex items-start gap-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-cream text-ink">
+              <Phone className="size-4" />
+            </span>
+            <p className="text-xs leading-relaxed text-cream/65">Speak to our experts now</p>
           </div>
+          <a
+            href={TEL}
+            className="mt-5 inline-flex items-center gap-2 rounded-[6px] border border-gold/50 px-5 py-2.5 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-gold transition-all duration-500 hover:-translate-y-1 hover:bg-gold-gradient hover:text-ink"
+          >
+            <Phone className="size-4" /> {PHONE}
+          </a>
+        </div>
+
+        <div className="v-col lg:border-l lg:border-gold/20 lg:pl-8">
+          <h3 className="font-display text-lg text-gold">Clinic Timings</h3>
+          <ul className="mt-5 space-y-2 text-xs text-cream/70">
+            <li className="flex justify-between gap-4"><span>Monday – Saturday</span><span>10:00 AM – 9:00 PM</span></li>
+            <li className="flex justify-between gap-4"><span>Sunday</span><span>10:00 AM – 8:00 PM</span></li>
+          </ul>
+          <p className="mt-5 flex items-center gap-2 text-xs text-cream/50"><Clock className="size-4 text-gold" /> We are open all 7 days a week</p>
+          <p className="mt-1 text-xs text-cream/50">Book your slot now!</p>
         </div>
       </div>
     </section>
   );
 }
 
-/* -------- 17. Contact -------- */
+/* -------- 17. Location strip -------- */
 export function VjaContact() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card, .v-map", stagger: 0.08 });
-  const info = [
-    { Icon: MapPin, title: "Address", copy: "MG Road, Labbipet, Vijayawada 520010" },
-    { Icon: Phone, title: "Phone", copy: PHONE },
-    { Icon: Mail, title: "Email", copy: "vijayawada@sasshairbeauty.com" },
-    { Icon: Clock, title: "Working Hours", copy: "Mon – Sun · 9:00 AM – 9:00 PM" },
-  ];
+  const ref = useReveal<HTMLDivElement>({ selector: ".v-col", stagger: 0.1 });
   return (
-    <section className="bg-background py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Contact" title="Visit our Vijayawada" italic="flagship" /></div>
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {info.map(({ Icon, title, copy }) => (
-              <div key={title} className="v-card rounded-[24px] border border-gold/20 bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-gold">
-                <Icon className="size-5 text-gold" strokeWidth={1.4} />
-                <p className="mt-5 font-display text-lg">{title}</p>
-                <p className="mt-1.5 text-sm text-muted-foreground">{copy}</p>
-              </div>
-            ))}
-            <div className="v-card sm:col-span-2 flex flex-wrap gap-3">
-              <LuxeButton as="a" href="#book">Book Appointment</LuxeButton>
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=MG+Road+Labbipet+Vijayawada"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-7 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.2em] transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:text-gold"
-              >
-                <Navigation className="size-3.5" /> Get Directions
-              </a>
-            </div>
+    <section className="bg-ink pb-16 text-cream">
+      <div ref={ref} className="mx-auto grid max-w-[1280px] gap-10 border-t border-gold/15 px-6 pt-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="v-col grid gap-5 sm:grid-cols-2">
+          <div>
+            <h3 className="font-display text-lg text-gold">Our Location</h3>
+            <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-cream/65">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
+              MG Road, Labbipet, Vijayawada – 520010, Andhra Pradesh, India
+            </p>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=MG+Road+Labbipet+Vijayawada"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-[6px] border border-gold/50 px-5 py-2.5 font-button text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold transition-all duration-500 hover:-translate-y-1 hover:bg-gold-gradient hover:text-ink"
+            >
+              <Navigation className="size-3.5" /> View on Map
+            </a>
           </div>
-          <div className="v-map overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
+          <div className="overflow-hidden rounded-[10px] border border-gold/25">
             <iframe
               title="SASS Hair & Beauty Vijayawada location map"
               src="https://www.google.com/maps?q=MG%20Road%20Labbipet%20Vijayawada&output=embed"
               loading="lazy"
-              className="h-[460px] w-full"
+              className="h-40 w-full"
             />
           </div>
+        </div>
+
+        <div className="v-col">
+          <h3 className="font-display text-lg text-gold">Contact Us</h3>
+          <ul className="mt-4 space-y-3 text-xs text-cream/65">
+            <li className="flex items-center gap-2"><Phone className="size-4 text-gold" /><a href={TEL} className="link-underline">{PHONE}</a></li>
+            <li className="flex items-center gap-2"><Phone className="size-4 text-gold" /><a href="tel:+919000011133" className="link-underline">+91 90000 11133</a></li>
+            <li className="flex items-center gap-2"><Mail className="size-4 text-gold" /><a href="mailto:hello@sasshairbeauty.in" className="link-underline">hello@sasshairbeauty.in</a></li>
+            <li className="flex items-center gap-2"><Mail className="size-4 text-gold" /><a href="mailto:info@sasshairbeauty.in" className="link-underline">info@sasshairbeauty.in</a></li>
+          </ul>
+        </div>
+
+        <div className="v-col">
+          <h3 className="font-display text-lg text-gold">Follow Us</h3>
+          <div className="mt-4 flex gap-3">
+            {[Instagram, Facebook, MessageCircle].map((Icon, i) => (
+              <span key={i} className="grid size-9 place-items-center rounded-full border border-gold/30 text-gold transition-transform duration-500 hover:-translate-y-1 hover:border-gold">
+                <Icon className="size-4" />
+              </span>
+            ))}
+          </div>
+          <p className="mt-5 text-xs leading-relaxed text-cream/55">
+            Stay connected for latest offers and updates!
+          </p>
         </div>
       </div>
     </section>
