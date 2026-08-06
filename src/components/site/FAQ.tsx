@@ -149,7 +149,7 @@ export function FAQ() {
                     className="flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-6 sm:py-4"
                   >
                     <span
-                      className={`flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
+                      className={`faq-num flex size-10 shrink-0 items-center justify-center rounded-full border font-button text-xs font-semibold tracking-wider transition-all duration-500 sm:size-11 ${
                         isOpen
                           ? "border-gold bg-gold text-black"
                           : "border-gold/25 bg-cream text-gold group-hover:scale-110 group-hover:border-gold group-hover:bg-gold group-hover:text-black"
