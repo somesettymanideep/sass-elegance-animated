@@ -7,6 +7,14 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import type { Branch } from "@/lib/branches";
+import rjy1 from "@/assets/rjy-store-1.jpg.asset.json";
+import rjy2 from "@/assets/rjy-store-2.jpg.asset.json";
+import rjy3 from "@/assets/rjy-store-3.jpg.asset.json";
+import rjy4 from "@/assets/rjy-store-4.jpg.asset.json";
+import rjy5 from "@/assets/rjy-store-5.jpg.asset.json";
+import rjy6 from "@/assets/rjy-store-6.jpg.asset.json";
+import rjy7 from "@/assets/rjy-store-7.jpg.asset.json";
+import rjy8 from "@/assets/rjy-store-8.jpg.asset.json";
 import haircut from "@/assets/svc-haircut.jpg";
 import hairspa from "@/assets/svc-hairspa.jpg";
 import colour from "@/assets/svc-colour.jpg";
