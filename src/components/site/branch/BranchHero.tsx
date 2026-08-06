@@ -88,8 +88,8 @@ export function BranchHero({ branch }: { branch: Branch }) {
           <div className="relative overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
             <video
               ref={videoRef}
-              src={heroReel.url}
-              poster={heroPoster.url}
+              src={reel.url}
+              poster={poster.url}
               autoPlay
               muted
               loop
@@ -102,7 +102,7 @@ export function BranchHero({ branch }: { branch: Branch }) {
               type="button"
               onClick={toggleSound}
               aria-label={muted ? "Unmute video" : "Mute video"}
-              className="absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full border border-gold/40 bg-black/55 text-gold backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:border-gold hover:bg-black/75"
+              className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full border border-gold/40 bg-black/55 text-gold backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:border-gold hover:bg-black/75"
             >
               {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
             </button>
