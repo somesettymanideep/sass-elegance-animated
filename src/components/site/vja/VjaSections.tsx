@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Star, Check, Instagram, Facebook, Phone, Mail, MapPin, Clock, Plus, MessageCircle, Navigation,
+  ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "../LuxeButton";
