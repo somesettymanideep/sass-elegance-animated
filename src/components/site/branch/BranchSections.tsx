@@ -46,7 +46,9 @@ import makeupIcon from "@/assets/why-makeup.svg.asset.json";
 import skincareIcon from "@/assets/skincare.svg.asset.json";
 import productsIcon from "@/assets/why-products.svg.asset.json";
 import safeIcon from "@/assets/why-safe.svg.asset.json";
-import consumerIcon from "@/assets/why-consumer.svg.asset.json";
+
+import hairIcon from "@/assets/hair.svg.asset.json";
+import consultationIcon from "@/assets/consultation.svg.asset.json";
 
 /* ---------------- Section 2 — Why Choose SASS ---------------- */
 
@@ -54,11 +56,11 @@ const reasons: { icon: string; title: string }[] = [
   { icon: salonIcon.url, title: "Premium Salon Experience" },
   { icon: employeesIcon.url, title: "Certified Hair Stylists" },
   { icon: makeupIcon.url, title: "Bridal Makeup Experts" },
-  { icon: skincareIcon.url, title: "Luxury Hair Treatments" },
+  { icon: hairIcon.url, title: "Luxury Hair Treatments" },
   { icon: productsIcon.url, title: "International Colour Techniques" },
   { icon: safeIcon.url, title: "Hygiene & Safety Standards" },
   { icon: skincareIcon.url, title: "Premium Imported Products" },
-  { icon: consumerIcon.url, title: "Personalised Consultation" },
+  { icon: consultationIcon.url, title: "Personalised Consultation" },
 ];
 
 export function BranchWhy({ branch }: { branch: Branch }) {
@@ -84,13 +86,13 @@ export function BranchWhy({ branch }: { branch: Branch }) {
               key={title}
               className="bw-item group rounded-[20px] border border-gold/20 bg-card/70 p-7 backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
             >
-              <span className="flex size-14 items-center justify-center">
+              <span className="flex size-16 items-center justify-center rounded-full bg-ink ring-1 ring-gold/30 transition-[box-shadow,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:shadow-gold">
                 <img
                   src={icon}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
-                  className="size-11 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-110"
+                  className="size-9 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-110"
                 />
               </span>
               <h3 className="mt-5 font-display text-lg leading-snug">{title}</h3>
