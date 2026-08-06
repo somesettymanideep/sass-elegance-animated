@@ -43,11 +43,11 @@ export const Route = createFileRoute("/")({
           description,
           priceRange: "₹₹₹",
           areaServed: ["Vijayawada", "Guntur", "Rajahmundry"],
-          telephone: "+91 90000 11122",
+          telephone: "+91 72868 11999",
           address: [
             {
               "@type": "PostalAddress",
-              streetAddress: "MG Road, Labbipet",
+              streetAddress: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet",
               addressLocality: "Vijayawada",
               addressRegion: "Andhra Pradesh",
               addressCountry: "IN",

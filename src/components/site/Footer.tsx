@@ -33,9 +33,9 @@ const services = [
 ];
 
 const branches = [
-  { city: "Vijayawada", address: "MG Road, Labbipet, Vijayawada 520010" },
-  { city: "Guntur", address: "Brodipet 4th Line, Guntur 522002" },
-  { city: "Rajahmundry", address: "Danavaipeta Main Road, Rajahmundry 533103" },
+  { city: "Vijayawada", address: "2nd Floor, PVP Square, MG Road, Mogalrajapuram, Labbipet, Vijayawada 520010" },
+  { city: "Guntur", address: "1st Floor, Phoenix Mall, Srinivasarao Pet, Guntur 522004" },
+  { city: "Rajahmundry", address: "Prasaditya Mall, Ave Appa Rao Road, Venkateswara Nagar, Rajamahendravaram 533103" },
 ];
 
 export function Footer() {
@@ -121,8 +121,8 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-3">
               <Phone className="mt-0.5 size-4 shrink-0 text-gold" />
-              <a href="tel:+919000011122" className="link-underline">
-                +91 90000 11122
+              <a href="tel:+917286811999" className="link-underline">
+                +91 72868 11999
               </a>
             </li>
             {branches.map((b) => (

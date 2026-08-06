@@ -1,29 +1,8 @@
 import { Navigation, Phone } from "lucide-react";
 import { useReveal } from "@/lib/motion";
+import { branches as branchData } from "@/lib/branches";
 
-const branches = [
-  {
-    city: "Vijayawada",
-    tag: "Flagship & bridal suite",
-    address: "MG Road, Labbipet, Vijayawada 520010",
-    phone: "+91 90000 11122",
-    q: "MG Road Labbipet Vijayawada",
-  },
-  {
-    city: "Guntur",
-    tag: "Colour lab & academy",
-    address: "Brodipet 4th Line, Guntur 522002",
-    phone: "+91 90000 11133",
-    q: "Brodipet Guntur",
-  },
-  {
-    city: "Rajahmundry",
-    tag: "Hair & skin studio",
-    address: "Danavaipeta Main Road, Rajahmundry 533103",
-    phone: "+91 90000 11144",
-    q: "Danavaipeta Rajahmundry",
-  },
-];
+const branches = branchData;
 
 export function Branches() {
   const ref = useReveal<HTMLDivElement>({ selector: ".br-card, .br-head", stagger: 0.12 });
@@ -43,7 +22,7 @@ export function Branches() {
             <article id={`branch-${b.city.toLowerCase()}`} key={b.city} className="br-card luxe-card overflow-hidden bg-white/[0.03]">
               <iframe
                 title={`Map of SASS ${b.city}`}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(b.q)}&output=embed`}
+                src={b.mapEmbed}
                 loading="lazy"
                 className="h-52 w-full"
               />

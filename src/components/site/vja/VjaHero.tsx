@@ -104,7 +104,7 @@ export function VjaHero() {
           <div className="vh-item mt-9 flex flex-wrap gap-4">
             <LuxeButton as="a" href="#book">Book Appointment</LuxeButton>
             <a
-              href="tel:+919000011122"
+              href="tel:+917286811999"
               className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-7 py-3.5 font-button text-[0.7rem] font-semibold uppercase tracking-[0.2em] transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:text-gold"
             >
               <Phone className="size-3.5" /> Call Now
