@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ensureGsap } from "@/lib/motion";
 import salonIcon from "@/assets/why-beauty-salon.svg.asset.json";
-import makeupIcon from "@/assets/why-makeup.svg.asset.json";
+import makeupIcon from "@/assets/employees.svg.asset.json";
 import productsIcon from "@/assets/skincare.svg.asset.json";
 import safeIcon from "@/assets/why-safe.svg.asset.json";
 import consumerIcon from "@/assets/why-consumer.svg.asset.json";
