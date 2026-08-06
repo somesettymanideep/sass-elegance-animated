@@ -1,74 +1,71 @@
+import { useState } from "react";
 import {
   BadgeCheck, Sparkles, Cpu, Wallet, MessageCircle, ShieldCheck,
-  Scissors, Droplets, Palette, Waves, Flower2, Zap, Wind, Layers, Crown, HeartPulse, Syringe, Sun,
-  Hand, Footprints, Gem, Brush, Leaf, Star,
+  ArrowRight, ChevronLeft, ChevronRight, UserRound, ScanSearch, Wand2, HeartHandshake, CalendarCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useReveal } from "@/lib/motion";
-import { LuxeButton } from "../LuxeButton";
 import haircut from "@/assets/svc-haircut.jpg";
 import hairspa from "@/assets/svc-hairspa.jpg";
 import colour from "@/assets/svc-colour.jpg";
 import smoothening from "@/assets/svc-smoothening.jpg";
-import keratin from "@/assets/svc-keratin.jpg";
 import facial from "@/assets/svc-facial.jpg";
 import makeup from "@/assets/svc-makeup.jpg";
 import bridal from "@/assets/svc-bridal.jpg";
-import bridalWide from "@/assets/bridal-split.jpg";
 import manicure from "@/assets/svc-manicure.jpg";
-import pedicure from "@/assets/svc-pedicure.jpg";
 import threading from "@/assets/svc-threading.jpg";
 import interior from "@/assets/interior.jpg";
-import hero from "@/assets/hero.jpg";
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
+import before from "@/assets/before.jpg";
+import after from "@/assets/after.jpg";
 
-function Head({ eyebrow, title, italic, copy, light }: { eyebrow: string; title: string; italic?: string; copy?: string; light?: boolean }) {
+function Head({ eyebrow, title, italic, copy, light }: { eyebrow?: string; title: string; italic?: string; copy?: string; light?: boolean }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <p className="section-eyebrow text-gold">{eyebrow}</p>
-      <h2 className={`mt-2 font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06] ${light ? "text-cream" : ""}`}>
-        {title} {italic && <span className="italic text-gold-gradient">{italic}</span>}
-      </h2>
-      {copy && <p className={`mt-5 text-sm leading-relaxed ${light ? "text-cream/65" : "text-muted-foreground"}`}>{copy}</p>}
-      <div className="mt-6 flex items-center justify-center gap-4">
-        <span className="h-px w-12 bg-gold/40" />
-        <span className="size-1.5 rotate-45 bg-gold" />
-        <span className="h-px w-12 bg-gold/40" />
+      {eyebrow && <p className="section-eyebrow text-gold">{eyebrow}</p>}
+      <div className="flex items-center justify-center gap-4">
+        <span className="hidden h-px w-14 bg-gold/50 sm:block" />
+        <h2 className={`font-semibold text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.1] ${light ? "text-cream" : ""}`}>
+          {title} {italic && <span className="italic text-gold-gradient">{italic}</span>}
+        </h2>
+        <span className="hidden h-px w-14 bg-gold/50 sm:block" />
       </div>
+      {copy && <p className={`mt-4 text-sm leading-relaxed ${light ? "text-cream/65" : "text-muted-foreground"}`}>{copy}</p>}
     </div>
   );
 }
 
-/* -------- 2. Why choose -------- */
+/* -------- 2. Why choose — single horizontal row with dividers -------- */
 const why: { Icon: LucideIcon; title: string; copy: string }[] = [
-  { Icon: BadgeCheck, title: "Certified Professionals", copy: "Internationally trained stylists and skin therapists." },
-  { Icon: Sparkles, title: "Premium Products", copy: "L'Oréal, Kérastase, Olaplex, Schwarzkopf and more." },
-  { Icon: Cpu, title: "Modern Equipment", copy: "Advanced laser, hydra and hair-analysis technology." },
-  { Icon: Wallet, title: "Affordable Pricing", copy: "Transparent luxury with no hidden charges." },
-  { Icon: MessageCircle, title: "Personal Consultation", copy: "Every service begins with a one-to-one diagnosis." },
-  { Icon: ShieldCheck, title: "100% Hygiene", copy: "Single-use kits and sterilised tools, always." },
+  { Icon: BadgeCheck, title: "Certified Professionals", copy: "Expert & experienced beauty specialists" },
+  { Icon: Sparkles, title: "Premium Products", copy: "We use top-quality, international brands" },
+  { Icon: Cpu, title: "Modern Equipment", copy: "Advanced technology for best results" },
+  { Icon: MessageCircle, title: "Personalized Consultation", copy: "Customized treatments for your unique needs" },
+  { Icon: Wallet, title: "Affordable Pricing", copy: "Luxury services at reasonable prices" },
+  { Icon: ShieldCheck, title: "Hygienic Environment", copy: "Clean, safe & sanitized clinic" },
 ];
 
 export function VjaWhy() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.08 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.07 });
   return (
-    <section className="relative overflow-hidden bg-background py-24 md:py-32">
-      <span className="floaty pointer-events-none absolute -right-24 top-16 size-80 rounded-full bg-gold/10 blur-[120px]" />
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Why Choose SASS" title="Luxury care, engineered with" italic="precision" /></div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {why.map(({ Icon, title, copy }) => (
-            <article
+    <section className="bg-cream py-16 md:py-20">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
+        <div className="v-head">
+          <h2 className="text-center font-semibold text-[clamp(1.6rem,3.4vw,2.4rem)] leading-[1.1]">
+            Why Choose Our Hair &amp; Beauty Clinic?
+          </h2>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+          {why.map(({ Icon, title, copy }, i) => (
+            <div
               key={title}
-              className="v-card group rounded-[24px] border border-gold/20 bg-card/70 p-8 backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+              className={`v-card group px-4 text-center ${i ? "lg:border-l lg:border-gold/25" : ""}`}
             >
-              <span className="flex size-14 items-center justify-center rounded-full bg-ink text-gold transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
-                <Icon className="size-6" strokeWidth={1.3} />
-              </span>
-              <h3 className="mt-6 font-display text-xl">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy}</p>
-            </article>
+              <Icon className="mx-auto size-8 text-gold transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-110" strokeWidth={1.2} />
+              <h3 className="mt-4 font-button text-[0.72rem] font-semibold uppercase tracking-[0.08em]">{title}</h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{copy}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -76,199 +73,55 @@ export function VjaWhy() {
   );
 }
 
-/* -------- 3. Hair services -------- */
-const hairServices = [
-  { title: "Hair Cut", image: haircut },
-  { title: "Hair Spa", image: hairspa },
-  { title: "Hair Colour", image: colour },
-  { title: "Hair Smoothening", image: smoothening },
-  { title: "Keratin", image: keratin },
-  { title: "Hair Botox", image: hairspa },
-  { title: "Straightening", image: smoothening },
-  { title: "Extensions", image: hero },
-  { title: "Bridal Hair", image: bridal },
-  { title: "Hair Fall Therapy", image: interior },
-  { title: "PRP Treatment", image: facial },
-  { title: "Dandruff Control", image: g1 },
+/* -------- 3. Services — 8 dark image cards with service lists -------- */
+const serviceGroups: { title: string; image: string; items: string[]; more?: string }[] = [
+  { title: "Hair Services", image: colour, items: ["Hair Cut & Styling", "Hair Spa", "Hair Coloring", "Hair Smoothening", "Keratin Treatment", "Hair Botox"], more: "7 More Services" },
+  { title: "Beauty & Skin Services", image: facial, items: ["Hydra Facial", "Medi Facial", "Skin Brightening", "Acne Treatment", "Pigmentation Treatment", "Anti-Aging Treatments"], more: "5 More Services" },
+  { title: "Laser Treatments", image: g1, items: ["Laser Hair Removal", "Tattoo Removal", "Scar Removal", "Pigmentation Laser", "Stretch Mark Removal", "Laser Skin Tightening"] },
+  { title: "Bridal Services", image: bridal, items: ["Bridal Makeup", "Engagement Makeup", "Reception Makeup", "HD Makeup", "Airbrush Makeup", "Pre-Bridal Packages"], more: "2 More Services" },
+  { title: "Nail & Spa Services", image: manicure, items: ["Manicure", "Pedicure", "Nail Extensions", "Gel Nails", "Nail Art", "Head Massage"], more: "2 More Services" },
+  { title: "Hair Treatments", image: hairspa, items: ["Hair Fall Treatment", "PRP Hair Treatment", "Dandruff Treatment", "Scalp Detox", "Protein Treatment", "Ozone Therapy"] },
+  { title: "Makeup & Styling", image: makeup, items: ["Party Makeup", "HD Makeup", "Airbrush Makeup", "Hairstyling", "Saree Draping", "Groom Packages"] },
+  { title: "Body Care", image: interior, items: ["Body Massage", "Body Spa", "Body Polishing", "Detan Treatment", "Stretch Mark Therapy", "Slimming Treatments"] },
 ];
 
-export function VjaHairServices() {
+export function VjaServiceGrid() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-tile", stagger: 0.05 });
   return (
-    <section id="services" className="bg-cream py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Our Hair Services" title="Hair artistry for" italic="every texture" /></div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {hairServices.map(({ title, image }) => (
-            <article key={title} className="v-tile group relative overflow-hidden rounded-[24px] border border-gold/20 shadow-luxe">
+    <section id="services" className="bg-background py-20 md:py-24">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
+        <div className="v-head"><Head title="Our Services" /></div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {serviceGroups.map(({ title, image, items, more }) => (
+            <article
+              key={title}
+              className="v-tile group relative isolate overflow-hidden rounded-[14px] border border-gold/20 bg-ink text-cream transition-[transform,box-shadow,border-color] duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
+            >
               <img
                 src={image}
                 alt={`${title} in Vijayawada at SASS Hair & Beauty`}
                 loading="lazy"
-                className="aspect-4/5 w-full object-cover transition-transform duration-[1300ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                className="absolute inset-0 -z-10 size-full object-cover object-left transition-transform duration-[1300ms] group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="font-display text-lg text-cream">{title}</h3>
-                <span className="mt-2 inline-flex translate-y-2 items-center gap-2 text-[0.6rem] uppercase tracking-[0.2em] text-gold opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  View Details →
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------- 4. Beauty & skin -------- */
-const skin: { Icon: LucideIcon; title: string; copy: string }[] = [
-  { Icon: Droplets, title: "Hydra Facial", copy: "Deep hydration and instant glow." },
-  { Icon: HeartPulse, title: "Medi Facial", copy: "Dermat-grade facials for problem skin." },
-  { Icon: Leaf, title: "Acne Treatment", copy: "Clarifying protocols that calm breakouts." },
-  { Icon: Palette, title: "Pigmentation", copy: "Even tone with targeted brightening." },
-  { Icon: Layers, title: "Chemical Peel", copy: "Controlled resurfacing for fresh skin." },
-  { Icon: Sun, title: "Anti Aging", copy: "Firming, lifting and collagen therapy." },
-  { Icon: Zap, title: "Carbon Facial", copy: "Laser carbon peel for refined pores." },
-  { Icon: Sparkles, title: "Skin Brightening", copy: "Luminous, camera-ready radiance." },
-  { Icon: Flower2, title: "Skin Rejuvenation", copy: "Restorative treatments for tired skin." },
-];
-
-export function VjaSkin() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.06 });
-  return (
-    <section className="bg-background py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Beauty & Skin" title="Advanced skin care in" italic="Vijayawada" /></div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {skin.map(({ Icon, title, copy }) => (
-            <article
-              key={title}
-              className="v-card group flex gap-5 rounded-[24px] border border-gold/20 bg-card/70 p-7 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-gold hover:shadow-gold"
-            >
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-ink transition-transform duration-700 group-hover:rotate-12">
-                <Icon className="size-5" strokeWidth={1.4} />
-              </span>
-              <div>
-                <h3 className="font-display text-lg">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------- 5. Laser -------- */
-const laser = ["Laser Hair Removal", "Tattoo Removal", "Scar Removal", "Pigmentation Laser", "Stretch Marks", "Skin Tightening"];
-
-export function VjaLaser() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card", stagger: 0.07 });
-  return (
-    <section className="relative overflow-hidden bg-ink py-24 text-cream md:py-32">
-      <span className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-gold/50 to-transparent" />
-      <span className="floaty pointer-events-none absolute -left-32 bottom-0 size-96 rounded-full bg-gold/10 blur-[140px]" />
-      <div ref={ref} className="relative mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head light eyebrow="Laser Treatments" title="Precision laser," italic="visible results" /></div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {laser.map((title) => (
-            <article
-              key={title}
-              className="v-card group relative overflow-hidden rounded-[24px] border border-gold/25 bg-white/5 p-8 backdrop-blur-md transition-all duration-700 hover:-translate-y-2 hover:border-gold hover:shadow-gold"
-            >
-              <span className="pointer-events-none absolute inset-x-0 top-0 h-px -translate-x-full bg-gold-gradient transition-transform duration-1000 group-hover:translate-x-0" />
-              <Zap className="size-6 text-gold transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110" strokeWidth={1.3} />
-              <h3 className="mt-6 font-display text-xl">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream/60">
-                US-FDA approved technology, performed by trained clinicians.
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------- 6. Bridal -------- */
-const bridalCards = ["HD Makeup", "Airbrush", "Reception", "Engagement", "Bridal Makeup", "Pre Bridal", "Wedding Packages"];
-
-export function VjaBridal() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-card, .v-img", stagger: 0.07 });
-  return (
-    <section className="bg-cream py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div className="v-img overflow-hidden rounded-[24px] border border-gold/25 shadow-luxe">
-            <img
-              src={bridalWide}
-              alt="Bridal makeup in Vijayawada by SASS Hair & Beauty"
-              loading="lazy"
-              className="aspect-4/5 w-full object-cover transition-transform duration-[1400ms] hover:scale-105"
-            />
-          </div>
-          <div>
-            <p className="v-head section-eyebrow text-gold">Bridal Services</p>
-            <h2 className="v-head mt-2 font-semibold text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.06]">
-              Your wedding day, <span className="italic text-gold-gradient">flawless</span>
-            </h2>
-            <p className="v-head mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground">
-              A dedicated bridal suite, senior makeup artists and pre-bridal skin programmes designed
-              months ahead of your muhurtham.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {bridalCards.map((c) => (
-                <span
-                  key={c}
-                  className="v-card rounded-full border border-gold/30 bg-card px-5 py-2.5 font-button text-[0.65rem] uppercase tracking-[0.16em] transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:shadow-gold"
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/45 via-black/80 to-black/95" />
+              <div className="flex min-h-[300px] flex-col justify-between p-5 pl-[45%]">
+                <div>
+                  <h3 className="font-button text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-gold">{title}</h3>
+                  <ul className="mt-3 space-y-1.5">
+                    {items.map((i) => (
+                      <li key={i} className="flex items-start gap-2 text-[0.72rem] leading-snug text-cream/80">
+                        <span className="mt-1.5 size-1 shrink-0 rounded-full bg-gold" /> {i}
+                      </li>
+                    ))}
+                  </ul>
+                  {more && <p className="mt-2 text-[0.68rem] italic text-gold">+ {more}</p>}
+                </div>
+                <a
+                  href="#book"
+                  className="mt-5 inline-flex w-fit items-center gap-2 rounded-[6px] bg-gold-gradient px-4 py-2 font-button text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-500 group-hover:-translate-y-0.5"
                 >
-                  {c}
-                </span>
-              ))}
-            </div>
-            <div className="v-card mt-10">
-              <LuxeButton as="a" href="#book">Book Bridal Consultation</LuxeButton>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------- 7. Nail & spa -------- */
-const nails = [
-  { title: "Manicure", image: manicure, Icon: Hand, span: "row-span-2" },
-  { title: "Pedicure", image: pedicure, Icon: Footprints, span: "" },
-  { title: "Gel Nails", image: makeup, Icon: Gem, span: "" },
-  { title: "Nail Extensions", image: threading, Icon: Brush, span: "" },
-  { title: "Head Massage", image: hairspa, Icon: Flower2, span: "row-span-2" },
-  { title: "Body Massage", image: g2, Icon: Waves, span: "" },
-  { title: "Luxury Spa", image: interior, Icon: Leaf, span: "" },
-];
-
-export function VjaNails() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-tile", stagger: 0.06 });
-  return (
-    <section className="bg-background py-24 md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Nail & Spa" title="Slow luxury for" italic="hands, feet & soul" /></div>
-        <div className="mt-14 grid auto-rows-[190px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {nails.map(({ title, image, Icon, span }) => (
-            <article key={title} className={`v-tile group relative overflow-hidden rounded-[24px] border border-gold/20 ${span}`}>
-              <img
-                src={image}
-                alt={`${title} at SASS Hair & Beauty Vijayawada`}
-                loading="lazy"
-                className="size-full object-cover transition-transform duration-[1300ms] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5">
-                <Icon className="size-5 text-gold transition-transform duration-500 group-hover:rotate-12" strokeWidth={1.4} />
-                <h3 className="font-display text-lg text-cream">{title}</h3>
+                  View All <ArrowRight className="size-3" />
+                </a>
               </div>
             </article>
           ))}
@@ -278,76 +131,133 @@ export function VjaNails() {
   );
 }
 
-/* -------- 8. Process -------- */
-const steps = [
-  { n: "01", title: "Consultation", copy: "We listen first — lifestyle, history and goals." },
-  { n: "02", title: "Hair & Skin Analysis", copy: "Digital scalp and skin diagnostics." },
-  { n: "03", title: "Treatment", copy: "Your personalised protocol, expertly delivered." },
-  { n: "04", title: "Aftercare", copy: "Home-care routine and product prescription." },
-  { n: "05", title: "Follow Up", copy: "Review appointments to track your progress." },
+/* -------- 4. Process — horizontal steps with arrows -------- */
+const steps: { Icon: LucideIcon; title: string; copy: string }[] = [
+  { Icon: UserRound, title: "Consultation", copy: "Understanding your needs" },
+  { Icon: ScanSearch, title: "Analysis", copy: "Skin & hair analysis" },
+  { Icon: Wand2, title: "Personalized Treatment", copy: "Tailored treatment for you" },
+  { Icon: HeartHandshake, title: "Aftercare Guidance", copy: "Tips for better results" },
+  { Icon: CalendarCheck, title: "Follow-Up Support", copy: "We care even after treatment" },
 ];
 
 export function VjaProcess() {
-  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-step", stagger: 0.1 });
+  const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-step", stagger: 0.09 });
   return (
-    <section className="relative overflow-hidden bg-cream py-24 md:py-32">
+    <section className="bg-cream py-20 md:py-24">
       <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head eyebrow="Our Process" title="Five steps to your" italic="transformation" /></div>
-        <div className="relative mt-16">
-          <span className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-gold/10 via-gold/60 to-gold/10 md:block" />
-          <div className="space-y-6">
-            {steps.map(({ n, title, copy }) => (
-              <div key={n} className="v-step group relative flex gap-6 rounded-[24px] border border-gold/20 bg-card/80 p-7 pl-7 backdrop-blur-sm transition-all duration-700 hover:-translate-y-1 hover:border-gold hover:shadow-gold md:ml-0">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink font-button text-xs text-gold transition-colors duration-500 group-hover:bg-gold-gradient group-hover:text-ink">
-                  {n}
+        <div className="v-head"><Head title="Our Treatment Process" /></div>
+        <div className="mt-14 flex flex-col items-center gap-8 md:flex-row md:justify-between">
+          {steps.map(({ Icon, title, copy }, i) => (
+            <div key={title} className="v-step flex items-center gap-6">
+              <div className="group max-w-[10rem] text-center">
+                <span className="mx-auto grid size-16 place-items-center rounded-full border border-gold/45 text-gold transition-all duration-700 group-hover:-translate-y-1 group-hover:border-gold group-hover:shadow-gold">
+                  <Icon className="size-6" strokeWidth={1.2} />
                 </span>
-                <div>
-                  <h3 className="font-display text-xl">{title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{copy}</p>
-                </div>
+                <h3 className="mt-4 font-button text-[0.72rem] font-semibold uppercase tracking-[0.08em]">{title}</h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{copy}</p>
               </div>
-            ))}
-          </div>
+              {i < steps.length - 1 && <ArrowRight className="hidden size-5 shrink-0 text-gold/60 md:block" />}
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-/* -------- 9. Before / after carousel -------- */
-const categories = [
-  { label: "Hair", before: hairspa, after: colour },
-  { label: "Skin", before: facial, after: g1 },
-  { label: "Bridal", before: makeup, after: bridal },
-  { label: "Laser", before: threading, after: facial },
-  { label: "Nails", before: manicure, after: pedicure },
-];
+/* -------- 5. Before / after gallery with category tabs -------- */
+const gallery: Record<string, { before: string; after: string }[]> = {
+  "Hair Transformations": [
+    { before, after }, { before: hairspa, after: colour }, { before: smoothening, after: haircut }, { before: g2, after: g1 },
+  ],
+  "Skin Treatments": [
+    { before: facial, after: g1 }, { before: g2, after: facial }, { before: interior, after: facial }, { before: facial, after: g2 },
+  ],
+  "Bridal Makeovers": [
+    { before: makeup, after: bridal }, { before: bridal, after: makeup }, { before: g1, after: bridal }, { before: makeup, after: bridal },
+  ],
+  "Laser Results": [
+    { before: threading, after: facial }, { before: facial, after: threading }, { before: g2, after: facial }, { before: threading, after: g1 },
+  ],
+  "Nail Art Gallery": [
+    { before: manicure, after: makeup }, { before: makeup, after: manicure }, { before: manicure, after: g2 }, { before: g1, after: manicure },
+  ],
+};
+const tabs = Object.keys(gallery);
+type Pair = { before: string; after: string };
 
 export function VjaBeforeAfter() {
   const ref = useReveal<HTMLDivElement>({ selector: ".v-head, .v-tile", stagger: 0.07 });
+  const [tab, setTab] = useState<string>(tabs[0] as string);
+  const items: Pair[] = gallery[tab] ?? [];
+  const shift = (dir: number) => {
+    const i = (tabs.indexOf(tab) + dir + tabs.length) % tabs.length;
+    setTab(tabs[i] as string);
+  };
+
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
-      <div ref={ref} className="mx-auto max-w-[1200px] px-6">
-        <div className="v-head"><Head light eyebrow="Before & After" title="Real clients, real" italic="transformations" /></div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map(({ label, before, after }) => (
-            <article key={label} className="v-tile group overflow-hidden rounded-[24px] border border-gold/25 bg-white/5">
-              <div className="grid grid-cols-2">
-                <div className="relative">
-                  <img src={before} alt={`${label} before`} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                  <span className="absolute left-2 top-2 rounded-full bg-black/65 px-2.5 py-1 text-[0.55rem] uppercase tracking-[0.18em]">Before</span>
-                </div>
-                <div className="relative">
-                  <img src={after} alt={`${label} after`} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                  <span className="absolute right-2 top-2 rounded-full bg-gold px-2.5 py-1 text-[0.55rem] uppercase tracking-[0.18em] text-ink">After</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between px-5 py-4">
-                <h3 className="font-display text-lg">{label}</h3>
-                <Star className="size-4 text-gold" />
-              </div>
-            </article>
+    <section className="bg-background py-20 md:py-24">
+      <div ref={ref} className="mx-auto max-w-[1280px] px-6">
+        <div className="v-head"><Head title="Before & After Gallery" /></div>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          {tabs.map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`rounded-full px-5 py-2 font-button text-[0.62rem] font-semibold uppercase tracking-[0.14em] transition-all duration-500 ${
+                t === tab ? "bg-gold-gradient text-ink shadow-gold" : "border border-gold/30 text-muted-foreground hover:border-gold hover:text-gold"
+              }`}
+            >
+              {t}
+            </button>
           ))}
+        </div>
+
+        <div className="mt-10 flex items-center gap-4">
+          <button
+            aria-label="Previous category"
+            onClick={() => shift(-1)}
+            className="hidden size-9 shrink-0 place-items-center rounded-full bg-gold-gradient text-ink transition-transform duration-500 hover:-translate-x-1 md:grid"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+
+          <div className="grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((pair: Pair, i: number) => (
+              <article key={i} className="v-tile group overflow-hidden rounded-[14px] border border-gold/20 shadow-luxe">
+                <div className="grid grid-cols-2">
+                  {[["Before", pair.before], ["After", pair.after]].map(([label, src]) => (
+                    <div key={label} className="relative">
+                      <img src={src} alt={`${tab} ${label}`} loading="lazy" className="aspect-3/4 w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                      <span className={`absolute inset-x-0 bottom-0 py-1.5 text-center font-button text-[0.52rem] uppercase tracking-[0.2em] ${
+                        label === "After" ? "bg-gold text-ink" : "bg-black/75 text-cream"
+                      }`}>
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button
+            aria-label="Next category"
+            onClick={() => shift(1)}
+            className="hidden size-9 shrink-0 place-items-center rounded-full bg-gold-gradient text-ink transition-transform duration-500 hover:translate-x-1 md:grid"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            href="#book"
+            className="rounded-[6px] border border-gold/40 px-6 py-2.5 font-button text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold transition-all duration-500 hover:-translate-y-1 hover:bg-gold-gradient hover:text-ink"
+          >
+            View All Gallery
+          </a>
         </div>
       </div>
     </section>
