@@ -38,43 +38,63 @@ export function FAQ() {
     ensureGsap();
 
     const ctx = gsap.context(() => {
+      // Image: elegant slide-in from left with subtle scale and blur
       gsap.fromTo(
         ".faq-image",
-        { autoAlpha: 0, x: -60, scale: 0.94, filter: "blur(14px)" },
+        { autoAlpha: 0, x: -80, scale: 1.04, filter: "blur(16px)" },
         {
           autoAlpha: 1,
           x: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.25,
-          ease: "power3.out",
+          duration: 1.4,
+          ease: "power4.out",
+          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        },
+      );
+
+      // Heading block: fade up with blur
+      gsap.fromTo(
+        ".reveal-head",
+        { autoAlpha: 0, y: 50, filter: "blur(14px)" },
+        {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.1,
+          ease: "power4.out",
           scrollTrigger: { trigger: el, start: "top 82%", once: true },
         },
       );
 
+      // FAQ cards: staggered fade + slide + scale + blur
       gsap.fromTo(
-        ".reveal-head",
-        { autoAlpha: 0, y: 40, filter: "blur(12px)" },
+        ".faq-item",
+        { autoAlpha: 0, y: 45, x: 40, scale: 0.98, filter: "blur(12px)" },
         {
           autoAlpha: 1,
           y: 0,
+          x: 0,
+          scale: 1,
           filter: "blur(0px)",
           duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 80%", once: true },
+          ease: "power4.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
         },
       );
 
+      // FAQ number badges: pop in after their cards appear
       gsap.fromTo(
-        ".faq-item",
-        { autoAlpha: 0, y: 28, filter: "blur(8px)" },
+        ".faq-item .faq-num",
+        { autoAlpha: 0, scale: 0.6, y: 10 },
         {
           autoAlpha: 1,
+          scale: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 0.85,
-          ease: "power3.out",
-          stagger: 0.09,
+          duration: 0.6,
+          ease: "back.out(1.8)",
+          stagger: 0.12,
           scrollTrigger: { trigger: el, start: "top 76%", once: true },
         },
       );
