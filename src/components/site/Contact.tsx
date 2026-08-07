@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent, type ChangeEvent } from "r
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { useReveal } from "@/lib/motion";
 import { LuxeButton } from "./LuxeButton";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import svcBridal from "@/assets/svc-bridal.jpg";
 import mensGrooming from "@/assets/mens-grooming.jpg";
 import svcMakeup from "@/assets/svc-makeup.jpg";
