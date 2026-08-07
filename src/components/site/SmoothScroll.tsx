@@ -14,6 +14,8 @@ export function SmoothScroll() {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
 
     let frame = 0;
     const raf = (time: number) => {
