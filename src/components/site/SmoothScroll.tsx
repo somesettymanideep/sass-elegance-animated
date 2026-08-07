@@ -42,6 +42,7 @@ export function SmoothScroll() {
     return () => {
       document.removeEventListener("click", onAnchor);
       cancelAnimationFrame(frame);
+      delete (window as unknown as { lenis?: Lenis }).lenis;
       lenis.destroy();
     };
   }, []);
