@@ -14,6 +14,8 @@ export function SmoothScroll() {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
 
     let frame = 0;
     const raf = (time: number) => {
@@ -40,6 +42,7 @@ export function SmoothScroll() {
     return () => {
       document.removeEventListener("click", onAnchor);
       cancelAnimationFrame(frame);
+      delete (window as unknown as { lenis?: Lenis }).lenis;
       lenis.destroy();
     };
   }, []);
