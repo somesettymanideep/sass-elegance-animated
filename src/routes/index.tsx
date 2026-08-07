@@ -77,8 +77,8 @@ function Index() {
         <Contact />
         <FAQ />
         <Bridal />
-        <Stats />
         <Testimonials />
+        <Stats />
         <Brands />
         <Membership />
       </main>
